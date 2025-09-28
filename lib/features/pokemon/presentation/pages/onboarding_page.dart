@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pokedex_app/core/core_exports.dart' show AppImages;
 
 class OnboardingPage extends StatefulWidget {
   const OnboardingPage({super.key});
@@ -16,13 +17,13 @@ class _OnboardingPageState extends State<OnboardingPage> {
       "title": "Todos los Pokémon en un solo lugar",
       "subtitle":
           "Accede a una amplia lista de Pokémon de todas las generaciones creadas por Nintendo",
-      "image": "assets/images/onboarding1.png",
+      "image": AppImages.onboarding_1,
       "button": "Continuar",
     },
     {
       "title": "Mantén tu Pokédex actualizada",
       "subtitle": "Regístrate y guarda tu perfil, Pokémon favoritos, configuraciones y mucho más",
-      "image": "assets/images/onboarding2.png",
+      "image": AppImages.onboarding_2,
       "button": "Empecemos",
     },
   ];
