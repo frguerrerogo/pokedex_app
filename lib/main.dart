@@ -1,20 +1,25 @@
 import 'package:flutter/material.dart';
 
+import 'features/pokemon/presentation/pages/onboarding_page.dart';
+
 void main() {
-  runApp(const MainApp());
+  runApp(const MyApp());
 }
 
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
-      ),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Pokedex App',
+      theme: ThemeData(primarySwatch: Colors.red),
+      initialRoute: '/onboarding',
+      routes: {
+        '/onboarding': (_) => const OnboardingPage(),
+        '/home': (_) => Container(), // HomePage(),
+      },
     );
   }
 }

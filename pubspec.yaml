@@ -4,16 +4,50 @@ publish_to: 'none'
 version: 0.1.0
 
 environment:
-  sdk: ^3.9.2
+  sdk: ">=3.9.2 <4.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
+  dio: ^5.0.0
+  flutter_riverpod: ^2.3.0
+  riverpod_annotation: ^2.0.0
+  freezed_annotation: ^2.0.0
+  intl: ^0.18.0
+
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^5.0.0
+  build_runner: ^2.4.0
+  freezed: ^2.3.0
+  riverpod_generator: ^2.0.0
+  flutter_native_splash: ^2.4.0
+  flutter_launcher_icons: ^0.13.1
+  rename: ^3.0.2
 
 flutter:
   uses-material-design: true
+
+  assets:
+    - assets/images/
+
+flutter_native_splash:
+  color: "#ffffff"
+  image: assets/images/logo_pokeball.png
+  android: true
+  ios: true
+  web: false
+  fullscreen: true
+
+  android_12:
+    color: "#ffffff"
+    image: assets/images/logo_pokeball.png
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/logo_pokeball.png"
+  adaptive_icon_background: "#ffffff"
+  adaptive_icon_foreground: "assets/images/logo_pokeball.png"
