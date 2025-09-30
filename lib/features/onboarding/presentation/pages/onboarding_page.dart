@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:pokedex_app/core/config/app_initializer.dart' show prefs;
 import 'package:pokedex_app/core/core_exports.dart' show AppImages;
+import 'package:pokedex_app/core/router/app_router.dart';
 import 'package:pokedex_app/core/widgets/widgets_exports.dart' show AppPrimaryButton;
 import 'package:pokedex_app/features/onboarding/presentation/widgets/onboarding_content.dart';
 import 'package:pokedex_app/features/onboarding/presentation/widgets/page_indicator.dart';
@@ -20,7 +22,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
   Future<void> _completeOnboarding() async {
     await prefs.setBool('hasSeenOnboarding', true);
     if (!mounted) return;
-    Navigator.pushReplacementNamed(context, '/home');
+    context.go(HomeRoute().location);
   }
 
   void _nextPage(int totalPages) {

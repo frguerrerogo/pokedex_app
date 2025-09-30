@@ -9,6 +9,7 @@ import 'package:pokedex_app/l10n/app_localizations.dart';
 
 void main() async {
   await configureApp();
+
   runApp(ProviderScope(child: MyApp()));
 }
 
