@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:pokedex_app/core/config/app_initializer.dart' show prefs;
 import 'package:pokedex_app/core/core_exports.dart' show AppImages;
 import 'package:pokedex_app/core/widgets/widgets_exports.dart' show AppPrimaryButton;
 import 'package:pokedex_app/features/onboarding/presentation/widgets/onboarding_content.dart';
 import 'package:pokedex_app/features/onboarding/presentation/widgets/page_indicator.dart';
 import 'package:pokedex_app/l10n/app_localizations.dart' show AppLocalizations;
-import 'package:shared_preferences/shared_preferences.dart';
 
 class OnboardingPage extends StatefulWidget {
   const OnboardingPage({super.key});
@@ -18,7 +18,6 @@ class _OnboardingPageState extends State<OnboardingPage> {
   int _currentPage = 0;
 
   Future<void> _completeOnboarding() async {
-    final prefs = await SharedPreferences.getInstance();
     await prefs.setBool('hasSeenOnboarding', true);
     if (!mounted) return;
     Navigator.pushReplacementNamed(context, '/home');
@@ -82,6 +81,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
               label: onboardingData[_currentPage]["button"]!,
               onPressed: () => _nextPage(onboardingData.length),
             ),
+
             const SizedBox(height: 20),
           ],
         ),
