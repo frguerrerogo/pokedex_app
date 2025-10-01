@@ -8,15 +8,10 @@ part of 'app_router.dart';
 
 List<RouteBase> get $appRoutes => [$onboardingRoute, $homeRoute];
 
-RouteBase get $onboardingRoute => GoRouteData.$route(
-  path: '/onboarding',
+RouteBase get $onboardingRoute => GoRouteData.$route(path: '/onboarding', factory: $OnboardingRoute._fromState);
 
-  factory: _$OnboardingRoute._fromState,
-);
-
-mixin _$OnboardingRoute on GoRouteData {
-  static OnboardingRoute _fromState(GoRouterState state) =>
-      const OnboardingRoute();
+mixin $OnboardingRoute on GoRouteData {
+  static OnboardingRoute _fromState(GoRouterState state) => const OnboardingRoute();
 
   @override
   String get location => GoRouteData.$location('/onboarding');
@@ -28,17 +23,15 @@ mixin _$OnboardingRoute on GoRouteData {
   Future<T?> push<T>(BuildContext context) => context.push<T>(location);
 
   @override
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
+  void pushReplacement(BuildContext context) => context.pushReplacement(location);
 
   @override
   void replace(BuildContext context) => context.replace(location);
 }
 
-RouteBase get $homeRoute =>
-    GoRouteData.$route(path: '/home', factory: _$HomeRoute._fromState);
+RouteBase get $homeRoute => GoRouteData.$route(path: '/home', factory: $HomeRoute._fromState);
 
-mixin _$HomeRoute on GoRouteData {
+mixin $HomeRoute on GoRouteData {
   static HomeRoute _fromState(GoRouterState state) => const HomeRoute();
 
   @override
@@ -51,8 +44,7 @@ mixin _$HomeRoute on GoRouteData {
   Future<T?> push<T>(BuildContext context) => context.push<T>(location);
 
   @override
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
+  void pushReplacement(BuildContext context) => context.pushReplacement(location);
 
   @override
   void replace(BuildContext context) => context.replace(location);

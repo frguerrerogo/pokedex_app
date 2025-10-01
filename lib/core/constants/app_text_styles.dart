@@ -36,7 +36,7 @@ class AppTextStyles {
       fontFamily: 'Poppins',
       fontSize: 18,
       fontWeight: FontWeight.w600, // SemiBold
-      color: Color(0xFFFAFAFA),    // Blanco
+      color: Color(0xFFFAFAFA), // Blanco
       letterSpacing: 0.0,
     );
   }

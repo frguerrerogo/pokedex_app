@@ -1,6 +1,9 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pokedex_app/core/core_exports.dart' show prefs;
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-final hasSeenOnboardingProvider = FutureProvider<bool>((ref) async {
+part 'onboarding_provider.g.dart';
+
+@riverpod
+Future<bool> hasSeenOnboarding(Ref ref) async {
   return prefs.getBool('hasSeenOnboarding') ?? false;
-});
+}

@@ -66,11 +66,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                 },
                 itemBuilder: (context, index) {
                   final data = onboardingData[index];
-                  return OnboardingContent(
-                    image: data["image"]!,
-                    title: data["title"]!,
-                    subtitle: data["subtitle"]!,
-                  );
+                  return OnboardingContent(image: data["image"]!, title: data["title"]!, subtitle: data["subtitle"]!);
                 },
               ),
             ),

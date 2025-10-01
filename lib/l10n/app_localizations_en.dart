@@ -15,8 +15,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get onboardingTitle1 => 'All Pokémon in one place';
 
   @override
-  String get onboardingSubtitle1 =>
-      'Access a wide list of Pokémon from all generations created by Nintendo';
+  String get onboardingSubtitle1 => 'Access a wide list of Pokémon from all generations created by Nintendo';
 
   @override
   String get onboardingButton1 => 'Continue';
@@ -25,8 +24,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get onboardingTitle2 => 'Keep your Pokédex updated';
 
   @override
-  String get onboardingSubtitle2 =>
-      'Register and save your profile, favorite Pokémon, settings and much more';
+  String get onboardingSubtitle2 => 'Register and save your profile, favorite Pokémon, settings and much more';
 
   @override
   String get onboardingButton2 => 'Let\'s start';

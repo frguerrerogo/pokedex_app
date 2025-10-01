@@ -18,7 +18,7 @@ final routerProvider = Provider<GoRouter>((ref) {
 
 /// Route: Onboarding
 @TypedGoRoute<OnboardingRoute>(path: '/onboarding')
-class OnboardingRoute extends GoRouteData with _$OnboardingRoute {
+class OnboardingRoute extends GoRouteData with $OnboardingRoute {
   const OnboardingRoute();
 
   @override
@@ -29,7 +29,7 @@ class OnboardingRoute extends GoRouteData with _$OnboardingRoute {
 
 /// Route: Home
 @TypedGoRoute<HomeRoute>(path: '/home')
-class HomeRoute extends GoRouteData with _$HomeRoute {
+class HomeRoute extends GoRouteData with $HomeRoute {
   const HomeRoute();
 
   @override

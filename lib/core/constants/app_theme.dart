@@ -4,7 +4,6 @@ import 'package:pokedex_app/core/constants/constants_exports.dart' show AppColor
 class AppTheme {
   AppTheme._();
 
-
   static ThemeData lightTheme = ThemeData(
     fontFamily: 'Poppins',
     primaryColor: AppColors.primary,
