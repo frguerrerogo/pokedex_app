@@ -25,7 +25,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String get onboardingTitle2 => 'Mantén tu Pokédex actualizada';
 
   @override
-  String get onboardingSubtitle2 => 'Regístrate y guarda tu perfil, Pokémon favoritos, configuraciones y mucho más';
+  String get onboardingSubtitle2 =>
+      'Regístrate y guarda tu perfil, Pokémon favoritos, configuraciones y mucho más';
 
   @override
   String get onboardingButton2 => 'Empecemos';

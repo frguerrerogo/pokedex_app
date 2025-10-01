@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart'
-    show GlobalMaterialLocalizations, GlobalWidgetsLocalizations, GlobalCupertinoLocalizations;
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pokedex_app/core/constants/constants_exports.dart' show AppTheme;
-import 'package:pokedex_app/core/core_exports.dart' show configureApp;
-import 'package:pokedex_app/core/router/app_router.dart';
+import 'package:pokedex_app/core/core_exports.dart' show configureApp, routerProvider, AppTheme;
 import 'package:pokedex_app/l10n/app_localizations.dart';
 
 void main() async {
