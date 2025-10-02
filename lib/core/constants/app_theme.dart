@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pokedex_app/core/constants/constants_exports.dart' show AppColors;
+import 'package:pokedex_app/core/core_exports.dart' show AppColors;
 
 class AppTheme {
   AppTheme._();

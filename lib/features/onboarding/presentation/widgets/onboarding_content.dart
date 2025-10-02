@@ -6,7 +6,12 @@ class OnboardingContent extends StatelessWidget {
   final String title;
   final String subtitle;
 
-  const OnboardingContent({super.key, required this.image, required this.title, required this.subtitle});
+  const OnboardingContent({
+    super.key,
+    required this.image,
+    required this.title,
+    required this.subtitle,
+  });
 
   @override
   Widget build(BuildContext context) {

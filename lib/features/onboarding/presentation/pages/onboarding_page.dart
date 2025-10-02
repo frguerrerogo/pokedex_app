@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:pokedex_app/core/core_exports.dart' show AppImages, HomeRoute, prefs, AppPrimaryButton;
+import 'package:pokedex_app/core/core_exports.dart'
+    show AppImages, HomeRoute, prefs, AppPrimaryButton;
 import 'package:pokedex_app/features/onboarding/presentation/widgets/onboarding_content.dart';
 import 'package:pokedex_app/features/onboarding/presentation/widgets/page_indicator.dart';
 import 'package:pokedex_app/l10n/app_localizations.dart' show AppLocalizations;
@@ -63,7 +64,11 @@ class _OnboardingPageState extends State<OnboardingPage> {
                 },
                 itemBuilder: (context, index) {
                   final data = onboardingData[index];
-                  return OnboardingContent(image: data["image"]!, title: data["title"]!, subtitle: data["subtitle"]!);
+                  return OnboardingContent(
+                    image: data["image"]!,
+                    title: data["title"]!,
+                    subtitle: data["subtitle"]!,
+                  );
                 },
               ),
             ),

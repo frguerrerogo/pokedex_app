@@ -12,7 +12,8 @@ part of 'onboarding_provider.dart';
 @ProviderFor(hasSeenOnboarding)
 const hasSeenOnboardingProvider = HasSeenOnboardingProvider._();
 
-final class HasSeenOnboardingProvider extends $FunctionalProvider<AsyncValue<bool>, bool, FutureOr<bool>>
+final class HasSeenOnboardingProvider
+    extends $FunctionalProvider<AsyncValue<bool>, bool, FutureOr<bool>>
     with $FutureModifier<bool>, $FutureProvider<bool> {
   const HasSeenOnboardingProvider._()
     : super(
@@ -30,7 +31,8 @@ final class HasSeenOnboardingProvider extends $FunctionalProvider<AsyncValue<boo
 
   @$internal
   @override
-  $FutureProviderElement<bool> $createElement($ProviderPointer pointer) => $FutureProviderElement(pointer);
+  $FutureProviderElement<bool> $createElement($ProviderPointer pointer) =>
+      $FutureProviderElement(pointer);
 
   @override
   FutureOr<bool> create(Ref ref) {

@@ -30,4 +30,13 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get onboardingButton2 => 'Empecemos';
+
+  @override
+  String get regions => 'Regiones';
+
+  @override
+  String get favorites => 'Favoritos';
+
+  @override
+  String get profile => 'Perfil';
 }

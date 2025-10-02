@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pokedex_app/core/constants/constants_exports.dart' show AppColors, AppTextStyles;
+import 'package:pokedex_app/core/core_exports.dart' show AppColors, AppTextStyles;
 
 class AppPrimaryButton extends StatelessWidget {
   final String label;

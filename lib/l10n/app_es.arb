@@ -1,12 +1,16 @@
 {
   "@@locale": "es",
   "appTitle": "Pokédex",
-  
+
   "onboardingTitle1": "Todos los Pokémon en un solo lugar",
   "onboardingSubtitle1": "Accede a una amplia lista de Pokémon de todas las generaciones creadas por Nintendo",
   "onboardingButton1": "Continuar",
 
   "onboardingTitle2": "Mantén tu Pokédex actualizada",
   "onboardingSubtitle2": "Regístrate y guarda tu perfil, Pokémon favoritos, configuraciones y mucho más",
-  "onboardingButton2": "Empecemos"
+  "onboardingButton2": "Empecemos",
+
+  "regions":"Regiones",
+  "favorites":"Favoritos",
+  "profile":"Perfil"
 }

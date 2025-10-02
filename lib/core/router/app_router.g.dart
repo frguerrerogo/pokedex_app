@@ -8,7 +8,8 @@ part of 'app_router.dart';
 
 List<RouteBase> get $appRoutes => [$onboardingRoute, $homeRoute];
 
-RouteBase get $onboardingRoute => GoRouteData.$route(path: '/onboarding', factory: $OnboardingRoute._fromState);
+RouteBase get $onboardingRoute =>
+    GoRouteData.$route(path: '/onboarding', factory: $OnboardingRoute._fromState);
 
 mixin $OnboardingRoute on GoRouteData {
   static OnboardingRoute _fromState(GoRouterState state) => const OnboardingRoute();

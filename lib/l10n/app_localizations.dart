@@ -139,6 +139,24 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Empecemos'**
   String get onboardingButton2;
+
+  /// No description provided for @regions.
+  ///
+  /// In es, this message translates to:
+  /// **'Regiones'**
+  String get regions;
+
+  /// No description provided for @favorites.
+  ///
+  /// In es, this message translates to:
+  /// **'Favoritos'**
+  String get favorites;
+
+  /// No description provided for @profile.
+  ///
+  /// In es, this message translates to:
+  /// **'Perfil'**
+  String get profile;
 }
 
 class _AppLocalizationsDelegate

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pokedex_app/core/constants/app_colors.dart';
+import 'package:pokedex_app/core/core_exports.dart' show AppColors;
 
 class AppTextStyles {
   AppTextStyles._();
@@ -24,7 +24,7 @@ class AppTextStyles {
       fontFamily: 'Poppins',
       fontSize: 14,
       fontWeight: FontWeight.w400,
-      color: AppColors.textSecondary,
+      color: AppColors.primaryGray,
       height: 1.5,
       letterSpacing: 0.0,
     );
@@ -35,9 +35,29 @@ class AppTextStyles {
     return const TextStyle(
       fontFamily: 'Poppins',
       fontSize: 18,
-      fontWeight: FontWeight.w600, // SemiBold
-      color: Color(0xFFFAFAFA), // Blanco
+      fontWeight: FontWeight.w600,
+      color: Color(0xFFFAFAFA),
       letterSpacing: 0.0,
+    );
+  }
+
+  static TextStyle navLabelActive(BuildContext context) {
+    return const TextStyle(
+      fontFamily: 'Poppins',
+      fontSize: 12,
+      height: 1.5,
+      fontWeight: FontWeight.w700,
+      letterSpacing: 0,
+    );
+  }
+
+  static TextStyle navLabelInactive(BuildContext context) {
+    return const TextStyle(
+      fontFamily: 'Poppins',
+      fontSize: 12,
+      height: 1.5,
+      fontWeight: FontWeight.w500,
+      letterSpacing: 0,
     );
   }
 }
