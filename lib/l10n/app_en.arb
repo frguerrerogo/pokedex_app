@@ -12,5 +12,8 @@
 
   "regions":"Regions",
   "favorites":"Favorites",
-  "profile":"Profile"
+  "profile":"Profile",
+
+  "comingSoon":"Coming soon!",
+  "sectionComingSoonMessage":"Estamos trabajando para traerte esta sección. Vuelve más adelante para descubrir todas las novedades."
 }

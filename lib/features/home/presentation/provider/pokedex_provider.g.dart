@@ -13,7 +13,12 @@ part of 'pokedex_provider.dart';
 const pokedexProvider = PokedexProvider._();
 
 final class PokedexProvider
-    extends $FunctionalProvider<AsyncValue<List<String>>, List<String>, FutureOr<List<String>>>
+    extends
+        $FunctionalProvider<
+          AsyncValue<List<String>>,
+          List<String>,
+          FutureOr<List<String>>
+        >
     with $FutureModifier<List<String>>, $FutureProvider<List<String>> {
   const PokedexProvider._()
     : super(
@@ -31,8 +36,9 @@ final class PokedexProvider
 
   @$internal
   @override
-  $FutureProviderElement<List<String>> $createElement($ProviderPointer pointer) =>
-      $FutureProviderElement(pointer);
+  $FutureProviderElement<List<String>> $createElement(
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
 
   @override
   FutureOr<List<String>> create(Ref ref) {

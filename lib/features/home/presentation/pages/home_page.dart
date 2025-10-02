@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pokedex_app/core/core_exports.dart' show AppBottomNavigationBar;
+import 'package:pokedex_app/core/core_exports.dart'
+    show AppBottomNavigationBar, InfoCardContent, AppImages;
 import 'package:pokedex_app/features/home/presentation/provider/pokedex_provider.dart';
+import 'package:pokedex_app/l10n/app_localizations.dart';
 
 class HomePage extends ConsumerWidget {
   const HomePage({super.key});
@@ -28,15 +30,23 @@ class PokedexErrorWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
+    final l10n = AppLocalizations.of(context)!;
+
+    return Padding(
+      padding: const EdgeInsets.all(24.0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Icon(Icons.error, size: 80, color: Colors.red),
-          const SizedBox(height: 16),
-          const Text("Algo salió mal...", style: TextStyle(fontSize: 18)),
-          const SizedBox(height: 8),
-          ElevatedButton(onPressed: onRetry, child: const Text("Reintentar")),
+          InfoCardContent(
+            image: AppImages.magikarp,
+            title: l10n.comingSoon,
+            subtitle: l10n.sectionComingSoonMessage,
+          ),
+          const SizedBox(height: 20),
+          // AppPrimaryButton(
+          //   label: onboardingData[_currentPage]["button"]!,
+          //   onPressed: () => _nextPage(onboardingData.length),
+          // ),
         ],
       ),
     );

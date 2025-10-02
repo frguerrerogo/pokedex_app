@@ -39,4 +39,11 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get profile => 'Profile';
+
+  @override
+  String get comingSoon => 'Coming soon!';
+
+  @override
+  String get sectionComingSoonMessage =>
+      'Estamos trabajando para traerte esta sección. Vuelve más adelante para descubrir todas las novedades.';
 }

@@ -1,12 +1,12 @@
 import 'package:flutter/widgets.dart';
 import 'package:pokedex_app/core/core_exports.dart' show AppTextStyles;
 
-class OnboardingContent extends StatelessWidget {
+class InfoCardContent extends StatelessWidget {
   final String image;
   final String title;
   final String subtitle;
 
-  const OnboardingContent({
+  const InfoCardContent({
     super.key,
     required this.image,
     required this.title,

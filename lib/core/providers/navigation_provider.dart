@@ -1,0 +1,13 @@
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+part 'navigation_provider.g.dart';
+
+@riverpod
+class NavigationController extends _$NavigationController {
+  @override
+  int build() => 0; // índice inicial (ej: Home)
+
+  void setIndex(int index) {
+    state = index;
+  }
+}

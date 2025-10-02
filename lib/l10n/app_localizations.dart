@@ -157,6 +157,18 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Perfil'**
   String get profile;
+
+  /// No description provided for @comingSoon.
+  ///
+  /// In es, this message translates to:
+  /// **'¡Muy pronto disponible!'**
+  String get comingSoon;
+
+  /// No description provided for @sectionComingSoonMessage.
+  ///
+  /// In es, this message translates to:
+  /// **'Estamos trabajando para traerte esta sección. Vuelve más adelante para descubrir todas las novedades.'**
+  String get sectionComingSoonMessage;
 }
 
 class _AppLocalizationsDelegate
