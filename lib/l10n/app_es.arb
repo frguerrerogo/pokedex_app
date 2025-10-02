@@ -14,6 +14,9 @@
   "favorites":"Favoritos",
   "profile":"Perfil",
 
+  "somethingWentWrong":"Algo salió mal...",
+  "dataLoadErrorMessage":"No pudimos cargar la información en este momento. Verifica tu conexión o intenta nuevamente más tarde.",
+
   "comingSoon":"¡Muy pronto disponible!",
   "sectionComingSoonMessage":"Estamos trabajando para traerte esta sección. Vuelve más adelante para descubrir todas las novedades."
 }

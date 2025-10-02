@@ -39,8 +39,8 @@ class PokedexErrorWidget extends StatelessWidget {
         children: [
           InfoCardContent(
             image: AppImages.magikarp,
-            title: l10n.comingSoon,
-            subtitle: l10n.sectionComingSoonMessage,
+            title: l10n.somethingWentWrong,
+            subtitle: l10n.dataLoadErrorMessage,
           ),
           const SizedBox(height: 20),
           // AppPrimaryButton(

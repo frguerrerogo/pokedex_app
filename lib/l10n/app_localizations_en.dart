@@ -41,6 +41,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get profile => 'Profile';
 
   @override
+  String get somethingWentWrong => 'Something went wrong...';
+
+  @override
+  String get dataLoadErrorMessage =>
+      'We were unable to load the data at this time. Please check your connection or try again later.';
+
+  @override
   String get comingSoon => 'Coming soon!';
 
   @override

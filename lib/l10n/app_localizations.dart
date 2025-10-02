@@ -158,6 +158,18 @@ abstract class AppLocalizations {
   /// **'Perfil'**
   String get profile;
 
+  /// No description provided for @somethingWentWrong.
+  ///
+  /// In es, this message translates to:
+  /// **'Algo salió mal...'**
+  String get somethingWentWrong;
+
+  /// No description provided for @dataLoadErrorMessage.
+  ///
+  /// In es, this message translates to:
+  /// **'No pudimos cargar la información en este momento. Verifica tu conexión o intenta nuevamente más tarde.'**
+  String get dataLoadErrorMessage;
+
   /// No description provided for @comingSoon.
   ///
   /// In es, this message translates to:
