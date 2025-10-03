@@ -14,8 +14,13 @@
   "favorites":"Favoritos",
   "profile":"Perfil",
 
+
+
   "somethingWentWrong":"Algo salió mal...",
   "dataLoadErrorMessage":"No pudimos cargar la información en este momento. Verifica tu conexión o intenta nuevamente más tarde.",
+
+  "noFavoritePokemonMessage":"No has marcado ningún Pokémon como favorito",
+  "favoritePokemonInstruction":"Haz clic en el ícono de corazón de tus Pokémon favoritos y aparecerán aquí.",
 
   "comingSoon":"¡Muy pronto disponible!",
   "sectionComingSoonMessage":"Estamos trabajando para traerte esta sección. Vuelve más adelante para descubrir todas las novedades."

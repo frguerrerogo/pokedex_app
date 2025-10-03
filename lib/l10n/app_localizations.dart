@@ -170,6 +170,18 @@ abstract class AppLocalizations {
   /// **'No pudimos cargar la información en este momento. Verifica tu conexión o intenta nuevamente más tarde.'**
   String get dataLoadErrorMessage;
 
+  /// No description provided for @noFavoritePokemonMessage.
+  ///
+  /// In es, this message translates to:
+  /// **'No has marcado ningún Pokémon como favorito'**
+  String get noFavoritePokemonMessage;
+
+  /// No description provided for @favoritePokemonInstruction.
+  ///
+  /// In es, this message translates to:
+  /// **'Haz clic en el ícono de corazón de tus Pokémon favoritos y aparecerán aquí.'**
+  String get favoritePokemonInstruction;
+
   /// No description provided for @comingSoon.
   ///
   /// In es, this message translates to:

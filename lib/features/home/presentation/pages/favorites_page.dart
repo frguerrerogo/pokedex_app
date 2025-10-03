@@ -4,8 +4,8 @@ import 'package:pokedex_app/core/core_exports.dart'
     show AppBottomNavigationBar, InfoCardContent, AppImages;
 import 'package:pokedex_app/l10n/app_localizations.dart' show AppLocalizations;
 
-class RegionsPage extends ConsumerWidget {
-  const RegionsPage({super.key});
+class FavoritesPage extends ConsumerWidget {
+  const FavoritesPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -19,9 +19,9 @@ class RegionsPage extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             InfoCardContent(
-              image: AppImages.giglipop,
-              title: l10n.comingSoon,
-              subtitle: l10n.sectionComingSoonMessage,
+              image: AppImages.magikarp,
+              title: l10n.noFavoritePokemonMessage,
+              subtitle: l10n.favoritePokemonInstruction,
             ),
           ],
         ),

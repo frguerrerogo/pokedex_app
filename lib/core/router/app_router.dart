@@ -38,8 +38,9 @@ class HomeRoute extends GoRouteData with $HomeRoute {
   const HomeRoute();
 
   @override
-  Widget build(BuildContext context, GoRouterState state) {
-    return const HomePage();
+  Page<void> buildPage(BuildContext context, GoRouterState state) {
+    // Sin animación
+    return NoTransitionPage(key: state.pageKey, child: const HomePage());
   }
 }
 
@@ -49,7 +50,29 @@ class RegionsRoute extends GoRouteData with $RegionsRoute {
   const RegionsRoute();
 
   @override
-  Widget build(BuildContext context, GoRouterState state) {
-    return const RegionsPage();
+  Page<void> buildPage(BuildContext context, GoRouterState state) {
+    return NoTransitionPage(key: state.pageKey, child: const RegionsPage());
+  }
+}
+
+/// Route: Favorites
+@TypedGoRoute<FavoritesRoute>(path: favorites)
+class FavoritesRoute extends GoRouteData with $FavoritesRoute {
+  const FavoritesRoute();
+
+  @override
+  Page<void> buildPage(BuildContext context, GoRouterState state) {
+    return NoTransitionPage(key: state.pageKey, child: const FavoritesPage());
+  }
+}
+
+/// Route: Profile
+@TypedGoRoute<ProfileRoute>(path: profile)
+class ProfileRoute extends GoRouteData with $ProfileRoute {
+  const ProfileRoute();
+
+  @override
+  Page<void> buildPage(BuildContext context, GoRouterState state) {
+    return NoTransitionPage(key: state.pageKey, child: const ProfilePage());
   }
 }

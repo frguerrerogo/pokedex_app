@@ -48,6 +48,14 @@ class AppLocalizationsEs extends AppLocalizations {
       'No pudimos cargar la información en este momento. Verifica tu conexión o intenta nuevamente más tarde.';
 
   @override
+  String get noFavoritePokemonMessage =>
+      'No has marcado ningún Pokémon como favorito';
+
+  @override
+  String get favoritePokemonInstruction =>
+      'Haz clic en el ícono de corazón de tus Pokémon favoritos y aparecerán aquí.';
+
+  @override
   String get comingSoon => '¡Muy pronto disponible!';
 
   @override
