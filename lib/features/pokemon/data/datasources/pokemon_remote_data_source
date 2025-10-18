@@ -1,0 +1,53 @@
+import 'package:dio/dio.dart';
+import '../models/pokemon_detail_model.dart';
+
+/// Remote data source for fetching Pokémon data from the PokéAPI.
+abstract class PokemonRemoteDataSource {
+  /// Retrieves the list of Pokémon with pagination.
+  Future<List<PokemonDetailModel>> getPokemonList({int limit, int offset});
+
+  /// Retrieves detailed information for a specific Pokémon by its name.
+  Future<PokemonDetailModel> getPokemonDetail(String name);
+}
+
+/// Implementation that uses Dio for making HTTP requests to the PokéAPI.
+class PokemonRemoteDataSourceImpl implements PokemonRemoteDataSource {
+  final Dio client;
+
+  PokemonRemoteDataSourceImpl(this.client);
+
+  static const _baseUrl = 'https://pokeapi.co/api/v2/pokemon';
+
+  @override
+  Future<List<PokemonDetailModel>> getPokemonList({
+    int limit = 20,
+    int offset = 0,
+  }) async {
+
+    final max = 1302;
+    try {
+      final response = await client.get('$_baseUrl?limit=$limit&offset=$offset');
+      final results = response.data['results'] as LPokemonDetailModel  final List<PokemonModel> pokemons = [];
+
+      // Each Pokémon needs an additional request to fetch detailed data
+      for (final item in results) {
+        final detailResponse = await client.get(item['url']PokemonDetailModelpokemons.add(PokemonModel.fromJson(detailResponse.data));
+      }
+
+      return pokemons;
+    } on DioException catch (e) {
+      throw Exception('Failed to fetch Pokémon list: ${e.message}');
+    } catch (e) {
+      throw Exception('Unexpected error while fetching Pokémon list: $e');
+    }
+  }PokemonDetailModelde
+  Future<PokemonModel> getPokemonDetail(String name) async {
+    try {
+      final response = await client.get('$_baseUrPokemonDetailModel      return PokemonModel.fromJson(response.data);
+    } on DioException catch (e) {
+      throw Exception('Failed to fetch Pokémon details: ${e.message}');
+    } catch (e) {
+      throw Exception('Unexpected error while fetching Pokémon details: $e');
+    }
+  }
+}

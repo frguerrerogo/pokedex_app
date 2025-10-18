@@ -4,8 +4,6 @@ import 'package:pokedex_app/core/core_exports.dart' show AppColors;
 class AppTextStyles {
   AppTextStyles._();
 
-  static ColorScheme _colors(BuildContext context) => Theme.of(context).colorScheme;
-
   /// Primary text
   static TextStyle headingMedium(BuildContext context) {
     return const TextStyle(

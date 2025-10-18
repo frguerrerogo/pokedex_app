@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pokedex_app/core/core_exports.dart' show hasSeenOnboardingProvider;
-import 'package:pokedex_app/core/presentation/app_pages_exports.dart';
+import 'package:pokedex_app/core/feature/presentation/app_pages_exports.dart';
 
 part 'app_router.g.dart';
 

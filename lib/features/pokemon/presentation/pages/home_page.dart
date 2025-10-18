@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pokedex_app/core/core_exports.dart'
     show AppBottomNavigationBar, InfoCardContent, AppImages;
-import 'package:pokedex_app/features/home/presentation/provider/pokedex_provider.dart';
+import 'package:pokedex_app/features/pokemon/presentation/provider/pokedex_provider.dart';
 import 'package:pokedex_app/l10n/app_localizations.dart';
 
 class HomePage extends ConsumerWidget {
