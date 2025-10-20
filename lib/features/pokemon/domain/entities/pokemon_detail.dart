@@ -1,13 +1,13 @@
-class PokemonEntity {
+class PokemonDetailEntity {
   final int id;
   final String name;
-  final List<String> abilities;
+  final List<PokemonAbility> abilities;
   final double height;
   final double weight;
   final String imageUrl;
-  final List<String> types;
+  final List<PokemonTypeEntity> types;
 
-  const PokemonEntity({
+  const PokemonDetailEntity({
     required this.id,
     required this.name,
     required this.abilities,
@@ -18,16 +18,28 @@ class PokemonEntity {
   });
 
   @override
-  String toString() {
-    return 'PokemonEntity(id: $id, name: $name, types: $types)';
-  }
+  String toString() => 'PokemonDetailEntity(id: $id, name: $name)';
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-    return other is PokemonEntity && other.id == id;
+    return other is PokemonDetailEntity && other.id == id;
   }
 
   @override
   int get hashCode => id.hashCode;
+}
+
+class PokemonAbility {
+  final String name;
+  final bool isHidden;
+  final int slot;
+
+  const PokemonAbility({required this.name, required this.isHidden, required this.slot});
+}
+
+class PokemonTypeEntity {
+  final String name;
+
+  const PokemonTypeEntity({required this.name});
 }

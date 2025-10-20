@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pokedex_app/core/core_exports.dart'
     show AppBottomNavigationBar, InfoCardContent, AppImages;
+import 'package:pokedex_app/features/pokemon/domain/entities/pokemon_detail.dart';
 import 'package:pokedex_app/features/pokemon/presentation/provider/pokedex_provider.dart';
 import 'package:pokedex_app/l10n/app_localizations.dart';
 
@@ -54,7 +55,7 @@ class PokedexErrorWidget extends StatelessWidget {
 }
 
 class PokedexListWidget extends StatelessWidget {
-  final List<String> pokemonList;
+  final List<PokemonDetailEntity> pokemonList;
 
   const PokedexListWidget({super.key, required this.pokemonList});
 
@@ -67,7 +68,7 @@ class PokedexListWidget extends StatelessWidget {
     return ListView.separated(
       padding: const EdgeInsets.all(12),
       itemCount: pokemonList.length,
-      separatorBuilder: (_, __) => const SizedBox(height: 8),
+      separatorBuilder: (_, _) => const SizedBox(height: 8),
       itemBuilder: (context, index) {
         final pokemon = pokemonList[index];
 
@@ -76,13 +77,17 @@ class PokedexListWidget extends StatelessWidget {
           elevation: 2,
           child: ListTile(
             leading: CircleAvatar(
-              child: Text(pokemon[0]), // Primera letra
+              backgroundImage: pokemon.imageUrl.isNotEmpty ? NetworkImage(pokemon.imageUrl) : null,
+              child: pokemon.imageUrl.isEmpty ? Text(pokemon.name[0]) : null,
             ),
-            title: Text(pokemon, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            title: Text(
+              pokemon.name,
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
             trailing: const Icon(Icons.arrow_forward_ios, size: 16),
             onTap: () {
               // Aquí iría la navegación a la vista detalle
-              // context.go('/pokemon/$pokemon')
+              // context.go('/pokemon/${pokemon.name}')
             },
           ),
         );

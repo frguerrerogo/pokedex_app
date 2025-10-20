@@ -1,8 +1,8 @@
-class PokemonListItemEntity {
+class Pokemon {
   final String name;
   final String url;
 
-  const PokemonListItemEntity({required this.name, required this.url});
+  const Pokemon({required this.name, required this.url});
 
   int get id {
     final uri = Uri.parse(url);
@@ -11,12 +11,12 @@ class PokemonListItemEntity {
   }
 
   @override
-  String toString() => 'PokemonListItemEntity(name: $name, id: $id)';
+  String toString() => 'Pokemon(name: $name, id: $id)';
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-    return other is PokemonListItemEntity && other.name == name && other.url == url;
+    return other is Pokemon && other.name == name && other.url == url;
   }
 
   @override

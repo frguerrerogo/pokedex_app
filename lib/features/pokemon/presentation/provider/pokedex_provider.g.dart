@@ -15,11 +15,13 @@ const pokedexProvider = PokedexProvider._();
 final class PokedexProvider
     extends
         $FunctionalProvider<
-          AsyncValue<List<String>>,
-          List<String>,
-          FutureOr<List<String>>
+          AsyncValue<List<PokemonDetailEntity>>,
+          List<PokemonDetailEntity>,
+          FutureOr<List<PokemonDetailEntity>>
         >
-    with $FutureModifier<List<String>>, $FutureProvider<List<String>> {
+    with
+        $FutureModifier<List<PokemonDetailEntity>>,
+        $FutureProvider<List<PokemonDetailEntity>> {
   const PokedexProvider._()
     : super(
         from: null,
@@ -36,14 +38,14 @@ final class PokedexProvider
 
   @$internal
   @override
-  $FutureProviderElement<List<String>> $createElement(
+  $FutureProviderElement<List<PokemonDetailEntity>> $createElement(
     $ProviderPointer pointer,
   ) => $FutureProviderElement(pointer);
 
   @override
-  FutureOr<List<String>> create(Ref ref) {
+  FutureOr<List<PokemonDetailEntity>> create(Ref ref) {
     return pokedex(ref);
   }
 }
 
-String _$pokedexHash() => r'70afdc1033154ef383a425096772437e1d5d63da';
+String _$pokedexHash() => r'47e8a0576ccbe3fa2709fe65f40b0c32c14f145d';

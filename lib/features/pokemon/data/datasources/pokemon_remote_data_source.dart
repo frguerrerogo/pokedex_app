@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
+
 import '../models/pokemon_detail_model.dart';
+import '../models/pokemon_list_item_model.dart';
 
 /// Remote data source for fetching Pokémon data from the PokéAPI.
 abstract class PokemonRemoteDataSource {
@@ -19,19 +21,20 @@ class PokemonRemoteDataSourceImpl implements PokemonRemoteDataSource {
   static const _baseUrl = 'https://pokeapi.co/api/v2/pokemon';
 
   @override
-  Future<List<PokemonDetailModel>> getPokemonList({
-    int limit = 20,
-    int offset = 0,
-  }) async {
-
-    final max = 1302;
+  Future<List<PokemonDetailModel>> getPokemonList({int limit = 20, int offset = 0}) async {
     try {
       final response = await client.get('$_baseUrl?limit=$limit&offset=$offset');
-      final results = response.data['results'] as LPokemonDetailModel  final List<PokemonModel> pokemons = [];
+
+      final results = (response.data['results'] as List)
+          .map((e) => PokemonListItemModel.fromJson(e))
+          .toList();
+
+      final List<PokemonDetailModel> pokemons = [];
 
       // Each Pokémon needs an additional request to fetch detailed data
       for (final item in results) {
-        final detailResponse = await client.get(item['url']PokemonDetailModelpokemons.add(PokemonModel.fromJson(detailResponse.data));
+        final detailResponse = await client.get(item.url);
+        pokemons.add(PokemonDetailModel.fromJson(detailResponse.data));
       }
 
       return pokemons;
@@ -40,10 +43,13 @@ class PokemonRemoteDataSourceImpl implements PokemonRemoteDataSource {
     } catch (e) {
       throw Exception('Unexpected error while fetching Pokémon list: $e');
     }
-  }PokemonDetailModelde
-  Future<PokemonModel> getPokemonDetail(String name) async {
+  }
+
+  @override
+  Future<PokemonDetailModel> getPokemonDetail(String name) async {
     try {
-      final response = await client.get('$_baseUrPokemonDetailModel      return PokemonModel.fromJson(response.data);
+      final response = await client.get('$_baseUrl/$name');
+      return PokemonDetailModel.fromJson(response.data);
     } on DioException catch (e) {
       throw Exception('Failed to fetch Pokémon details: ${e.message}');
     } catch (e) {
