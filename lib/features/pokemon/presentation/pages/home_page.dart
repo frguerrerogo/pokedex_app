@@ -4,6 +4,7 @@ import 'package:pokedex_app/core/core_exports.dart'
     show AppBottomNavigationBar, InfoCardContent, AppImages;
 import 'package:pokedex_app/features/pokemon/domain/entities/pokemon_detail.dart';
 import 'package:pokedex_app/features/pokemon/presentation/provider/pokedex_provider.dart';
+import 'package:pokedex_app/features/pokemon/presentation/widgets/pokemon_card.dart';
 import 'package:pokedex_app/l10n/app_localizations.dart';
 
 class HomePage extends ConsumerWidget {
@@ -72,24 +73,18 @@ class PokedexListWidget extends StatelessWidget {
       itemBuilder: (context, index) {
         final pokemon = pokemonList[index];
 
-        return Card(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-          elevation: 2,
-          child: ListTile(
-            leading: CircleAvatar(
-              backgroundImage: pokemon.imageUrl.isNotEmpty ? NetworkImage(pokemon.imageUrl) : null,
-              child: pokemon.imageUrl.isEmpty ? Text(pokemon.name[0]) : null,
-            ),
-            title: Text(
-              pokemon.name,
-              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            trailing: const Icon(Icons.arrow_forward_ios, size: 16),
-            onTap: () {
-              // Aquí iría la navegación a la vista detalle
-              // context.go('/pokemon/${pokemon.name}')
-            },
-          ),
+        return PokemonCard(
+          id: pokemon.id,
+          name: pokemon.name,
+          imageUrl: pokemon.imageUrl,
+          types: pokemon.types.map((t) => t.name).toList(),
+          isFavorite: false,
+          onTap: () {
+            // context.go('/pokemon/${pokemon.name}');
+          },
+          onFavoriteToggle: () {
+            // toggle favorite
+          },
         );
       },
     );

@@ -1,25 +1,37 @@
 {
   "@@locale": "en",
   "appTitle": "Pokédex",
-
   "onboardingTitle1": "All Pokémon in one place",
   "onboardingSubtitle1": "Access a wide list of Pokémon from all generations created by Nintendo",
   "onboardingButton1": "Continue",
-
   "onboardingTitle2": "Keep your Pokédex updated",
   "onboardingSubtitle2": "Register and save your profile, favorite Pokémon, settings and much more",
   "onboardingButton2": "Let's start",
-
-  "regions":"Regions",
-  "favorites":"Favorites",
-  "profile":"Profile",
-
-  "somethingWentWrong":"Something went wrong...",
-  "dataLoadErrorMessage":"We were unable to load the data at this time. Please check your connection or try again later.",
-
-  "noFavoritePokemonMessage":"You have not marked any Pokémon as favorites",
-  "favoritePokemonInstruction":"Click the heart icon of your favorite Pokémon and they'll appear here.",
-
-  "comingSoon":"Coming soon!",
-  "sectionComingSoonMessage":"Estamos trabajando para traerte esta sección. Vuelve más adelante para descubrir todas las novedades."
+  "regions": "Regions",
+  "favorites": "Favorites",
+  "profile": "Profile",
+  "somethingWentWrong": "Something went wrong...",
+  "dataLoadErrorMessage": "We were unable to load the data at this time. Please check your connection or try again later.",
+  "noFavoritePokemonMessage": "You have not marked any Pokémon as favorites",
+  "favoritePokemonInstruction": "Click the heart icon of your favorite Pokémon and they'll appear here.",
+  "comingSoon": "Coming soon!",
+  "sectionComingSoonMessage": "We are working to bring you this section. Come back later to discover all the news.",
+  "typeNormal": "Normal",
+  "typeFire": "Fire",
+  "typeWater": "Water",
+  "typeGrass": "Grass",
+  "typeFlying": "Flying",
+  "typeBug": "Bug",
+  "typeRock": "Rock",
+  "typeGround": "Ground",
+  "typePoison": "Poison",
+  "typeElectric": "Electric",
+  "typePsychic": "Psychic",
+  "typeIce": "Ice",
+  "typeDragon": "Dragon",
+  "typeSteel": "Steel",
+  "typeFairy": "Fairy",
+  "typeFighting": "Fighting",
+  "typeGhost": "Ghost",
+  "typeDark": "Dark"
 }

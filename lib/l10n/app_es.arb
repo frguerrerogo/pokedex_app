@@ -1,27 +1,37 @@
 {
   "@@locale": "es",
   "appTitle": "Pokédex",
-
   "onboardingTitle1": "Todos los Pokémon en un solo lugar",
   "onboardingSubtitle1": "Accede a una amplia lista de Pokémon de todas las generaciones creadas por Nintendo",
   "onboardingButton1": "Continuar",
-
   "onboardingTitle2": "Mantén tu Pokédex actualizada",
   "onboardingSubtitle2": "Regístrate y guarda tu perfil, Pokémon favoritos, configuraciones y mucho más",
   "onboardingButton2": "Empecemos",
-
   "regions":"Regiones",
   "favorites":"Favoritos",
   "profile":"Perfil",
-
-
-
   "somethingWentWrong":"Algo salió mal...",
   "dataLoadErrorMessage":"No pudimos cargar la información en este momento. Verifica tu conexión o intenta nuevamente más tarde.",
-
   "noFavoritePokemonMessage":"No has marcado ningún Pokémon como favorito",
   "favoritePokemonInstruction":"Haz clic en el ícono de corazón de tus Pokémon favoritos y aparecerán aquí.",
-
   "comingSoon":"¡Muy pronto disponible!",
-  "sectionComingSoonMessage":"Estamos trabajando para traerte esta sección. Vuelve más adelante para descubrir todas las novedades."
+  "sectionComingSoonMessage":"Estamos trabajando para traerte esta sección. Vuelve más adelante para descubrir todas las novedades.",
+ "typeNormal": "Normal",
+  "typeFire": "Fuego",
+  "typeWater": "Agua",
+  "typeGrass": "Planta",
+  "typeFlying": "Volador",
+  "typeBug": "Bicho",
+  "typeRock": "Roca",
+  "typeGround": "Tierra",
+  "typePoison": "Veneno",
+  "typeElectric": "Eléctrico",
+  "typePsychic": "Psíquico",
+  "typeIce": "Hielo",
+  "typeDragon": "Dragón",
+  "typeSteel": "Acero",
+  "typeFairy": "Hada",
+  "typeFighting": "Lucha",
+  "typeGhost": "Fantasma",
+  "typeDark": "Siniestro"
 }

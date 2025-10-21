@@ -67,8 +67,8 @@ abstract class AppLocalizations {
 
   final String localeName;
 
-  static AppLocalizations? of(BuildContext context) {
-    return Localizations.of<AppLocalizations>(context, AppLocalizations);
+  static AppLocalizations of(BuildContext context) {
+    return Localizations.of<AppLocalizations>(context, AppLocalizations)!;
   }
 
   static const LocalizationsDelegate<AppLocalizations> delegate =
@@ -193,6 +193,114 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Estamos trabajando para traerte esta sección. Vuelve más adelante para descubrir todas las novedades.'**
   String get sectionComingSoonMessage;
+
+  /// No description provided for @typeNormal.
+  ///
+  /// In es, this message translates to:
+  /// **'Normal'**
+  String get typeNormal;
+
+  /// No description provided for @typeFire.
+  ///
+  /// In es, this message translates to:
+  /// **'Fuego'**
+  String get typeFire;
+
+  /// No description provided for @typeWater.
+  ///
+  /// In es, this message translates to:
+  /// **'Agua'**
+  String get typeWater;
+
+  /// No description provided for @typeGrass.
+  ///
+  /// In es, this message translates to:
+  /// **'Planta'**
+  String get typeGrass;
+
+  /// No description provided for @typeFlying.
+  ///
+  /// In es, this message translates to:
+  /// **'Volador'**
+  String get typeFlying;
+
+  /// No description provided for @typeBug.
+  ///
+  /// In es, this message translates to:
+  /// **'Bicho'**
+  String get typeBug;
+
+  /// No description provided for @typeRock.
+  ///
+  /// In es, this message translates to:
+  /// **'Roca'**
+  String get typeRock;
+
+  /// No description provided for @typeGround.
+  ///
+  /// In es, this message translates to:
+  /// **'Tierra'**
+  String get typeGround;
+
+  /// No description provided for @typePoison.
+  ///
+  /// In es, this message translates to:
+  /// **'Veneno'**
+  String get typePoison;
+
+  /// No description provided for @typeElectric.
+  ///
+  /// In es, this message translates to:
+  /// **'Eléctrico'**
+  String get typeElectric;
+
+  /// No description provided for @typePsychic.
+  ///
+  /// In es, this message translates to:
+  /// **'Psíquico'**
+  String get typePsychic;
+
+  /// No description provided for @typeIce.
+  ///
+  /// In es, this message translates to:
+  /// **'Hielo'**
+  String get typeIce;
+
+  /// No description provided for @typeDragon.
+  ///
+  /// In es, this message translates to:
+  /// **'Dragón'**
+  String get typeDragon;
+
+  /// No description provided for @typeSteel.
+  ///
+  /// In es, this message translates to:
+  /// **'Acero'**
+  String get typeSteel;
+
+  /// No description provided for @typeFairy.
+  ///
+  /// In es, this message translates to:
+  /// **'Hada'**
+  String get typeFairy;
+
+  /// No description provided for @typeFighting.
+  ///
+  /// In es, this message translates to:
+  /// **'Lucha'**
+  String get typeFighting;
+
+  /// No description provided for @typeGhost.
+  ///
+  /// In es, this message translates to:
+  /// **'Fantasma'**
+  String get typeGhost;
+
+  /// No description provided for @typeDark.
+  ///
+  /// In es, this message translates to:
+  /// **'Siniestro'**
+  String get typeDark;
 }
 
 class _AppLocalizationsDelegate

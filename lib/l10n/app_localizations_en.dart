@@ -60,5 +60,59 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get sectionComingSoonMessage =>
-      'Estamos trabajando para traerte esta sección. Vuelve más adelante para descubrir todas las novedades.';
+      'We are working to bring you this section. Come back later to discover all the news.';
+
+  @override
+  String get typeNormal => 'Normal';
+
+  @override
+  String get typeFire => 'Fire';
+
+  @override
+  String get typeWater => 'Water';
+
+  @override
+  String get typeGrass => 'Grass';
+
+  @override
+  String get typeFlying => 'Flying';
+
+  @override
+  String get typeBug => 'Bug';
+
+  @override
+  String get typeRock => 'Rock';
+
+  @override
+  String get typeGround => 'Ground';
+
+  @override
+  String get typePoison => 'Poison';
+
+  @override
+  String get typeElectric => 'Electric';
+
+  @override
+  String get typePsychic => 'Psychic';
+
+  @override
+  String get typeIce => 'Ice';
+
+  @override
+  String get typeDragon => 'Dragon';
+
+  @override
+  String get typeSteel => 'Steel';
+
+  @override
+  String get typeFairy => 'Fairy';
+
+  @override
+  String get typeFighting => 'Fighting';
+
+  @override
+  String get typeGhost => 'Ghost';
+
+  @override
+  String get typeDark => 'Dark';
 }
