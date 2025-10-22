@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pokedex_app/core/core_exports.dart'
     show AppBottomNavigationBar, InfoCardContent, AppImages;
+import 'package:pokedex_app/core/widgets/pokeball_loading.dart';
 import 'package:pokedex_app/features/pokemon/domain/entities/pokemon_detail.dart';
 import 'package:pokedex_app/features/pokemon/presentation/provider/pokedex_provider.dart';
 import 'package:pokedex_app/features/pokemon/presentation/widgets/pokemon_card.dart';
@@ -17,7 +18,7 @@ class HomePage extends ConsumerWidget {
     return Scaffold(
       body: asyncPokedex.when(
         data: (pokemonList) => PokedexListWidget(pokemonList: pokemonList),
-        loading: () => const Center(child: CircularProgressIndicator()),
+        loading: () => const Center(child: PokeballLoading(size: 150)),
         error: (err, stack) => PokedexErrorWidget(onRetry: () => ref.refresh(pokedexProvider)),
       ),
       bottomNavigationBar: const AppBottomNavigationBar(),
@@ -45,10 +46,6 @@ class PokedexErrorWidget extends StatelessWidget {
             subtitle: l10n.dataLoadErrorMessage,
           ),
           const SizedBox(height: 20),
-          // AppPrimaryButton(
-          //   label: onboardingData[_currentPage]["button"]!,
-          //   onPressed: () => _nextPage(onboardingData.length),
-          // ),
         ],
       ),
     );
@@ -110,7 +107,7 @@ class _PokedexListWidgetState extends ConsumerState<PokedexListWidget> {
               controller: _scrollController,
               padding: const EdgeInsets.all(12),
               itemCount: widget.pokemonList.length,
-              separatorBuilder: (_, __) => const SizedBox(height: 8),
+              separatorBuilder: (_, _) => const SizedBox(height: 8),
               itemBuilder: (context, index) {
                 final pokemon = widget.pokemonList[index];
                 return PokemonCard(
@@ -131,14 +128,8 @@ class _PokedexListWidgetState extends ConsumerState<PokedexListWidget> {
           ),
           if (_isLoadingMore)
             const Padding(
-              padding: EdgeInsets.symmetric(vertical: 16.0),
-              child: Center(
-                child: SizedBox(
-                  width: 24,
-                  height: 24,
-                  child: CircularProgressIndicator(strokeWidth: 2.0),
-                ),
-              ),
+              padding: EdgeInsets.symmetric(vertical: 10.0),
+              child: Center(child: PokeballLoading(size: 80)),
             ),
         ],
       ),
