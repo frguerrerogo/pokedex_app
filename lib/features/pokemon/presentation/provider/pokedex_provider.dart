@@ -27,14 +27,12 @@ class Pokedex extends _$Pokedex {
   Future<void> loadMore() async {
     final currentState = state;
 
-    // Si aún no se ha cargado o ya está cargando, salimos
     if (!currentState.hasValue) return;
 
     final currentList = currentState.value!;
     _page++;
 
     try {
-      // NO se pone AsyncLoading, mantenemos los datos actuales
       final newItems = await _loadPage(_page);
       final updatedList = [...currentList, ...newItems];
       state = AsyncData(updatedList);
