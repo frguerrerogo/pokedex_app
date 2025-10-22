@@ -20,7 +20,7 @@ final class PokedexProvider
         argument: null,
         retry: null,
         name: r'pokedexProvider',
-        isAutoDispose: true,
+        isAutoDispose: false,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
@@ -33,7 +33,7 @@ final class PokedexProvider
   Pokedex create() => Pokedex();
 }
 
-String _$pokedexHash() => r'b6fb94fcf9593832ea191e340d3e6ebfecc3820f';
+String _$pokedexHash() => r'a2c077d2868faf90a7cd559a33af10d77ab57f45';
 
 abstract class _$Pokedex extends $AsyncNotifier<List<PokemonDetailEntity>> {
   FutureOr<List<PokemonDetailEntity>> build();

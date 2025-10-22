@@ -58,4 +58,14 @@ class AppTextStyles {
       letterSpacing: 0,
     );
   }
+
+  static TextStyle inputTextStyle(BuildContext context) {
+    return const TextStyle(
+      fontFamily: 'Poppins',
+      fontSize: 14,
+      height: 1.5,
+      fontWeight: FontWeight.w500,
+      letterSpacing: 0,
+    );
+  }
 }

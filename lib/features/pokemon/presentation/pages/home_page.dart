@@ -6,6 +6,7 @@ import 'package:pokedex_app/core/widgets/pokeball_loading.dart';
 import 'package:pokedex_app/features/pokemon/domain/entities/pokemon_detail.dart';
 import 'package:pokedex_app/features/pokemon/presentation/provider/pokedex_provider.dart';
 import 'package:pokedex_app/features/pokemon/presentation/widgets/pokemon_card.dart';
+import 'package:pokedex_app/features/pokemon/presentation/widgets/pokemon_search_bar.dart';
 import 'package:pokedex_app/l10n/app_localizations.dart';
 
 class HomePage extends ConsumerWidget {
@@ -16,10 +17,22 @@ class HomePage extends ConsumerWidget {
     final asyncPokedex = ref.watch(pokedexProvider);
 
     return Scaffold(
-      body: asyncPokedex.when(
-        data: (pokemonList) => PokedexListWidget(pokemonList: pokemonList),
-        loading: () => const Center(child: PokeballLoading(size: 150)),
-        error: (err, stack) => PokedexErrorWidget(onRetry: () => ref.refresh(pokedexProvider)),
+      body: Column(
+        children: [
+          const SizedBox(height: kToolbarHeight - 8),
+          PokemonSearchBar(
+            showLoading: asyncPokedex.isLoading,
+            onSearch: (query) => ref.read(pokedexProvider.notifier).search(query),
+          ),
+          Expanded(
+            child: asyncPokedex.when(
+              data: (pokemonList) => PokedexListWidget(pokemonList: pokemonList),
+              loading: () => const Center(child: PokeballLoading(size: 60)),
+              error: (err, stack) =>
+                  PokedexErrorWidget(onRetry: () => ref.refresh(pokedexProvider)),
+            ),
+          ),
+        ],
       ),
       bottomNavigationBar: const AppBottomNavigationBar(),
     );
