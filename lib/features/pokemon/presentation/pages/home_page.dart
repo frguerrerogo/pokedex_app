@@ -32,7 +32,7 @@ class PokedexErrorWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = AppLocalizations.of(context);
 
     return Padding(
       padding: const EdgeInsets.all(24.0),
@@ -55,38 +55,93 @@ class PokedexErrorWidget extends StatelessWidget {
   }
 }
 
-class PokedexListWidget extends StatelessWidget {
+class PokedexListWidget extends ConsumerStatefulWidget {
   final List<PokemonDetailEntity> pokemonList;
 
   const PokedexListWidget({super.key, required this.pokemonList});
 
   @override
+  ConsumerState<PokedexListWidget> createState() => _PokedexListWidgetState();
+}
+
+class _PokedexListWidgetState extends ConsumerState<PokedexListWidget> {
+  final ScrollController _scrollController = ScrollController();
+  bool _isLoadingMore = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(_onScroll);
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  void _onScroll() {
+    if (!_scrollController.hasClients) return;
+
+    final maxScroll = _scrollController.position.maxScrollExtent;
+    final currentScroll = _scrollController.offset;
+    const loadMoreThreshold = 200.0;
+
+    if (currentScroll >= maxScroll - loadMoreThreshold && !_isLoadingMore) {
+      setState(() => _isLoadingMore = true);
+      ref.read(pokedexProvider.notifier).loadMore().whenComplete(() {
+        if (mounted) setState(() => _isLoadingMore = false);
+      });
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
-    if (pokemonList.isEmpty) {
+    if (widget.pokemonList.isEmpty) {
       return const Center(child: Text("No hay Pokémon disponibles"));
     }
 
-    return ListView.separated(
-      padding: const EdgeInsets.all(12),
-      itemCount: pokemonList.length,
-      separatorBuilder: (_, _) => const SizedBox(height: 8),
-      itemBuilder: (context, index) {
-        final pokemon = pokemonList[index];
-
-        return PokemonCard(
-          id: pokemon.id,
-          name: pokemon.name,
-          imageUrl: pokemon.imageUrl,
-          types: pokemon.types.map((t) => t.name).toList(),
-          isFavorite: false,
-          onTap: () {
-            // context.go('/pokemon/${pokemon.name}');
-          },
-          onFavoriteToggle: () {
-            // toggle favorite
-          },
-        );
-      },
+    return Padding(
+      padding: const EdgeInsets.only(top: 20.0),
+      child: Column(
+        children: [
+          Expanded(
+            child: ListView.separated(
+              controller: _scrollController,
+              padding: const EdgeInsets.all(12),
+              itemCount: widget.pokemonList.length,
+              separatorBuilder: (_, __) => const SizedBox(height: 8),
+              itemBuilder: (context, index) {
+                final pokemon = widget.pokemonList[index];
+                return PokemonCard(
+                  id: pokemon.id,
+                  name: pokemon.name,
+                  imageUrl: pokemon.imageUrl,
+                  types: pokemon.types.map((t) => t.name).toList(),
+                  isFavorite: false,
+                  onTap: () {
+                    // context.go('/pokemon/${pokemon.name}');
+                  },
+                  onFavoriteToggle: () {
+                    // toggle favorite
+                  },
+                );
+              },
+            ),
+          ),
+          if (_isLoadingMore)
+            const Padding(
+              padding: EdgeInsets.symmetric(vertical: 16.0),
+              child: Center(
+                child: SizedBox(
+                  width: 24,
+                  height: 24,
+                  child: CircularProgressIndicator(strokeWidth: 2.0),
+                ),
+              ),
+            ),
+        ],
+      ),
     );
   }
 }

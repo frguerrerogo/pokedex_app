@@ -49,8 +49,8 @@ class PokemonCard extends StatelessWidget {
                           'N°${id.toString().padLeft(3, '0')}',
                           style: const TextStyle(
                             fontSize: 12,
-                            color: Colors.black54,
-                            fontWeight: FontWeight.w500,
+                            color: Colors.black87,
+                            fontWeight: FontWeight.w900,
                           ),
                         ),
                         Text(
@@ -71,12 +71,35 @@ class PokemonCard extends StatelessWidget {
                   ),
                 ),
 
-                // 🖼 Right section (image)
-                Expanded(
-                  flex: 1,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Image.network(imageUrl, height: 72, width: 72, fit: BoxFit.contain),
+                SizedBox(
+                  width: 135,
+                  height: 105,
+                  child: Stack(
+                    children: [
+                      Container(
+                        width: 135,
+                        height: 105,
+                        decoration: BoxDecoration(
+                          borderRadius: const BorderRadius.all(Radius.circular(15.0)),
+                          color: PokemonTypeStyle.getColor(mainType),
+                        ),
+                        alignment: Alignment.center,
+                        child: Image.asset(
+                          PokemonTypeStyle.getIcon(mainType),
+                          width: 95,
+                          height: 95,
+                          fit: BoxFit.contain,
+                          color: Colors.white.withOpacity(0.5),
+                          colorBlendMode: BlendMode.srcIn,
+                          errorBuilder: (context, error, stackTrace) {
+                            return const Icon(Icons.circle, size: 10, color: Colors.red);
+                          },
+                        ),
+                      ),
+                      Center(
+                        child: Image.network(imageUrl, height: 95, width: 95, fit: BoxFit.contain),
+                      ),
+                    ],
                   ),
                 ),
               ],
@@ -87,10 +110,18 @@ class PokemonCard extends StatelessWidget {
               right: 8,
               child: InkWell(
                 onTap: onFavoriteToggle,
-                child: Icon(
-                  isFavorite ? Icons.favorite : Icons.favorite_border,
-                  color: isFavorite ? Colors.redAccent : Colors.white,
-                  size: 24,
+                child: Container(
+                  padding: const EdgeInsets.all(4),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(color: Colors.white, width: 2),
+                    color: Colors.grey.withOpacity(0.4),
+                  ),
+                  child: Icon(
+                    isFavorite ? Icons.favorite : Icons.favorite_border,
+                    color: isFavorite ? Colors.redAccent : Colors.white,
+                    size: 14,
+                  ),
                 ),
               ),
             ),

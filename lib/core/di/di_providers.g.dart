@@ -47,7 +47,7 @@ final class DioProvider extends $FunctionalProvider<Dio, Dio, Dio>
   }
 }
 
-String _$dioHash() => r'c62213bddb9aac89c0a19fe034ef243e2a285ba8';
+String _$dioHash() => r'088d5c03610503c2407a8d7429b0e9f3ee76406f';
 
 @ProviderFor(pokemonRemoteDataSource)
 const pokemonRemoteDataSourceProvider = PokemonRemoteDataSourceProvider._();
@@ -95,7 +95,7 @@ final class PokemonRemoteDataSourceProvider
 }
 
 String _$pokemonRemoteDataSourceHash() =>
-    r'824c2719edf13d801dc7e872be60175b992aca05';
+    r'b9a08ffa5961efad6e453464775a6290ec3666e0';
 
 @ProviderFor(pokemonRepository)
 const pokemonRepositoryProvider = PokemonRepositoryProvider._();
@@ -142,7 +142,7 @@ final class PokemonRepositoryProvider
   }
 }
 
-String _$pokemonRepositoryHash() => r'665939f158473f17b2abd6bdc91178191a532811';
+String _$pokemonRepositoryHash() => r'c19eed03bc949a0c043808355c2544e6f89deb9f';
 
 @ProviderFor(getPokemonList)
 const getPokemonListProvider = GetPokemonListProvider._();
@@ -183,7 +183,7 @@ final class GetPokemonListProvider
   }
 }
 
-String _$getPokemonListHash() => r'087ab637289f0b0d7e44752a92c2f98c02804ebc';
+String _$getPokemonListHash() => r'fa838f3c61119751b42b97942f44761ec084c89c';
 
 @ProviderFor(getPokemonDetail)
 const getPokemonDetailProvider = GetPokemonDetailProvider._();
@@ -229,4 +229,4 @@ final class GetPokemonDetailProvider
   }
 }
 
-String _$getPokemonDetailHash() => r'd2cbfae9b9d60c1eb98b6e9f166c793daa619269';
+String _$getPokemonDetailHash() => r'0291d5b8d41c7f6e54ad00d1e327210e8727d4bb';

@@ -9,19 +9,11 @@ part of 'pokedex_provider.dart';
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
 
-@ProviderFor(pokedex)
+@ProviderFor(Pokedex)
 const pokedexProvider = PokedexProvider._();
 
 final class PokedexProvider
-    extends
-        $FunctionalProvider<
-          AsyncValue<List<PokemonDetailEntity>>,
-          List<PokemonDetailEntity>,
-          FutureOr<List<PokemonDetailEntity>>
-        >
-    with
-        $FutureModifier<List<PokemonDetailEntity>>,
-        $FutureProvider<List<PokemonDetailEntity>> {
+    extends $AsyncNotifierProvider<Pokedex, List<PokemonDetailEntity>> {
   const PokedexProvider._()
     : super(
         from: null,
@@ -38,14 +30,34 @@ final class PokedexProvider
 
   @$internal
   @override
-  $FutureProviderElement<List<PokemonDetailEntity>> $createElement(
-    $ProviderPointer pointer,
-  ) => $FutureProviderElement(pointer);
-
-  @override
-  FutureOr<List<PokemonDetailEntity>> create(Ref ref) {
-    return pokedex(ref);
-  }
+  Pokedex create() => Pokedex();
 }
 
-String _$pokedexHash() => r'47e8a0576ccbe3fa2709fe65f40b0c32c14f145d';
+String _$pokedexHash() => r'b6fb94fcf9593832ea191e340d3e6ebfecc3820f';
+
+abstract class _$Pokedex extends $AsyncNotifier<List<PokemonDetailEntity>> {
+  FutureOr<List<PokemonDetailEntity>> build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final created = build();
+    final ref =
+        this.ref
+            as $Ref<
+              AsyncValue<List<PokemonDetailEntity>>,
+              List<PokemonDetailEntity>
+            >;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<
+                AsyncValue<List<PokemonDetailEntity>>,
+                List<PokemonDetailEntity>
+              >,
+              AsyncValue<List<PokemonDetailEntity>>,
+              Object?,
+              Object?
+            >;
+    element.handleValue(ref, created);
+  }
+}
