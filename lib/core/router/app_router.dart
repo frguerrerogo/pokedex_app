@@ -34,7 +34,7 @@ class OnboardingRoute extends GoRouteData with $OnboardingRoute {
   }
 }
 
-/// Route: Home
+/// Route: Home (Pokedex)
 @TypedGoRoute<HomeRoute>(path: home)
 class HomeRoute extends GoRouteData with $HomeRoute {
   const HomeRoute();
@@ -42,7 +42,7 @@ class HomeRoute extends GoRouteData with $HomeRoute {
   @override
   Page<void> buildPage(BuildContext context, GoRouterState state) {
     // Sin animación
-    return NoTransitionPage(key: state.pageKey, child: const HomePage());
+    return NoTransitionPage(key: state.pageKey, child: const PokedexPage());
   }
 }
 

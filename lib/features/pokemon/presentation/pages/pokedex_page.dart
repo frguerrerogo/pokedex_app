@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:pokedex_app/core/core_exports.dart'
     show AppBottomNavigationBar, InfoCardContent, AppImages;
+import 'package:pokedex_app/core/router/app_router.dart';
 import 'package:pokedex_app/core/widgets/pokeball_loading.dart';
 import 'package:pokedex_app/features/pokemon/domain/entities/pokemon_detail.dart';
 import 'package:pokedex_app/features/pokemon/presentation/providers/pokedex_provider.dart';
@@ -10,8 +10,8 @@ import 'package:pokedex_app/features/pokemon/presentation/widgets/pokemon_card.d
 import 'package:pokedex_app/features/pokemon/presentation/widgets/pokemon_search_bar.dart';
 import 'package:pokedex_app/l10n/app_localizations.dart';
 
-class HomePage extends ConsumerWidget {
-  const HomePage({super.key});
+class PokedexPage extends ConsumerWidget {
+  const PokedexPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -21,14 +21,11 @@ class HomePage extends ConsumerWidget {
       body: Column(
         children: [
           const SizedBox(height: kToolbarHeight - 8),
-          PokemonSearchBar(
-            showLoading: asyncPokedex.isLoading,
-            onSearch: (query) => ref.read(pokedexProvider.notifier).search(query),
-          ),
+          PokemonSearchBar(onSearch: (query) => ref.read(pokedexProvider.notifier).search(query)),
           Expanded(
             child: asyncPokedex.when(
               data: (pokemonList) => PokedexListWidget(pokemonList: pokemonList),
-              loading: () => const Center(child: PokeballLoading(size: 60)),
+              loading: () => const Center(child: PokeballLoading(size: 150)),
               error: (err, stack) =>
                   PokedexErrorWidget(onRetry: () => ref.refresh(pokedexProvider)),
             ),
@@ -128,7 +125,7 @@ class _PokedexListWidgetState extends ConsumerState<PokedexListWidget> {
                   pokemon: pokemon,
                   isFavorite: false,
                   onTap: () {
-                    context.go('/pokemon/${pokemon.id}');
+                    PokemonDetailRoute(id: pokemon.id.toString()).push(context);
                   },
                   onFavoriteToggle: () {
                     // toggle favorite
@@ -140,7 +137,7 @@ class _PokedexListWidgetState extends ConsumerState<PokedexListWidget> {
           if (_isLoadingMore)
             const Padding(
               padding: EdgeInsets.symmetric(vertical: 10.0),
-              child: Center(child: PokeballLoading(size: 80)),
+              child: Center(child: PokeballLoading(size: 100)),
             ),
         ],
       ),

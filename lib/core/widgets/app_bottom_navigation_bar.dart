@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:go_router/go_router.dart';
 import 'package:pokedex_app/core/core_exports.dart'
     show
         AppColors,
@@ -25,16 +24,16 @@ class AppBottomNavigationBar extends ConsumerWidget {
 
     switch (index) {
       case 0:
-        context.go(HomeRoute().location);
+        HomeRoute().push(context);
         break;
       case 1:
-        context.go(RegionsRoute().location);
+        RegionsRoute().push(context);
         break;
       case 2:
-        context.go(FavoritesRoute().location);
+        FavoritesRoute().push(context);
         break;
       case 3:
-        context.go(ProfileRoute().location);
+        ProfileRoute().push(context);
         break;
     }
   }
@@ -61,11 +60,11 @@ class AppBottomNavigationBar extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = AppLocalizations.of(context);
     final currentIndex = ref.watch(navigationControllerProvider);
 
     return Container(
-      height: 100, 
+      height: 100,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: const BorderRadius.only(

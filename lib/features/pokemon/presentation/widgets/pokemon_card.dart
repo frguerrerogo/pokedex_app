@@ -26,7 +26,7 @@ class PokemonCard extends StatelessWidget {
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 6, horizontal: 12),
         decoration: BoxDecoration(
-          color: bgColor.withOpacity(0.6),
+          color: bgColor.withValues(alpha: 0.6),
           borderRadius: BorderRadius.circular(16),
         ),
         child: Stack(
@@ -86,7 +86,7 @@ class PokemonCard extends StatelessWidget {
                           width: 95,
                           height: 95,
                           fit: BoxFit.contain,
-                          color: Colors.white.withOpacity(0.5),
+                          color: Colors.white.withValues(alpha: 0.5),
                           colorBlendMode: BlendMode.srcIn,
                           errorBuilder: (context, error, stackTrace) {
                             return const Icon(Icons.circle, size: 10, color: Colors.red);
@@ -117,7 +117,7 @@ class PokemonCard extends StatelessWidget {
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     border: Border.all(color: Colors.white, width: 2),
-                    color: Colors.grey.withOpacity(0.4),
+                    color: Colors.grey.withValues(alpha: 0.4),
                   ),
                   child: Icon(
                     isFavorite ? Icons.favorite : Icons.favorite_border,
