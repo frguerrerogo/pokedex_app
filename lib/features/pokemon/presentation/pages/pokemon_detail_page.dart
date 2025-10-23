@@ -27,6 +27,25 @@ class PokemonDetailPage extends ConsumerWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    // Nombre e ID del Pokémon
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          pokemon.name[0].toUpperCase() + pokemon.name.substring(1),
+                          style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          '#${pokemon.id.toString().padLeft(3, '0')}',
+                          style: const TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.grey,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 24),
                     _buildInfoSection(pokemon),
                     const SizedBox(height: 24),
                     _buildStatsSection(pokemon),
@@ -83,78 +102,105 @@ class _PokemonDetailHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final primaryType = pokemon.types.first;
-    final backgroundColor = PokemonTypeStyle.getColor(primaryType.name);
+    final type = pokemon.types.first;
+    final backgroundColor = PokemonTypeStyle.getColor(type.name);
 
     return SliverAppBar(
-      expandedHeight: 300,
+      expandedHeight: 350,
       pinned: true,
+      elevation: 0,
       backgroundColor: Colors.white,
       leading: IconButton(
-        icon: const Icon(Icons.arrow_back, color: Colors.black),
-        onPressed: () => GoRouter.of(context).pop(),
+        icon: const Icon(Icons.arrow_back_ios_new_rounded, color: Colors.white),
+        onPressed: () => context.pop(),
       ),
       actions: [
         Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Text(
-            '#${pokemon.id.toString().padLeft(3, '0')}',
-            style: const TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold),
+          padding: const EdgeInsets.only(right: 12.0),
+          child: Row(
+            children: [
+              IconButton(
+                icon: const Icon(Icons.favorite_border_rounded, color: Colors.white),
+                onPressed: () {
+                  // TODO: Agregar a favoritos
+                },
+              ),
+            ],
           ),
-        ),
-        IconButton(
-          icon: const Icon(Icons.favorite_border, color: Colors.black),
-          onPressed: () {
-            // TODO: Implement favorite toggle
-          },
         ),
       ],
       flexibleSpace: FlexibleSpaceBar(
         background: Stack(
+          fit: StackFit.expand,
           children: [
-            Positioned.fill(
-              child: Column(
-                children: [
-                  Expanded(
-                    child: Stack(
-                      children: [
-                        // Semi-círculo de fondo
-                        Align(
-                          alignment: Alignment.topCenter,
-                          child: ClipPath(
-                            clipper: SemiCircleClipper(),
-                            child: Container(
-                              width: double.infinity,
-                              height: 250,
-                              decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                  begin: Alignment.topCenter,
-                                  end: Alignment.bottomCenter,
-                                  colors: [backgroundColor, backgroundColor.withValues(alpha: 0.7)],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        // Imagen del Pokémon
-                        Center(
-                          child: Hero(
-                            tag: 'pokemon-${pokemon.id}',
-                            child: Image.network(
-                              pokemon.imageUrl,
-                              height: 375, // 150% más grande (150 * 2.5)
-                              fit: BoxFit.contain,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Expanded(child: Container()),
-                ],
-              ),
-            ),
+            _buildBackgroundGradient(backgroundColor),
+            _buildTypeIcon(type.name),
+            _buildPokemonImage(pokemon),
           ],
+        ),
+      ),
+    );
+  }
+
+  /// Fondo con semicírculo degradado
+  Widget _buildBackgroundGradient(Color backgroundColor) {
+    return Align(
+      alignment: Alignment.topCenter,
+      child: ClipPath(
+        clipper: SemiCircleClipper(),
+        child: Container(
+          height: 360,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [backgroundColor, backgroundColor.withValues(alpha: 0.8)],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  /// Ícono del tipo del Pokémon (decorativo)
+  Widget _buildTypeIcon(String typeName) {
+    return Positioned(
+      top: 40,
+      left: 0,
+      right: 0,
+      child: Center(
+        child: Image.asset(
+          PokemonTypeStyle.getIcon(typeName),
+          width: 250,
+          height: 250,
+          fit: BoxFit.contain,
+          color: Colors.white.withValues(alpha: 0.3),
+        ),
+      ),
+    );
+  }
+
+  /// Imagen principal del Pokémon con Hero animation
+  Widget _buildPokemonImage(PokemonDetail pokemon) {
+    return Positioned(
+      top: 100,
+      left: 0,
+      right: 0,
+      child: Center(
+        child: Hero(
+          tag: 'pokemon-${pokemon.id}',
+          child: Image.network(
+            pokemon.imageUrl,
+            height: 300,
+            width: 300,
+            fit: BoxFit.contain,
+            loadingBuilder: (context, child, progress) {
+              if (progress == null) return child;
+              return const Center(child: CircularProgressIndicator(color: Colors.white));
+            },
+            errorBuilder: (context, error, stackTrace) =>
+                const Icon(Icons.broken_image, size: 100, color: Colors.white),
+          ),
         ),
       ),
     );
