@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pokedex_app/core/core_exports.dart';
+import 'package:pokedex_app/core/core_exports.dart' show PokemonTypeConfig, PokemonTypeChip;
 import 'package:pokedex_app/features/pokemon/domain/entities/pokemon_detail.dart';
 
 class PokemonCard extends StatelessWidget {
@@ -19,7 +19,7 @@ class PokemonCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final mainType = pokemon.types.isNotEmpty ? pokemon.types.first.name : 'normal';
-    final bgColor = PokemonTypeStyle.getColor(mainType);
+    final bgColor = PokemonTypeConfig.getColor(mainType);
 
     return GestureDetector(
       onTap: onTap,
@@ -60,7 +60,7 @@ class PokemonCard extends StatelessWidget {
                         Wrap(
                           spacing: 6,
                           children: pokemon.types
-                              .map((type) => _PokemonTypeChip(type: type.name))
+                              .map((type) => PokemonTypeChip(type: type.name))
                               .toList(),
                         ),
                       ],
@@ -78,11 +78,11 @@ class PokemonCard extends StatelessWidget {
                         height: 105,
                         decoration: BoxDecoration(
                           borderRadius: const BorderRadius.all(Radius.circular(15.0)),
-                          color: PokemonTypeStyle.getColor(mainType),
+                          color: PokemonTypeConfig.getColor(mainType),
                         ),
                         alignment: Alignment.center,
                         child: Image.asset(
-                          PokemonTypeStyle.getIcon(mainType),
+                          PokemonTypeConfig.getIcon(mainType),
                           width: 95,
                           height: 95,
                           fit: BoxFit.contain,
@@ -132,47 +132,4 @@ class PokemonCard extends StatelessWidget {
       ),
     );
   }
-}
-
-/// Small colored type chip
-class _PokemonTypeChip extends StatelessWidget {
-  final String type;
-  const _PokemonTypeChip({required this.type});
-
-  @override
-  Widget build(BuildContext context) {
-    final color = PokemonTypeStyle.getColor(type);
-
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-      decoration: BoxDecoration(color: color, borderRadius: BorderRadius.circular(20)),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Container(
-            width: 20,
-            height: 20,
-            decoration: const BoxDecoration(color: Colors.white, shape: BoxShape.circle),
-            alignment: Alignment.center,
-            child: Image.asset(
-              PokemonTypeStyle.getIcon(type),
-              width: 16,
-              height: 16,
-              fit: BoxFit.contain,
-              errorBuilder: (context, error, stackTrace) {
-                return const Icon(Icons.circle, size: 10, color: Colors.red);
-              },
-            ),
-          ),
-          const SizedBox(width: 4),
-          Text(
-            PokemonTypeStyle.getLabel(context, type),
-            style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 12),
-          ),
-        ],
-      ),
-    );
-  }
-
-  // Labels now provided by PokemonTypeStyle.getLabel(context, type)
 }

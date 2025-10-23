@@ -3,7 +3,6 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:pokedex_app/core/core_exports.dart';
 import 'package:pokedex_app/features/pokemon/domain/entities/pokemon_detail.dart';
-import 'package:pokedex_app/features/pokemon/presentation/widgets/pokemon_type_chip.dart';
 
 class PokemonDetailHeaderDelegate extends SliverPersistentHeaderDelegate {
   final PokemonDetail pokemon;

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:pokedex_app/core/core_exports.dart';
+import 'package:pokedex_app/core/core_exports.dart'
+    show PokeballLoading, PokemonTypeChip, PokemonTypeConfig;
 import 'package:pokedex_app/features/pokemon/domain/entities/pokemon_detail.dart';
 import 'package:pokedex_app/features/pokemon/presentation/providers/pokemon_detail_provider.dart';
 
@@ -15,40 +16,53 @@ class PokemonDetailPage extends ConsumerWidget {
     final pokemonAsync = ref.watch(pokemonDetailByIdProvider(pokemonId));
 
     return Scaffold(
+      backgroundColor: Colors.white,
       body: pokemonAsync.when(
-        loading: () => const Center(child: PokeballLoading()),
+        loading: () => const Center(child: PokeballLoading(size: 100)),
         error: (error, stack) => Center(child: Text('Error: $error')),
         data: (pokemon) => CustomScrollView(
           slivers: [
             _PokemonDetailHeader(pokemon: pokemon),
             SliverToBoxAdapter(
               child: Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(15.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Nombre e ID del Pokémon
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          pokemon.name[0].toUpperCase() + pokemon.name.substring(1),
-                          style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
-                        ),
-                        Text(
-                          '#${pokemon.id.toString().padLeft(3, '0')}',
-                          style: const TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.grey,
-                          ),
-                        ),
-                      ],
+                    Text(
+                      pokemon.name[0].toUpperCase() + pokemon.name.substring(1),
+                      style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
                     ),
+                    Text(
+                      'Nº${pokemon.id.toString().padLeft(3, '0')}',
+                      style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+                    ),
+                    SizedBox(height: 15),
+                    Wrap(
+                      spacing: 6,
+                      children: pokemon.types
+                          .map((type) => PokemonTypeChip(type: type.name))
+                          .toList(),
+                    ),
+
                     const SizedBox(height: 24),
                     _buildInfoSection(pokemon),
                     const SizedBox(height: 24),
                     _buildStatsSection(pokemon),
+                    const SizedBox(height: 24),
+                    Text(
+                      'Debilidades',
+                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(height: 8),
+                    Wrap(
+                      spacing: 6,
+                      children: pokemon
+                          .getWeaknesses()
+                          .map((weakness) => PokemonTypeChip(type: weakness))
+                          .toList(),
+                    ),
+                    const SizedBox(height: 20),
                   ],
                 ),
               ),
@@ -68,12 +82,8 @@ class PokemonDetailPage extends ConsumerWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            _InfoItem(label: 'Altura', value: '${pokemon.height} m'),
-            _InfoItem(label: 'Peso', value: '${pokemon.weight} kg'),
-            _InfoItem(
-              label: 'Género',
-              value: '${(pokemon.genderRate * 100).toStringAsFixed(1)}% ♀',
-            ),
+            _InfoItem(label: 'Peso', value: '${pokemon.weight} kg', icon: Icons.monitor_weight),
+            _InfoItem(label: 'Altura', value: '${pokemon.height} m', icon: Icons.height),
           ],
         ),
       ],
@@ -103,7 +113,7 @@ class _PokemonDetailHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final type = pokemon.types.first;
-    final backgroundColor = PokemonTypeStyle.getColor(type.name);
+    final backgroundColor = PokemonTypeConfig.getColor(type.name);
 
     return SliverAppBar(
       expandedHeight: 350,
@@ -142,7 +152,6 @@ class _PokemonDetailHeader extends StatelessWidget {
     );
   }
 
-  /// Fondo con semicírculo degradado
   Widget _buildBackgroundGradient(Color backgroundColor) {
     return Align(
       alignment: Alignment.topCenter,
@@ -162,7 +171,6 @@ class _PokemonDetailHeader extends StatelessWidget {
     );
   }
 
-  /// Ícono del tipo del Pokémon (decorativo)
   Widget _buildTypeIcon(String typeName) {
     return Positioned(
       top: 40,
@@ -170,7 +178,7 @@ class _PokemonDetailHeader extends StatelessWidget {
       right: 0,
       child: Center(
         child: Image.asset(
-          PokemonTypeStyle.getIcon(typeName),
+          PokemonTypeConfig.getIcon(typeName),
           width: 250,
           height: 250,
           fit: BoxFit.contain,
@@ -226,16 +234,62 @@ class SemiCircleClipper extends CustomClipper<Path> {
 class _InfoItem extends StatelessWidget {
   final String label;
   final String value;
+  final IconData icon;
 
-  const _InfoItem({required this.label, required this.value});
+  const _InfoItem({required this.label, required this.value, required this.icon});
 
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
       children: [
-        Text(label, style: TextStyle(color: Colors.grey[600], fontSize: 14)),
-        const SizedBox(height: 4),
-        Text(value, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(icon, size: 16, color: Colors.grey[700]),
+            const SizedBox(width: 4),
+            Text(
+              label.toUpperCase(),
+              style: const TextStyle(
+                fontFamily: 'Poppins',
+                fontSize: 12,
+                fontWeight: FontWeight.w600,
+                color: Colors.black54,
+                letterSpacing: 0.5,
+              ),
+            ),
+          ],
+        ),
+
+        const SizedBox(height: 8),
+
+        Container(
+          width: 150,
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(color: Colors.grey[300]!),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black12.withValues(alpha: 0.03),
+                blurRadius: 3,
+                offset: const Offset(0, 1),
+              ),
+            ],
+          ),
+          child: Text(
+            value,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              fontFamily: 'Poppins',
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
+              color: Colors.black,
+            ),
+          ),
+        ),
       ],
     );
   }
@@ -249,21 +303,67 @@ class _StatBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final color = _getColorForValue(value);
+
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      padding: const EdgeInsets.symmetric(vertical: 6.0),
+      child: Row(
         children: [
-          Text(label),
-          const SizedBox(height: 4),
-          LinearProgressIndicator(
-            value: value / 100,
-            backgroundColor: Colors.grey[200],
-            valueColor: AlwaysStoppedAnimation<Color>(_getColorForValue(value)),
-            minHeight: 8,
+          SizedBox(
+            width: 80,
+            child: Text(
+              label.toUpperCase(),
+              style: const TextStyle(
+                fontFamily: 'Poppins',
+                fontSize: 13,
+                fontWeight: FontWeight.w600,
+                color: Colors.black87,
+              ),
+            ),
           ),
-          const SizedBox(height: 4),
-          Text(value.toString(), style: const TextStyle(fontWeight: FontWeight.w500)),
+          const SizedBox(width: 8),
+
+          Expanded(
+            child: Stack(
+              alignment: Alignment.centerRight,
+              children: [
+                // Fondo gris claro
+                Container(
+                  height: 10,
+                  decoration: BoxDecoration(
+                    color: Colors.grey[200],
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                ),
+                FractionallySizedBox(
+                  widthFactor: (value / 100).clamp(0.0, 1.0),
+                  child: Container(
+                    height: 10,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(colors: [color.withValues(alpha: 0.8), color]),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+
+          const SizedBox(width: 12),
+
+          SizedBox(
+            width: 40,
+            child: Text(
+              value.toString(),
+              textAlign: TextAlign.end,
+              style: TextStyle(
+                fontFamily: 'Poppins',
+                fontSize: 13,
+                fontWeight: FontWeight.bold,
+                color: color,
+              ),
+            ),
+          ),
         ],
       ),
     );
@@ -271,7 +371,7 @@ class _StatBar extends StatelessWidget {
 
   Color _getColorForValue(int value) {
     if (value >= 80) return Colors.green;
-    if (value >= 50) return Colors.amber;
-    return Colors.red;
+    if (value >= 50) return Colors.orange;
+    return Colors.redAccent;
   }
 }

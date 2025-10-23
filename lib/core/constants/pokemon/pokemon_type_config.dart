@@ -2,10 +2,9 @@ import 'package:flutter/widgets.dart';
 import 'package:pokedex_app/core/constants/app_images.dart';
 import 'package:pokedex_app/l10n/app_localizations.dart';
 
-class PokemonTypeStyle {
-  // Only keep the color mapping here (const) — icons and labels are provided by
-  // AppImages and AppLocalizations respectively to support l10n and central assets.
-  static final Map<String, String> _colors = {
+class PokemonTypeConfig {
+  /// Mapping of Pokémon type names to their hex color codes
+  static final Map<String, String> typeColors = {
     'normal': '#FF9FA19F',
     'fire': '#FFE62829',
     'water': '#FF2980EF',
@@ -26,14 +25,36 @@ class PokemonTypeStyle {
     'fairy': '#FFEF70EF',
   };
 
+  /// Mapping of Pokémon types to their weakness types
+  static final Map<String, List<String>> typeWeaknesses = {
+    'normal': ['fighting'],
+    'fire': ['water', 'ground', 'rock'],
+    'water': ['electric', 'grass'],
+    'electric': ['ground'],
+    'grass': ['fire', 'ice', 'poison', 'flying', 'bug'],
+    'ice': ['fire', 'fighting', 'rock', 'steel'],
+    'fighting': ['flying', 'psychic', 'fairy'],
+    'poison': ['ground', 'psychic'],
+    'ground': ['water', 'grass', 'ice'],
+    'flying': ['electric', 'ice', 'rock'],
+    'psychic': ['bug', 'ghost', 'dark'],
+    'bug': ['fire', 'flying', 'rock'],
+    'rock': ['water', 'grass', 'fighting', 'ground', 'steel'],
+    'ghost': ['ghost', 'dark'],
+    'dragon': ['ice', 'dragon', 'fairy'],
+    'dark': ['fighting', 'bug', 'fairy'],
+    'steel': ['fire', 'fighting', 'ground'],
+    'fairy': ['poison', 'steel'],
+  };
+
   /// Returns the Color associated with the Pokémon type
   static Color getColor(String type) {
-    final hex = _colors[type.toLowerCase()] ?? '#FFA8A878'; // default color
-    return _fromHex(hex);
+    final hex = typeColors[type.toLowerCase()] ?? '#FFA8A878'; // default color
+    return _hexToColor(hex);
   }
 
   /// Converts a HEX string (for example '#FFE62829') into a Color object
-  static Color _fromHex(String hex) {
+  static Color _hexToColor(String hex) {
     final buffer = StringBuffer();
     buffer.write(hex.replaceFirst('#', ''));
     return Color(int.parse(buffer.toString(), radix: 16));
@@ -127,5 +148,10 @@ class PokemonTypeStyle {
       default:
         return type.isEmpty ? type : '${type[0].toUpperCase()}${type.substring(1)}';
     }
+  }
+
+  /// Returns the list of weaknesses for a given Pokémon type
+  static List<String> getWeaknesses(String type) {
+    return typeWeaknesses[type.toLowerCase()] ?? [];
   }
 }
