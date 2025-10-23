@@ -4,10 +4,8 @@ part 'pokemon_model.freezed.dart';
 part 'pokemon_model.g.dart';
 
 @freezed
-abstract class PokemonListItemModel with _$PokemonListItemModel {
-  const factory PokemonListItemModel({required String name, required String url}) =
-      _PokemonListItemModel;
+abstract class PokemonModel with _$PokemonModel {
+  const factory PokemonModel({required String name, required String url}) = _PokemonModel;
 
-  factory PokemonListItemModel.fromJson(Map<String, dynamic> json) =>
-      _$PokemonListItemModelFromJson(json);
+  factory PokemonModel.fromJson(Map<String, dynamic> json) => _$PokemonModelFromJson(json);
 }

@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../models/pokemon_detail_model.dart';
-import '../models/pokemon_list_item_model.dart';
+import '../models/pokemon_model.dart';
 
 final pokemonRemoteDataSourceProvider = Provider<PokemonRemoteDataSource>((ref) {
   final dio = Dio();
@@ -32,7 +32,7 @@ class PokemonRemoteDataSourceImpl implements PokemonRemoteDataSource {
       final response = await client.get('$_baseUrl?limit=$limit&offset=$offset');
 
       final results = (response.data['results'] as List)
-          .map((e) => PokemonListItemModel.fromJson(e))
+          .map((e) => PokemonModel.fromJson(e))
           .toList();
 
       final List<PokemonDetailModel> pokemons = [];
