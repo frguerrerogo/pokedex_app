@@ -1,7 +1,13 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../models/pokemon_detail_model.dart';
 import '../models/pokemon_list_item_model.dart';
+
+final pokemonRemoteDataSourceProvider = Provider<PokemonRemoteDataSource>((ref) {
+  final dio = Dio();
+  return PokemonRemoteDataSourceImpl(dio);
+});
 
 /// Remote data source for fetching Pokémon data from the PokéAPI.
 abstract class PokemonRemoteDataSource {

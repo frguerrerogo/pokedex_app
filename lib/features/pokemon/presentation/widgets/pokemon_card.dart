@@ -1,21 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex_app/core/core_exports.dart';
+import 'package:pokedex_app/features/pokemon/domain/entities/pokemon_detail.dart';
 
 class PokemonCard extends StatelessWidget {
-  final int id;
-  final String name;
-  final String imageUrl;
-  final List<String> types;
+  final PokemonDetail pokemon;
   final bool isFavorite;
   final VoidCallback? onTap;
   final VoidCallback? onFavoriteToggle;
 
   const PokemonCard({
     super.key,
-    required this.id,
-    required this.name,
-    required this.imageUrl,
-    required this.types,
+    required this.pokemon,
     this.isFavorite = false,
     this.onTap,
     this.onFavoriteToggle,
@@ -23,7 +18,7 @@ class PokemonCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final mainType = types.isNotEmpty ? types.first : 'normal';
+    final mainType = pokemon.types.isNotEmpty ? pokemon.types.first.name : 'normal';
     final bgColor = PokemonTypeStyle.getColor(mainType);
 
     return GestureDetector(
@@ -46,7 +41,7 @@ class PokemonCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'N°${id.toString().padLeft(3, '0')}',
+                          'N°${pokemon.id.toString().padLeft(3, '0')}',
                           style: const TextStyle(
                             fontSize: 12,
                             color: Colors.black87,
@@ -54,7 +49,7 @@ class PokemonCard extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          name[0].toUpperCase() + name.substring(1),
+                          pokemon.name[0].toUpperCase() + pokemon.name.substring(1),
                           style: const TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
@@ -64,7 +59,9 @@ class PokemonCard extends StatelessWidget {
                         const SizedBox(height: 6),
                         Wrap(
                           spacing: 6,
-                          children: types.map((type) => _PokemonTypeChip(type: type)).toList(),
+                          children: pokemon.types
+                              .map((type) => _PokemonTypeChip(type: type.name))
+                              .toList(),
                         ),
                       ],
                     ),
@@ -97,7 +94,12 @@ class PokemonCard extends StatelessWidget {
                         ),
                       ),
                       Center(
-                        child: Image.network(imageUrl, height: 95, width: 95, fit: BoxFit.contain),
+                        child: Image.network(
+                          pokemon.imageUrl,
+                          height: 95,
+                          width: 95,
+                          fit: BoxFit.contain,
+                        ),
                       ),
                     ],
                   ),

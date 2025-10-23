@@ -12,6 +12,7 @@ List<RouteBase> get $appRoutes => [
   $regionsRoute,
   $favoritesRoute,
   $profileRoute,
+  $pokemonDetailRoute,
 ];
 
 RouteBase get $onboardingRoute => GoRouteData.$route(
@@ -118,6 +119,35 @@ mixin $ProfileRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/profile');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $pokemonDetailRoute => GoRouteData.$route(
+  path: '/pokemon/:id',
+  factory: $PokemonDetailRoute._fromState,
+);
+
+mixin $PokemonDetailRoute on GoRouteData {
+  static PokemonDetailRoute _fromState(GoRouterState state) =>
+      PokemonDetailRoute(id: state.pathParameters['id']!);
+
+  PokemonDetailRoute get _self => this as PokemonDetailRoute;
+
+  @override
+  String get location =>
+      GoRouteData.$location('/pokemon/${Uri.encodeComponent(_self.id)}');
 
   @override
   void go(BuildContext context) => context.go(location);

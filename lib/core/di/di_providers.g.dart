@@ -230,3 +230,127 @@ final class GetPokemonDetailProvider
 }
 
 String _$getPokemonDetailHash() => r'0291d5b8d41c7f6e54ad00d1e327210e8727d4bb';
+
+@ProviderFor(pokemonDetail)
+const pokemonDetailProvider = PokemonDetailFamily._();
+
+final class PokemonDetailProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<PokemonDetail>,
+          PokemonDetail,
+          FutureOr<PokemonDetail>
+        >
+    with $FutureModifier<PokemonDetail>, $FutureProvider<PokemonDetail> {
+  const PokemonDetailProvider._({
+    required PokemonDetailFamily super.from,
+    required String super.argument,
+  }) : super(
+         retry: null,
+         name: r'pokemonDetailProvider',
+         isAutoDispose: true,
+         dependencies: null,
+         $allTransitiveDependencies: null,
+       );
+
+  @override
+  String debugGetCreateSourceHash() => _$pokemonDetailHash();
+
+  @override
+  String toString() {
+    return r'pokemonDetailProvider'
+        ''
+        '($argument)';
+  }
+
+  @$internal
+  @override
+  $FutureProviderElement<PokemonDetail> $createElement(
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<PokemonDetail> create(Ref ref) {
+    final argument = this.argument as String;
+    return pokemonDetail(ref, argument);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is PokemonDetailProvider && other.argument == argument;
+  }
+
+  @override
+  int get hashCode {
+    return argument.hashCode;
+  }
+}
+
+String _$pokemonDetailHash() => r'0d7396279ceab50c88847055f02e9ecd45accd47';
+
+final class PokemonDetailFamily extends $Family
+    with $FunctionalFamilyOverride<FutureOr<PokemonDetail>, String> {
+  const PokemonDetailFamily._()
+    : super(
+        retry: null,
+        name: r'pokemonDetailProvider',
+        dependencies: null,
+        $allTransitiveDependencies: null,
+        isAutoDispose: true,
+      );
+
+  PokemonDetailProvider call(String name) =>
+      PokemonDetailProvider._(argument: name, from: this);
+
+  @override
+  String toString() => r'pokemonDetailProvider';
+}
+
+@ProviderFor(selectedPokemon)
+const selectedPokemonProvider = SelectedPokemonProvider._();
+
+final class SelectedPokemonProvider
+    extends
+        $FunctionalProvider<
+          ValueNotifier<PokemonDetail?>,
+          ValueNotifier<PokemonDetail?>,
+          ValueNotifier<PokemonDetail?>
+        >
+    with $Provider<ValueNotifier<PokemonDetail?>> {
+  const SelectedPokemonProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'selectedPokemonProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$selectedPokemonHash();
+
+  @$internal
+  @override
+  $ProviderElement<ValueNotifier<PokemonDetail?>> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  ValueNotifier<PokemonDetail?> create(Ref ref) {
+    return selectedPokemon(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(ValueNotifier<PokemonDetail?> value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<ValueNotifier<PokemonDetail?>>(
+        value,
+      ),
+    );
+  }
+}
+
+String _$selectedPokemonHash() => r'b2b7fa336190ba48cd70763613d334ec41294813';

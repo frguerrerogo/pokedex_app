@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:pokedex_app/core/core_exports.dart'
     show AppBottomNavigationBar, InfoCardContent, AppImages;
 import 'package:pokedex_app/core/widgets/pokeball_loading.dart';
 import 'package:pokedex_app/features/pokemon/domain/entities/pokemon_detail.dart';
-import 'package:pokedex_app/features/pokemon/presentation/provider/pokedex_provider.dart';
+import 'package:pokedex_app/features/pokemon/presentation/providers/pokedex_provider.dart';
 import 'package:pokedex_app/features/pokemon/presentation/widgets/pokemon_card.dart';
 import 'package:pokedex_app/features/pokemon/presentation/widgets/pokemon_search_bar.dart';
 import 'package:pokedex_app/l10n/app_localizations.dart';
@@ -66,7 +67,7 @@ class PokedexErrorWidget extends StatelessWidget {
 }
 
 class PokedexListWidget extends ConsumerStatefulWidget {
-  final List<PokemonDetailEntity> pokemonList;
+  final List<PokemonDetail> pokemonList;
 
   const PokedexListWidget({super.key, required this.pokemonList});
 
@@ -124,13 +125,10 @@ class _PokedexListWidgetState extends ConsumerState<PokedexListWidget> {
               itemBuilder: (context, index) {
                 final pokemon = widget.pokemonList[index];
                 return PokemonCard(
-                  id: pokemon.id,
-                  name: pokemon.name,
-                  imageUrl: pokemon.imageUrl,
-                  types: pokemon.types.map((t) => t.name).toList(),
+                  pokemon: pokemon,
                   isFavorite: false,
                   onTap: () {
-                    // context.go('/pokemon/${pokemon.name}');
+                    context.go('/pokemon/${pokemon.id}');
                   },
                   onFavoriteToggle: () {
                     // toggle favorite

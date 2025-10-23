@@ -12,15 +12,15 @@ class Pokedex extends _$Pokedex {
   int _page = 1;
   static const int _itemsPerPage = 20;
   String _searchQuery = '';
-  List<PokemonDetailEntity> _cachedList = [];
-  List<PokemonDetailEntity> _displayList = [];
+  List<PokemonDetail> _cachedList = [];
+  List<PokemonDetail> _displayList = [];
 
   @override
-  FutureOr<List<PokemonDetailEntity>> build() async {
+  FutureOr<List<PokemonDetail>> build() async {
     return _loadPage(_page);
   }
 
-  Future<List<PokemonDetailEntity>> _loadPage(int page) async {
+  Future<List<PokemonDetail>> _loadPage(int page) async {
     try {
       final getList = ref.watch(getPokemonListProvider);
       final offset = (page - 1) * _itemsPerPage;
@@ -50,7 +50,7 @@ class Pokedex extends _$Pokedex {
     }
   }
 
-  List<PokemonDetailEntity> _filterPokemon() {
+  List<PokemonDetail> _filterPokemon() {
     if (_searchQuery.isEmpty) {
       return _cachedList;
     }

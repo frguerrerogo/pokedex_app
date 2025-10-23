@@ -4,8 +4,11 @@ import '../entities/pokemon_detail.dart';
 /// Concrete implementations should live in the data layer.
 abstract class PokemonRepository {
   /// Retrieves the list of Pokémon with detailed information.
-  Future<List<PokemonDetailEntity>> getPokemonList({int limit = 20, int offset = 0});
+  Future<List<PokemonDetail>> getPokemonList({int limit = 20, int offset = 0});
 
   /// Retrieves detailed information for a Pokémon by its name.
-  Future<PokemonDetailEntity> getPokemonDetail(String name);
+  Future<PokemonDetail> getPokemonDetail(String name);
+
+  /// Retrieves detailed information for a Pokémon by its ID.
+  Future<PokemonDetail> getPokemonDetailById(int id);
 }

@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pokedex_app/core/core_exports.dart' show hasSeenOnboardingProvider;
 import 'package:pokedex_app/core/feature/presentation/app_pages_exports.dart';
+import 'package:pokedex_app/features/pokemon/presentation/pages/pokemon_detail_page.dart';
 
 part 'app_router.g.dart';
 
@@ -11,6 +12,7 @@ const home = '/home';
 const regions = '/regions';
 const favorites = '/favorites';
 const profile = '/profile';
+const pokemonDetail = '/pokemon/:id';
 
 /// Global router provider
 final routerProvider = Provider<GoRouter>((ref) {
@@ -74,5 +76,18 @@ class ProfileRoute extends GoRouteData with $ProfileRoute {
   @override
   Page<void> buildPage(BuildContext context, GoRouterState state) {
     return NoTransitionPage(key: state.pageKey, child: const ProfilePage());
+  }
+}
+
+/// Route: Pokemon Detail
+@TypedGoRoute<PokemonDetailRoute>(path: pokemonDetail)
+class PokemonDetailRoute extends GoRouteData with $PokemonDetailRoute {
+  final String id;
+
+  const PokemonDetailRoute({required this.id});
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) {
+    return PokemonDetailPage(pokemonId: int.parse(id));
   }
 }

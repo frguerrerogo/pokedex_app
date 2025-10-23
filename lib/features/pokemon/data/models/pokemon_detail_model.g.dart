@@ -19,6 +19,10 @@ _PokemonDetailModel _$PokemonDetailModelFromJson(Map<String, dynamic> json) =>
       types: (json['types'] as List<dynamic>)
           .map((e) => TypeSlotModel.fromJson(e as Map<String, dynamic>))
           .toList(),
+      stats: (json['stats'] as List<dynamic>)
+          .map((e) => StatModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      genderRate: (json['gender_rate'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$PokemonDetailModelToJson(_PokemonDetailModel instance) =>
@@ -30,7 +34,28 @@ Map<String, dynamic> _$PokemonDetailModelToJson(_PokemonDetailModel instance) =>
       'weight': instance.weight,
       'sprites': instance.sprites,
       'types': instance.types,
+      'stats': instance.stats,
+      'gender_rate': instance.genderRate,
     };
+
+_StatModel _$StatModelFromJson(Map<String, dynamic> json) => _StatModel(
+  baseStat: (json['base_stat'] as num).toInt(),
+  effort: (json['effort'] as num).toInt(),
+  stat: StatDetailModel.fromJson(json['stat'] as Map<String, dynamic>),
+);
+
+Map<String, dynamic> _$StatModelToJson(_StatModel instance) =>
+    <String, dynamic>{
+      'base_stat': instance.baseStat,
+      'effort': instance.effort,
+      'stat': instance.stat,
+    };
+
+_StatDetailModel _$StatDetailModelFromJson(Map<String, dynamic> json) =>
+    _StatDetailModel(name: json['name'] as String, url: json['url'] as String);
+
+Map<String, dynamic> _$StatDetailModelToJson(_StatDetailModel instance) =>
+    <String, dynamic>{'name': instance.name, 'url': instance.url};
 
 _AbilityModel _$AbilityModelFromJson(Map<String, dynamic> json) =>
     _AbilityModel(

@@ -13,9 +13,30 @@ abstract class PokemonDetailModel with _$PokemonDetailModel {
     required double weight,
     required SpriteModel sprites,
     required List<TypeSlotModel> types,
+    required List<StatModel> stats,
+    @JsonKey(name: 'gender_rate') int? genderRate,
   }) = _PokemonDetailModel;
 
-  factory PokemonDetailModel.fromJson(Map<String, dynamic> json) => _$PokemonDetailModelFromJson(json);
+  factory PokemonDetailModel.fromJson(Map<String, dynamic> json) =>
+      _$PokemonDetailModelFromJson(json);
+}
+
+@freezed
+abstract class StatModel with _$StatModel {
+  const factory StatModel({
+    @JsonKey(name: 'base_stat') required int baseStat,
+    required int effort,
+    required StatDetailModel stat,
+  }) = _StatModel;
+
+  factory StatModel.fromJson(Map<String, dynamic> json) => _$StatModelFromJson(json);
+}
+
+@freezed
+abstract class StatDetailModel with _$StatDetailModel {
+  const factory StatDetailModel({required String name, required String url}) = _StatDetailModel;
+
+  factory StatDetailModel.fromJson(Map<String, dynamic> json) => _$StatDetailModelFromJson(json);
 }
 
 @freezed

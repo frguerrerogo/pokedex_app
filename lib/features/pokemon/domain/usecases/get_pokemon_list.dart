@@ -6,7 +6,7 @@ class GetPokemonList {
 
   GetPokemonList(this.repository);
 
-  Future<List<PokemonDetailEntity>> call({int limit = 20, int offset = 0}) {
+  Future<List<PokemonDetail>> call({int limit = 20, int offset = 0}) {
     return repository.getPokemonList(limit: limit, offset: offset);
   }
 }

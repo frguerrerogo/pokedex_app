@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$PokemonDetailModel {
 
- int get id; String get name; List<AbilityModel> get abilities; double get height; double get weight; SpriteModel get sprites; List<TypeSlotModel> get types;
+ int get id; String get name; List<AbilityModel> get abilities; double get height; double get weight; SpriteModel get sprites; List<TypeSlotModel> get types; List<StatModel> get stats;@JsonKey(name: 'gender_rate') int? get genderRate;
 /// Create a copy of PokemonDetailModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $PokemonDetailModelCopyWith<PokemonDetailModel> get copyWith => _$PokemonDetailM
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is PokemonDetailModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&const DeepCollectionEquality().equals(other.abilities, abilities)&&(identical(other.height, height) || other.height == height)&&(identical(other.weight, weight) || other.weight == weight)&&(identical(other.sprites, sprites) || other.sprites == sprites)&&const DeepCollectionEquality().equals(other.types, types));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PokemonDetailModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&const DeepCollectionEquality().equals(other.abilities, abilities)&&(identical(other.height, height) || other.height == height)&&(identical(other.weight, weight) || other.weight == weight)&&(identical(other.sprites, sprites) || other.sprites == sprites)&&const DeepCollectionEquality().equals(other.types, types)&&const DeepCollectionEquality().equals(other.stats, stats)&&(identical(other.genderRate, genderRate) || other.genderRate == genderRate));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,name,const DeepCollectionEquality().hash(abilities),height,weight,sprites,const DeepCollectionEquality().hash(types));
+int get hashCode => Object.hash(runtimeType,id,name,const DeepCollectionEquality().hash(abilities),height,weight,sprites,const DeepCollectionEquality().hash(types),const DeepCollectionEquality().hash(stats),genderRate);
 
 @override
 String toString() {
-  return 'PokemonDetailModel(id: $id, name: $name, abilities: $abilities, height: $height, weight: $weight, sprites: $sprites, types: $types)';
+  return 'PokemonDetailModel(id: $id, name: $name, abilities: $abilities, height: $height, weight: $weight, sprites: $sprites, types: $types, stats: $stats, genderRate: $genderRate)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $PokemonDetailModelCopyWith<$Res>  {
   factory $PokemonDetailModelCopyWith(PokemonDetailModel value, $Res Function(PokemonDetailModel) _then) = _$PokemonDetailModelCopyWithImpl;
 @useResult
 $Res call({
- int id, String name, List<AbilityModel> abilities, double height, double weight, SpriteModel sprites, List<TypeSlotModel> types
+ int id, String name, List<AbilityModel> abilities, double height, double weight, SpriteModel sprites, List<TypeSlotModel> types, List<StatModel> stats,@JsonKey(name: 'gender_rate') int? genderRate
 });
 
 
@@ -65,7 +65,7 @@ class _$PokemonDetailModelCopyWithImpl<$Res>
 
 /// Create a copy of PokemonDetailModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? abilities = null,Object? height = null,Object? weight = null,Object? sprites = null,Object? types = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? abilities = null,Object? height = null,Object? weight = null,Object? sprites = null,Object? types = null,Object? stats = null,Object? genderRate = freezed,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
@@ -74,7 +74,9 @@ as List<AbilityModel>,height: null == height ? _self.height : height // ignore: 
 as double,weight: null == weight ? _self.weight : weight // ignore: cast_nullable_to_non_nullable
 as double,sprites: null == sprites ? _self.sprites : sprites // ignore: cast_nullable_to_non_nullable
 as SpriteModel,types: null == types ? _self.types : types // ignore: cast_nullable_to_non_nullable
-as List<TypeSlotModel>,
+as List<TypeSlotModel>,stats: null == stats ? _self.stats : stats // ignore: cast_nullable_to_non_nullable
+as List<StatModel>,genderRate: freezed == genderRate ? _self.genderRate : genderRate // ignore: cast_nullable_to_non_nullable
+as int?,
   ));
 }
 /// Create a copy of PokemonDetailModel
@@ -168,10 +170,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String name,  List<AbilityModel> abilities,  double height,  double weight,  SpriteModel sprites,  List<TypeSlotModel> types)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String name,  List<AbilityModel> abilities,  double height,  double weight,  SpriteModel sprites,  List<TypeSlotModel> types,  List<StatModel> stats, @JsonKey(name: 'gender_rate')  int? genderRate)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _PokemonDetailModel() when $default != null:
-return $default(_that.id,_that.name,_that.abilities,_that.height,_that.weight,_that.sprites,_that.types);case _:
+return $default(_that.id,_that.name,_that.abilities,_that.height,_that.weight,_that.sprites,_that.types,_that.stats,_that.genderRate);case _:
   return orElse();
 
 }
@@ -189,10 +191,10 @@ return $default(_that.id,_that.name,_that.abilities,_that.height,_that.weight,_t
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String name,  List<AbilityModel> abilities,  double height,  double weight,  SpriteModel sprites,  List<TypeSlotModel> types)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String name,  List<AbilityModel> abilities,  double height,  double weight,  SpriteModel sprites,  List<TypeSlotModel> types,  List<StatModel> stats, @JsonKey(name: 'gender_rate')  int? genderRate)  $default,) {final _that = this;
 switch (_that) {
 case _PokemonDetailModel():
-return $default(_that.id,_that.name,_that.abilities,_that.height,_that.weight,_that.sprites,_that.types);case _:
+return $default(_that.id,_that.name,_that.abilities,_that.height,_that.weight,_that.sprites,_that.types,_that.stats,_that.genderRate);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -209,10 +211,10 @@ return $default(_that.id,_that.name,_that.abilities,_that.height,_that.weight,_t
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String name,  List<AbilityModel> abilities,  double height,  double weight,  SpriteModel sprites,  List<TypeSlotModel> types)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String name,  List<AbilityModel> abilities,  double height,  double weight,  SpriteModel sprites,  List<TypeSlotModel> types,  List<StatModel> stats, @JsonKey(name: 'gender_rate')  int? genderRate)?  $default,) {final _that = this;
 switch (_that) {
 case _PokemonDetailModel() when $default != null:
-return $default(_that.id,_that.name,_that.abilities,_that.height,_that.weight,_that.sprites,_that.types);case _:
+return $default(_that.id,_that.name,_that.abilities,_that.height,_that.weight,_that.sprites,_that.types,_that.stats,_that.genderRate);case _:
   return null;
 
 }
@@ -224,7 +226,7 @@ return $default(_that.id,_that.name,_that.abilities,_that.height,_that.weight,_t
 @JsonSerializable()
 
 class _PokemonDetailModel implements PokemonDetailModel {
-  const _PokemonDetailModel({required this.id, required this.name, required final  List<AbilityModel> abilities, required this.height, required this.weight, required this.sprites, required final  List<TypeSlotModel> types}): _abilities = abilities,_types = types;
+  const _PokemonDetailModel({required this.id, required this.name, required final  List<AbilityModel> abilities, required this.height, required this.weight, required this.sprites, required final  List<TypeSlotModel> types, required final  List<StatModel> stats, @JsonKey(name: 'gender_rate') this.genderRate}): _abilities = abilities,_types = types,_stats = stats;
   factory _PokemonDetailModel.fromJson(Map<String, dynamic> json) => _$PokemonDetailModelFromJson(json);
 
 @override final  int id;
@@ -246,6 +248,14 @@ class _PokemonDetailModel implements PokemonDetailModel {
   return EqualUnmodifiableListView(_types);
 }
 
+ final  List<StatModel> _stats;
+@override List<StatModel> get stats {
+  if (_stats is EqualUnmodifiableListView) return _stats;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_stats);
+}
+
+@override@JsonKey(name: 'gender_rate') final  int? genderRate;
 
 /// Create a copy of PokemonDetailModel
 /// with the given fields replaced by the non-null parameter values.
@@ -260,16 +270,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PokemonDetailModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&const DeepCollectionEquality().equals(other._abilities, _abilities)&&(identical(other.height, height) || other.height == height)&&(identical(other.weight, weight) || other.weight == weight)&&(identical(other.sprites, sprites) || other.sprites == sprites)&&const DeepCollectionEquality().equals(other._types, _types));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PokemonDetailModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&const DeepCollectionEquality().equals(other._abilities, _abilities)&&(identical(other.height, height) || other.height == height)&&(identical(other.weight, weight) || other.weight == weight)&&(identical(other.sprites, sprites) || other.sprites == sprites)&&const DeepCollectionEquality().equals(other._types, _types)&&const DeepCollectionEquality().equals(other._stats, _stats)&&(identical(other.genderRate, genderRate) || other.genderRate == genderRate));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,name,const DeepCollectionEquality().hash(_abilities),height,weight,sprites,const DeepCollectionEquality().hash(_types));
+int get hashCode => Object.hash(runtimeType,id,name,const DeepCollectionEquality().hash(_abilities),height,weight,sprites,const DeepCollectionEquality().hash(_types),const DeepCollectionEquality().hash(_stats),genderRate);
 
 @override
 String toString() {
-  return 'PokemonDetailModel(id: $id, name: $name, abilities: $abilities, height: $height, weight: $weight, sprites: $sprites, types: $types)';
+  return 'PokemonDetailModel(id: $id, name: $name, abilities: $abilities, height: $height, weight: $weight, sprites: $sprites, types: $types, stats: $stats, genderRate: $genderRate)';
 }
 
 
@@ -280,7 +290,7 @@ abstract mixin class _$PokemonDetailModelCopyWith<$Res> implements $PokemonDetai
   factory _$PokemonDetailModelCopyWith(_PokemonDetailModel value, $Res Function(_PokemonDetailModel) _then) = __$PokemonDetailModelCopyWithImpl;
 @override @useResult
 $Res call({
- int id, String name, List<AbilityModel> abilities, double height, double weight, SpriteModel sprites, List<TypeSlotModel> types
+ int id, String name, List<AbilityModel> abilities, double height, double weight, SpriteModel sprites, List<TypeSlotModel> types, List<StatModel> stats,@JsonKey(name: 'gender_rate') int? genderRate
 });
 
 
@@ -297,7 +307,7 @@ class __$PokemonDetailModelCopyWithImpl<$Res>
 
 /// Create a copy of PokemonDetailModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? abilities = null,Object? height = null,Object? weight = null,Object? sprites = null,Object? types = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? abilities = null,Object? height = null,Object? weight = null,Object? sprites = null,Object? types = null,Object? stats = null,Object? genderRate = freezed,}) {
   return _then(_PokemonDetailModel(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
@@ -306,7 +316,9 @@ as List<AbilityModel>,height: null == height ? _self.height : height // ignore: 
 as double,weight: null == weight ? _self.weight : weight // ignore: cast_nullable_to_non_nullable
 as double,sprites: null == sprites ? _self.sprites : sprites // ignore: cast_nullable_to_non_nullable
 as SpriteModel,types: null == types ? _self._types : types // ignore: cast_nullable_to_non_nullable
-as List<TypeSlotModel>,
+as List<TypeSlotModel>,stats: null == stats ? _self._stats : stats // ignore: cast_nullable_to_non_nullable
+as List<StatModel>,genderRate: freezed == genderRate ? _self.genderRate : genderRate // ignore: cast_nullable_to_non_nullable
+as int?,
   ));
 }
 
@@ -320,6 +332,559 @@ $SpriteModelCopyWith<$Res> get sprites {
     return _then(_self.copyWith(sprites: value));
   });
 }
+}
+
+
+/// @nodoc
+mixin _$StatModel {
+
+@JsonKey(name: 'base_stat') int get baseStat; int get effort; StatDetailModel get stat;
+/// Create a copy of StatModel
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$StatModelCopyWith<StatModel> get copyWith => _$StatModelCopyWithImpl<StatModel>(this as StatModel, _$identity);
+
+  /// Serializes this StatModel to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is StatModel&&(identical(other.baseStat, baseStat) || other.baseStat == baseStat)&&(identical(other.effort, effort) || other.effort == effort)&&(identical(other.stat, stat) || other.stat == stat));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,baseStat,effort,stat);
+
+@override
+String toString() {
+  return 'StatModel(baseStat: $baseStat, effort: $effort, stat: $stat)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $StatModelCopyWith<$Res>  {
+  factory $StatModelCopyWith(StatModel value, $Res Function(StatModel) _then) = _$StatModelCopyWithImpl;
+@useResult
+$Res call({
+@JsonKey(name: 'base_stat') int baseStat, int effort, StatDetailModel stat
+});
+
+
+$StatDetailModelCopyWith<$Res> get stat;
+
+}
+/// @nodoc
+class _$StatModelCopyWithImpl<$Res>
+    implements $StatModelCopyWith<$Res> {
+  _$StatModelCopyWithImpl(this._self, this._then);
+
+  final StatModel _self;
+  final $Res Function(StatModel) _then;
+
+/// Create a copy of StatModel
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? baseStat = null,Object? effort = null,Object? stat = null,}) {
+  return _then(_self.copyWith(
+baseStat: null == baseStat ? _self.baseStat : baseStat // ignore: cast_nullable_to_non_nullable
+as int,effort: null == effort ? _self.effort : effort // ignore: cast_nullable_to_non_nullable
+as int,stat: null == stat ? _self.stat : stat // ignore: cast_nullable_to_non_nullable
+as StatDetailModel,
+  ));
+}
+/// Create a copy of StatModel
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$StatDetailModelCopyWith<$Res> get stat {
+  
+  return $StatDetailModelCopyWith<$Res>(_self.stat, (value) {
+    return _then(_self.copyWith(stat: value));
+  });
+}
+}
+
+
+/// Adds pattern-matching-related methods to [StatModel].
+extension StatModelPatterns on StatModel {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _StatModel value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _StatModel() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _StatModel value)  $default,){
+final _that = this;
+switch (_that) {
+case _StatModel():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _StatModel value)?  $default,){
+final _that = this;
+switch (_that) {
+case _StatModel() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'base_stat')  int baseStat,  int effort,  StatDetailModel stat)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _StatModel() when $default != null:
+return $default(_that.baseStat,_that.effort,_that.stat);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'base_stat')  int baseStat,  int effort,  StatDetailModel stat)  $default,) {final _that = this;
+switch (_that) {
+case _StatModel():
+return $default(_that.baseStat,_that.effort,_that.stat);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'base_stat')  int baseStat,  int effort,  StatDetailModel stat)?  $default,) {final _that = this;
+switch (_that) {
+case _StatModel() when $default != null:
+return $default(_that.baseStat,_that.effort,_that.stat);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _StatModel implements StatModel {
+  const _StatModel({@JsonKey(name: 'base_stat') required this.baseStat, required this.effort, required this.stat});
+  factory _StatModel.fromJson(Map<String, dynamic> json) => _$StatModelFromJson(json);
+
+@override@JsonKey(name: 'base_stat') final  int baseStat;
+@override final  int effort;
+@override final  StatDetailModel stat;
+
+/// Create a copy of StatModel
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$StatModelCopyWith<_StatModel> get copyWith => __$StatModelCopyWithImpl<_StatModel>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$StatModelToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _StatModel&&(identical(other.baseStat, baseStat) || other.baseStat == baseStat)&&(identical(other.effort, effort) || other.effort == effort)&&(identical(other.stat, stat) || other.stat == stat));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,baseStat,effort,stat);
+
+@override
+String toString() {
+  return 'StatModel(baseStat: $baseStat, effort: $effort, stat: $stat)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$StatModelCopyWith<$Res> implements $StatModelCopyWith<$Res> {
+  factory _$StatModelCopyWith(_StatModel value, $Res Function(_StatModel) _then) = __$StatModelCopyWithImpl;
+@override @useResult
+$Res call({
+@JsonKey(name: 'base_stat') int baseStat, int effort, StatDetailModel stat
+});
+
+
+@override $StatDetailModelCopyWith<$Res> get stat;
+
+}
+/// @nodoc
+class __$StatModelCopyWithImpl<$Res>
+    implements _$StatModelCopyWith<$Res> {
+  __$StatModelCopyWithImpl(this._self, this._then);
+
+  final _StatModel _self;
+  final $Res Function(_StatModel) _then;
+
+/// Create a copy of StatModel
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? baseStat = null,Object? effort = null,Object? stat = null,}) {
+  return _then(_StatModel(
+baseStat: null == baseStat ? _self.baseStat : baseStat // ignore: cast_nullable_to_non_nullable
+as int,effort: null == effort ? _self.effort : effort // ignore: cast_nullable_to_non_nullable
+as int,stat: null == stat ? _self.stat : stat // ignore: cast_nullable_to_non_nullable
+as StatDetailModel,
+  ));
+}
+
+/// Create a copy of StatModel
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$StatDetailModelCopyWith<$Res> get stat {
+  
+  return $StatDetailModelCopyWith<$Res>(_self.stat, (value) {
+    return _then(_self.copyWith(stat: value));
+  });
+}
+}
+
+
+/// @nodoc
+mixin _$StatDetailModel {
+
+ String get name; String get url;
+/// Create a copy of StatDetailModel
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$StatDetailModelCopyWith<StatDetailModel> get copyWith => _$StatDetailModelCopyWithImpl<StatDetailModel>(this as StatDetailModel, _$identity);
+
+  /// Serializes this StatDetailModel to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is StatDetailModel&&(identical(other.name, name) || other.name == name)&&(identical(other.url, url) || other.url == url));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,name,url);
+
+@override
+String toString() {
+  return 'StatDetailModel(name: $name, url: $url)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $StatDetailModelCopyWith<$Res>  {
+  factory $StatDetailModelCopyWith(StatDetailModel value, $Res Function(StatDetailModel) _then) = _$StatDetailModelCopyWithImpl;
+@useResult
+$Res call({
+ String name, String url
+});
+
+
+
+
+}
+/// @nodoc
+class _$StatDetailModelCopyWithImpl<$Res>
+    implements $StatDetailModelCopyWith<$Res> {
+  _$StatDetailModelCopyWithImpl(this._self, this._then);
+
+  final StatDetailModel _self;
+  final $Res Function(StatDetailModel) _then;
+
+/// Create a copy of StatDetailModel
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? name = null,Object? url = null,}) {
+  return _then(_self.copyWith(
+name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String,url: null == url ? _self.url : url // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [StatDetailModel].
+extension StatDetailModelPatterns on StatDetailModel {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _StatDetailModel value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _StatDetailModel() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _StatDetailModel value)  $default,){
+final _that = this;
+switch (_that) {
+case _StatDetailModel():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _StatDetailModel value)?  $default,){
+final _that = this;
+switch (_that) {
+case _StatDetailModel() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String name,  String url)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _StatDetailModel() when $default != null:
+return $default(_that.name,_that.url);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String name,  String url)  $default,) {final _that = this;
+switch (_that) {
+case _StatDetailModel():
+return $default(_that.name,_that.url);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String name,  String url)?  $default,) {final _that = this;
+switch (_that) {
+case _StatDetailModel() when $default != null:
+return $default(_that.name,_that.url);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _StatDetailModel implements StatDetailModel {
+  const _StatDetailModel({required this.name, required this.url});
+  factory _StatDetailModel.fromJson(Map<String, dynamic> json) => _$StatDetailModelFromJson(json);
+
+@override final  String name;
+@override final  String url;
+
+/// Create a copy of StatDetailModel
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$StatDetailModelCopyWith<_StatDetailModel> get copyWith => __$StatDetailModelCopyWithImpl<_StatDetailModel>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$StatDetailModelToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _StatDetailModel&&(identical(other.name, name) || other.name == name)&&(identical(other.url, url) || other.url == url));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,name,url);
+
+@override
+String toString() {
+  return 'StatDetailModel(name: $name, url: $url)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$StatDetailModelCopyWith<$Res> implements $StatDetailModelCopyWith<$Res> {
+  factory _$StatDetailModelCopyWith(_StatDetailModel value, $Res Function(_StatDetailModel) _then) = __$StatDetailModelCopyWithImpl;
+@override @useResult
+$Res call({
+ String name, String url
+});
+
+
+
+
+}
+/// @nodoc
+class __$StatDetailModelCopyWithImpl<$Res>
+    implements _$StatDetailModelCopyWith<$Res> {
+  __$StatDetailModelCopyWithImpl(this._self, this._then);
+
+  final _StatDetailModel _self;
+  final $Res Function(_StatDetailModel) _then;
+
+/// Create a copy of StatDetailModel
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? name = null,Object? url = null,}) {
+  return _then(_StatDetailModel(
+name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String,url: null == url ? _self.url : url // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
 }
 
 

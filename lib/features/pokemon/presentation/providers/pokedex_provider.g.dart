@@ -13,7 +13,7 @@ part of 'pokedex_provider.dart';
 const pokedexProvider = PokedexProvider._();
 
 final class PokedexProvider
-    extends $AsyncNotifierProvider<Pokedex, List<PokemonDetailEntity>> {
+    extends $AsyncNotifierProvider<Pokedex, List<PokemonDetail>> {
   const PokedexProvider._()
     : super(
         from: null,
@@ -33,28 +33,21 @@ final class PokedexProvider
   Pokedex create() => Pokedex();
 }
 
-String _$pokedexHash() => r'a2c077d2868faf90a7cd559a33af10d77ab57f45';
+String _$pokedexHash() => r'49cad72fd4a6e11baec35801c8d0847fc52379d7';
 
-abstract class _$Pokedex extends $AsyncNotifier<List<PokemonDetailEntity>> {
-  FutureOr<List<PokemonDetailEntity>> build();
+abstract class _$Pokedex extends $AsyncNotifier<List<PokemonDetail>> {
+  FutureOr<List<PokemonDetail>> build();
   @$mustCallSuper
   @override
   void runBuild() {
     final created = build();
     final ref =
-        this.ref
-            as $Ref<
-              AsyncValue<List<PokemonDetailEntity>>,
-              List<PokemonDetailEntity>
-            >;
+        this.ref as $Ref<AsyncValue<List<PokemonDetail>>, List<PokemonDetail>>;
     final element =
         ref.element
             as $ClassProviderElement<
-              AnyNotifier<
-                AsyncValue<List<PokemonDetailEntity>>,
-                List<PokemonDetailEntity>
-              >,
-              AsyncValue<List<PokemonDetailEntity>>,
+              AnyNotifier<AsyncValue<List<PokemonDetail>>, List<PokemonDetail>>,
+              AsyncValue<List<PokemonDetail>>,
               Object?,
               Object?
             >;

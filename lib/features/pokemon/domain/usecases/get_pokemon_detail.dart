@@ -6,7 +6,7 @@ class GetPokemonDetail {
 
   GetPokemonDetail(this.repository);
 
-  Future<PokemonDetailEntity> call(String name) {
+  Future<PokemonDetail> call(String name) {
     return repository.getPokemonDetail(name);
   }
 }
