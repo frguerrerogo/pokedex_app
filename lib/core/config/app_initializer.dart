@@ -12,6 +12,4 @@ Future<void> configureApp() async {
 
   // Initialize SharedPreferences
   prefs = await SharedPreferences.getInstance();
-
-  await prefs.setBool('hasSeenOnboarding', false); //Eliminar
 }

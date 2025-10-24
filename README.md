@@ -78,7 +78,7 @@ Esta estructura permite un flujo limpio y desacoplado, facilitando la gestión d
 
 ```
 lib/
-├── core/                    # Configuración, constantes, utilidades
+├── core/                   # Configuración, constantes, utilidades
 │   ├── config/             # Configuración de la app
 │   ├── constants/          # Constantes globales
 │   ├── di/                 # Inyección de dependencias
