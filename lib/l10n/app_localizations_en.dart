@@ -115,4 +115,37 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get typeDark => 'Dark';
+
+  @override
+  String get information => 'Information';
+
+  @override
+  String get weight => 'Weight';
+
+  @override
+  String get height => 'Height';
+
+  @override
+  String get ability1 => 'Ability 1';
+
+  @override
+  String get ability2 => 'Ability 2';
+
+  @override
+  String get statistics => 'Statistics';
+
+  @override
+  String get hp => 'HP';
+
+  @override
+  String get attack => 'Attack';
+
+  @override
+  String get defense => 'Defense';
+
+  @override
+  String get specialAttack => 'Sp. Atk';
+
+  @override
+  String get weaknesses => 'Weaknesses';
 }

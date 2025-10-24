@@ -301,6 +301,72 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Siniestro'**
   String get typeDark;
+
+  /// No description provided for @information.
+  ///
+  /// In es, this message translates to:
+  /// **'Información'**
+  String get information;
+
+  /// No description provided for @weight.
+  ///
+  /// In es, this message translates to:
+  /// **'Peso'**
+  String get weight;
+
+  /// No description provided for @height.
+  ///
+  /// In es, this message translates to:
+  /// **'Altura'**
+  String get height;
+
+  /// No description provided for @ability1.
+  ///
+  /// In es, this message translates to:
+  /// **'Habilidad 1'**
+  String get ability1;
+
+  /// No description provided for @ability2.
+  ///
+  /// In es, this message translates to:
+  /// **'Habilidad 2'**
+  String get ability2;
+
+  /// No description provided for @statistics.
+  ///
+  /// In es, this message translates to:
+  /// **'Estadísticas'**
+  String get statistics;
+
+  /// No description provided for @hp.
+  ///
+  /// In es, this message translates to:
+  /// **'PS'**
+  String get hp;
+
+  /// No description provided for @attack.
+  ///
+  /// In es, this message translates to:
+  /// **'Ataque'**
+  String get attack;
+
+  /// No description provided for @defense.
+  ///
+  /// In es, this message translates to:
+  /// **'Defensa'**
+  String get defense;
+
+  /// No description provided for @specialAttack.
+  ///
+  /// In es, this message translates to:
+  /// **'Ataque Esp.'**
+  String get specialAttack;
+
+  /// No description provided for @weaknesses.
+  ///
+  /// In es, this message translates to:
+  /// **'Debilidades'**
+  String get weaknesses;
 }
 
 class _AppLocalizationsDelegate

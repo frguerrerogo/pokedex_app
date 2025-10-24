@@ -33,5 +33,16 @@
   "typeFairy": "Hada",
   "typeFighting": "Lucha",
   "typeGhost": "Fantasma",
-  "typeDark": "Siniestro"
+  "typeDark": "Siniestro",
+  "information": "Información",
+  "weight": "Peso",
+  "height": "Altura",
+  "ability1": "Habilidad 1",
+  "ability2": "Habilidad 2",
+  "statistics": "Estadísticas",
+  "hp": "PS",
+  "attack": "Ataque",
+  "defense": "Defensa",
+  "specialAttack": "Ataque Esp.",
+  "weaknesses": "Debilidades"
 }

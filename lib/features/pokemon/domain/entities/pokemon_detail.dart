@@ -46,11 +46,7 @@ class PokemonDetail {
   /// Obtiene las debilidades basadas en los tipos del Pokémon
   List<String> getWeaknesses() {
     final weaknesses = <String>{};
-
-    for (final type in types) {
-      weaknesses.addAll(weaknessesByType[type.name.toLowerCase()] ?? []);
-    }
-
+    weaknesses.addAll(weaknessesByType[types[0].name.toLowerCase()] ?? []);
     return weaknesses.toList();
   }
 }

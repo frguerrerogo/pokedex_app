@@ -5,6 +5,7 @@ import 'package:pokedex_app/core/core_exports.dart'
     show PokeballLoading, PokemonTypeChip, PokemonTypeConfig;
 import 'package:pokedex_app/features/pokemon/domain/entities/pokemon_detail.dart';
 import 'package:pokedex_app/features/pokemon/presentation/providers/pokemon_detail_provider.dart';
+import 'package:pokedex_app/l10n/app_localizations.dart';
 
 class PokemonDetailPage extends ConsumerWidget {
   final int pokemonId;
@@ -46,12 +47,12 @@ class PokemonDetailPage extends ConsumerWidget {
                     ),
 
                     const SizedBox(height: 24),
-                    _buildInfoSection(pokemon),
+                    _buildInfoSection(pokemon, context),
                     const SizedBox(height: 24),
-                    _buildStatsSection(pokemon),
+                    _buildStatsSection(pokemon, context),
                     const SizedBox(height: 24),
                     Text(
-                      'Debilidades',
+                      AppLocalizations.of(context).weaknesses,
                       style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(height: 8),
@@ -73,33 +74,61 @@ class PokemonDetailPage extends ConsumerWidget {
     );
   }
 
-  Widget _buildInfoSection(PokemonDetail pokemon) {
+  Widget _buildInfoSection(PokemonDetail pokemon, BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Información', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+        Text(l10n.information, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
         const SizedBox(height: 16),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            _InfoItem(label: 'Peso', value: '${pokemon.weight} kg', icon: Icons.monitor_weight),
-            _InfoItem(label: 'Altura', value: '${pokemon.height} m', icon: Icons.height),
+            _InfoItem(
+              label: l10n.weight,
+              value: '${pokemon.weight} kg',
+              icon: Icons.monitor_weight,
+            ),
+            _InfoItem(label: l10n.height, value: '${pokemon.height} m', icon: Icons.height),
+          ],
+        ),
+        const SizedBox(height: 16),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            _InfoItem(
+              label: l10n.ability1,
+              value: pokemon.abilities.isNotEmpty
+                  ? pokemon.abilities[0].name[0].toUpperCase() +
+                        pokemon.abilities[0].name.substring(1)
+                  : 'N/A',
+              icon: Icons.bolt,
+            ),
+            _InfoItem(
+              label: l10n.ability2,
+              value: pokemon.abilities.length > 1
+                  ? pokemon.abilities[1].name[0].toUpperCase() +
+                        pokemon.abilities[1].name.substring(1)
+                  : 'N/A',
+              icon: Icons.bolt,
+            ),
           ],
         ),
       ],
     );
   }
 
-  Widget _buildStatsSection(PokemonDetail pokemon) {
+  Widget _buildStatsSection(PokemonDetail pokemon, BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Estadísticas', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+        Text(l10n.statistics, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
         const SizedBox(height: 16),
-        _StatBar(label: 'HP', value: pokemon.hp),
-        _StatBar(label: 'Ataque', value: pokemon.attack),
-        _StatBar(label: 'Defensa', value: pokemon.defense),
-        _StatBar(label: 'Ataque Esp.', value: pokemon.specialAttack),
+        _StatBar(label: l10n.hp, value: pokemon.hp),
+        _StatBar(label: l10n.attack, value: pokemon.attack),
+        _StatBar(label: l10n.defense, value: pokemon.defense),
+        _StatBar(label: l10n.specialAttack, value: pokemon.specialAttack),
       ],
     );
   }

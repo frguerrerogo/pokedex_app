@@ -33,5 +33,16 @@
   "typeFairy": "Fairy",
   "typeFighting": "Fighting",
   "typeGhost": "Ghost",
-  "typeDark": "Dark"
+  "typeDark": "Dark",
+  "information": "Information",
+  "weight": "Weight",
+  "height": "Height",
+  "ability1": "Ability 1",
+  "ability2": "Ability 2",
+  "statistics": "Statistics",
+  "hp": "HP",
+  "attack": "Attack",
+  "defense": "Defense",
+  "specialAttack": "Sp. Atk",
+  "weaknesses": "Weaknesses"
 }
