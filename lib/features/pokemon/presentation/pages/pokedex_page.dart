@@ -153,6 +153,7 @@ class _PokedexListWidgetState extends ConsumerState<PokedexListWidget> {
                         );
                         await addFavoriteUseCase(favorite);
                       }
+                      // Refrescar ambos providers después de cambiar
                       // ignore: unused_result
                       ref.refresh(isFavoritePokemonProvider(pokemon.id));
                       // ignore: unused_result
