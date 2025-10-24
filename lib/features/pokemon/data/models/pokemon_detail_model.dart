@@ -3,6 +3,8 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'pokemon_detail_model.freezed.dart';
 part 'pokemon_detail_model.g.dart';
 
+// ignore_for_file: invalid_annotation_target
+
 @freezed
 abstract class PokemonDetailModel with _$PokemonDetailModel {
   const factory PokemonDetailModel({

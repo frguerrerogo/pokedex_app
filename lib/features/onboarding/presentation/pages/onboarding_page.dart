@@ -25,7 +25,10 @@ class _OnboardingPageState extends State<OnboardingPage> {
     if (_currentPage == totalPages - 1) {
       _completeOnboarding();
     } else {
-      _controller.nextPage(duration: const Duration(milliseconds: 600), curve: Curves.easeInOut);
+      _controller.nextPage(
+        duration: const Duration(milliseconds: 600),
+        curve: Curves.easeInOut,
+      );
     }
   }
 
@@ -71,7 +74,10 @@ class _OnboardingPageState extends State<OnboardingPage> {
               ),
             ),
 
-            PageIndicator(currentPage: _currentPage, totalPages: onboardingData.length),
+            PageIndicator(
+              currentPage: _currentPage,
+              totalPages: onboardingData.length,
+            ),
 
             const SizedBox(height: 20),
 

@@ -4,7 +4,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../models/pokemon_detail_model.dart';
 import '../models/pokemon_model.dart';
 
-final pokemonRemoteDataSourceProvider = Provider<PokemonRemoteDataSource>((ref) {
+final pokemonRemoteDataSourceProvider = Provider<PokemonRemoteDataSource>((
+  ref,
+) {
   final dio = Dio();
   return PokemonRemoteDataSourceImpl(dio);
 });
@@ -27,9 +29,14 @@ class PokemonRemoteDataSourceImpl implements PokemonRemoteDataSource {
   static const _baseUrl = 'https://pokeapi.co/api/v2/pokemon';
 
   @override
-  Future<List<PokemonDetailModel>> getPokemonList({int limit = 20, int offset = 0}) async {
+  Future<List<PokemonDetailModel>> getPokemonList({
+    int limit = 20,
+    int offset = 0,
+  }) async {
     try {
-      final response = await client.get('$_baseUrl?limit=$limit&offset=$offset');
+      final response = await client.get(
+        '$_baseUrl?limit=$limit&offset=$offset',
+      );
 
       final results = (response.data['results'] as List)
           .map((e) => PokemonModel.fromJson(e))

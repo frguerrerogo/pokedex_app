@@ -38,20 +38,29 @@ class AppBottomNavigationBar extends ConsumerWidget {
     }
   }
 
-  BottomNavigationBarItem buildNavItem({required String asset, required String label}) {
+  BottomNavigationBarItem buildNavItem({
+    required String asset,
+    required String label,
+  }) {
     return BottomNavigationBarItem(
       icon: Padding(
         padding: const EdgeInsets.only(bottom: 5),
         child: SvgPicture.asset(
           asset,
-          colorFilter: const ColorFilter.mode(AppColors.primaryGray, BlendMode.srcIn),
+          colorFilter: const ColorFilter.mode(
+            AppColors.primaryGray,
+            BlendMode.srcIn,
+          ),
         ),
       ),
       activeIcon: Padding(
         padding: const EdgeInsets.only(bottom: 5),
         child: SvgPicture.asset(
           asset,
-          colorFilter: const ColorFilter.mode(AppColors.tabBarActiveColor, BlendMode.srcIn),
+          colorFilter: const ColorFilter.mode(
+            AppColors.tabBarActiveColor,
+            BlendMode.srcIn,
+          ),
         ),
       ),
       label: label,

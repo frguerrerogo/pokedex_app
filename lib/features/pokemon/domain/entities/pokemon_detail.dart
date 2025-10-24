@@ -78,7 +78,11 @@ class PokemonAbility {
   final bool isHidden;
   final int slot;
 
-  const PokemonAbility({required this.name, required this.isHidden, required this.slot});
+  const PokemonAbility({
+    required this.name,
+    required this.isHidden,
+    required this.slot,
+  });
 }
 
 class PokemonTypeEntity {
@@ -86,5 +90,9 @@ class PokemonTypeEntity {
   final String iconPath;
   final int colorValue;
 
-  const PokemonTypeEntity({required this.name, required this.iconPath, required this.colorValue});
+  const PokemonTypeEntity({
+    required this.name,
+    required this.iconPath,
+    required this.colorValue,
+  });
 }

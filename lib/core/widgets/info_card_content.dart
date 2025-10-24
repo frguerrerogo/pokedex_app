@@ -22,9 +22,17 @@ class InfoCardContent extends StatelessWidget {
       children: [
         Image.asset(image, height: imageHeight, semanticLabel: title),
         const SizedBox(height: 30),
-        Text(title, textAlign: TextAlign.center, style: AppTextStyles.headingMedium(context)),
+        Text(
+          title,
+          textAlign: TextAlign.center,
+          style: AppTextStyles.headingMedium(context),
+        ),
         const SizedBox(height: 15),
-        Text(subtitle, textAlign: TextAlign.center, style: AppTextStyles.bodySmall(context)),
+        Text(
+          subtitle,
+          textAlign: TextAlign.center,
+          style: AppTextStyles.bodySmall(context),
+        ),
       ],
     );
   }

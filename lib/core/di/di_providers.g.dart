@@ -49,6 +49,47 @@ final class DioProvider extends $FunctionalProvider<Dio, Dio, Dio>
 
 String _$dioHash() => r'088d5c03610503c2407a8d7429b0e9f3ee76406f';
 
+@ProviderFor(sharedPreferences)
+const sharedPreferencesProvider = SharedPreferencesProvider._();
+
+final class SharedPreferencesProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<SharedPreferences>,
+          SharedPreferences,
+          FutureOr<SharedPreferences>
+        >
+    with
+        $FutureModifier<SharedPreferences>,
+        $FutureProvider<SharedPreferences> {
+  const SharedPreferencesProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'sharedPreferencesProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$sharedPreferencesHash();
+
+  @$internal
+  @override
+  $FutureProviderElement<SharedPreferences> $createElement(
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<SharedPreferences> create(Ref ref) {
+    return sharedPreferences(ref);
+  }
+}
+
+String _$sharedPreferencesHash() => r'dc403fbb1d968c7d5ab4ae1721a29ffe173701c7';
+
 @ProviderFor(pokemonRemoteDataSource)
 const pokemonRemoteDataSourceProvider = PokemonRemoteDataSourceProvider._();
 
@@ -97,6 +138,48 @@ final class PokemonRemoteDataSourceProvider
 String _$pokemonRemoteDataSourceHash() =>
     r'b9a08ffa5961efad6e453464775a6290ec3666e0';
 
+@ProviderFor(favoritesLocalDataSource)
+const favoritesLocalDataSourceProvider = FavoritesLocalDataSourceProvider._();
+
+final class FavoritesLocalDataSourceProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<FavoritesLocalDataSource>,
+          FavoritesLocalDataSource,
+          FutureOr<FavoritesLocalDataSource>
+        >
+    with
+        $FutureModifier<FavoritesLocalDataSource>,
+        $FutureProvider<FavoritesLocalDataSource> {
+  const FavoritesLocalDataSourceProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'favoritesLocalDataSourceProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$favoritesLocalDataSourceHash();
+
+  @$internal
+  @override
+  $FutureProviderElement<FavoritesLocalDataSource> $createElement(
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<FavoritesLocalDataSource> create(Ref ref) {
+    return favoritesLocalDataSource(ref);
+  }
+}
+
+String _$favoritesLocalDataSourceHash() =>
+    r'ba148293a4edc4beb8bb575c4b40cc08e8c7a900';
+
 @ProviderFor(pokemonRepository)
 const pokemonRepositoryProvider = PokemonRepositoryProvider._();
 
@@ -143,6 +226,48 @@ final class PokemonRepositoryProvider
 }
 
 String _$pokemonRepositoryHash() => r'c19eed03bc949a0c043808355c2544e6f89deb9f';
+
+@ProviderFor(favoritesRepository)
+const favoritesRepositoryProvider = FavoritesRepositoryProvider._();
+
+final class FavoritesRepositoryProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<FavoritesRepository>,
+          FavoritesRepository,
+          FutureOr<FavoritesRepository>
+        >
+    with
+        $FutureModifier<FavoritesRepository>,
+        $FutureProvider<FavoritesRepository> {
+  const FavoritesRepositoryProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'favoritesRepositoryProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$favoritesRepositoryHash();
+
+  @$internal
+  @override
+  $FutureProviderElement<FavoritesRepository> $createElement(
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<FavoritesRepository> create(Ref ref) {
+    return favoritesRepository(ref);
+  }
+}
+
+String _$favoritesRepositoryHash() =>
+    r'36a90d93f49d247e49bb8527e2f4db59e9320ef0';
 
 @ProviderFor(getPokemonList)
 const getPokemonListProvider = GetPokemonListProvider._();
@@ -231,6 +356,174 @@ final class GetPokemonDetailProvider
 
 String _$getPokemonDetailHash() => r'0291d5b8d41c7f6e54ad00d1e327210e8727d4bb';
 
+@ProviderFor(addFavoriteUseCase)
+const addFavoriteUseCaseProvider = AddFavoriteUseCaseProvider._();
+
+final class AddFavoriteUseCaseProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<AddFavoriteUseCase>,
+          AddFavoriteUseCase,
+          FutureOr<AddFavoriteUseCase>
+        >
+    with
+        $FutureModifier<AddFavoriteUseCase>,
+        $FutureProvider<AddFavoriteUseCase> {
+  const AddFavoriteUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'addFavoriteUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$addFavoriteUseCaseHash();
+
+  @$internal
+  @override
+  $FutureProviderElement<AddFavoriteUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<AddFavoriteUseCase> create(Ref ref) {
+    return addFavoriteUseCase(ref);
+  }
+}
+
+String _$addFavoriteUseCaseHash() =>
+    r'e073cd400230f9fac3b75e73397562b6cb296ffb';
+
+@ProviderFor(removeFavoriteUseCase)
+const removeFavoriteUseCaseProvider = RemoveFavoriteUseCaseProvider._();
+
+final class RemoveFavoriteUseCaseProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<RemoveFavoriteUseCase>,
+          RemoveFavoriteUseCase,
+          FutureOr<RemoveFavoriteUseCase>
+        >
+    with
+        $FutureModifier<RemoveFavoriteUseCase>,
+        $FutureProvider<RemoveFavoriteUseCase> {
+  const RemoveFavoriteUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'removeFavoriteUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$removeFavoriteUseCaseHash();
+
+  @$internal
+  @override
+  $FutureProviderElement<RemoveFavoriteUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<RemoveFavoriteUseCase> create(Ref ref) {
+    return removeFavoriteUseCase(ref);
+  }
+}
+
+String _$removeFavoriteUseCaseHash() =>
+    r'2e8a81822a17a0aca5e1d4a7afbb20940c132bdf';
+
+@ProviderFor(getFavoritesUseCase)
+const getFavoritesUseCaseProvider = GetFavoritesUseCaseProvider._();
+
+final class GetFavoritesUseCaseProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<GetFavoritesUseCase>,
+          GetFavoritesUseCase,
+          FutureOr<GetFavoritesUseCase>
+        >
+    with
+        $FutureModifier<GetFavoritesUseCase>,
+        $FutureProvider<GetFavoritesUseCase> {
+  const GetFavoritesUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'getFavoritesUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$getFavoritesUseCaseHash();
+
+  @$internal
+  @override
+  $FutureProviderElement<GetFavoritesUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<GetFavoritesUseCase> create(Ref ref) {
+    return getFavoritesUseCase(ref);
+  }
+}
+
+String _$getFavoritesUseCaseHash() =>
+    r'b3f77a13e9c9ae8fa5c8f0f8e6216c219bf8ae21';
+
+@ProviderFor(isFavoritePokemonUseCase)
+const isFavoritePokemonUseCaseProvider = IsFavoritePokemonUseCaseProvider._();
+
+final class IsFavoritePokemonUseCaseProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<IsFavoritePokemonUseCase>,
+          IsFavoritePokemonUseCase,
+          FutureOr<IsFavoritePokemonUseCase>
+        >
+    with
+        $FutureModifier<IsFavoritePokemonUseCase>,
+        $FutureProvider<IsFavoritePokemonUseCase> {
+  const IsFavoritePokemonUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'isFavoritePokemonUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$isFavoritePokemonUseCaseHash();
+
+  @$internal
+  @override
+  $FutureProviderElement<IsFavoritePokemonUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<IsFavoritePokemonUseCase> create(Ref ref) {
+    return isFavoritePokemonUseCase(ref);
+  }
+}
+
+String _$isFavoritePokemonUseCaseHash() =>
+    r'411bd29721d46fc8b536dbbe2f441f501f9692aa';
+
 @ProviderFor(pokemonDetail)
 const pokemonDetailProvider = PokemonDetailFamily._();
 
@@ -286,7 +579,7 @@ final class PokemonDetailProvider
   }
 }
 
-String _$pokemonDetailHash() => r'0d7396279ceab50c88847055f02e9ecd45accd47';
+String _$pokemonDetailHash() => r'2beb9a61a227e68a9931af8a63d3db08f0a743c2';
 
 final class PokemonDetailFamily extends $Family
     with $FunctionalFamilyOverride<FutureOr<PokemonDetail>, String> {
@@ -306,18 +599,12 @@ final class PokemonDetailFamily extends $Family
   String toString() => r'pokemonDetailProvider';
 }
 
-@ProviderFor(selectedPokemon)
-const selectedPokemonProvider = SelectedPokemonProvider._();
+@ProviderFor(SelectedPokemonNotifier)
+const selectedPokemonProvider = SelectedPokemonNotifierProvider._();
 
-final class SelectedPokemonProvider
-    extends
-        $FunctionalProvider<
-          ValueNotifier<PokemonDetail?>,
-          ValueNotifier<PokemonDetail?>,
-          ValueNotifier<PokemonDetail?>
-        >
-    with $Provider<ValueNotifier<PokemonDetail?>> {
-  const SelectedPokemonProvider._()
+final class SelectedPokemonNotifierProvider
+    extends $NotifierProvider<SelectedPokemonNotifier, PokemonDetail?> {
+  const SelectedPokemonNotifierProvider._()
     : super(
         from: null,
         argument: null,
@@ -329,336 +616,47 @@ final class SelectedPokemonProvider
       );
 
   @override
-  String debugGetCreateSourceHash() => _$selectedPokemonHash();
+  String debugGetCreateSourceHash() => _$selectedPokemonNotifierHash();
 
   @$internal
   @override
-  $ProviderElement<ValueNotifier<PokemonDetail?>> $createElement(
-    $ProviderPointer pointer,
-  ) => $ProviderElement(pointer);
-
-  @override
-  ValueNotifier<PokemonDetail?> create(Ref ref) {
-    return selectedPokemon(ref);
-  }
+  SelectedPokemonNotifier create() => SelectedPokemonNotifier();
 
   /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(ValueNotifier<PokemonDetail?> value) {
+  Override overrideWithValue(PokemonDetail? value) {
     return $ProviderOverride(
       origin: this,
-      providerOverride: $SyncValueProvider<ValueNotifier<PokemonDetail?>>(
-        value,
-      ),
+      providerOverride: $SyncValueProvider<PokemonDetail?>(value),
     );
   }
 }
 
-String _$selectedPokemonHash() => r'b2b7fa336190ba48cd70763613d334ec41294813';
+String _$selectedPokemonNotifierHash() =>
+    r'e66b61e49457237e2690524352ed9ee1e546fddf';
 
-@ProviderFor(sharedPreferencesProvider)
-const sharedPreferencesProviderProvider = SharedPreferencesProviderProvider._();
-
-final class SharedPreferencesProviderProvider
-    extends
-        $FunctionalProvider<
-          AsyncValue<SharedPreferences>,
-          SharedPreferences,
-          FutureOr<SharedPreferences>
-        >
-    with
-        $FutureModifier<SharedPreferences>,
-        $FutureProvider<SharedPreferences> {
-  const SharedPreferencesProviderProvider._()
-    : super(
-        from: null,
-        argument: null,
-        retry: null,
-        name: r'sharedPreferencesProviderProvider',
-        isAutoDispose: true,
-        dependencies: null,
-        $allTransitiveDependencies: null,
-      );
-
+abstract class _$SelectedPokemonNotifier extends $Notifier<PokemonDetail?> {
+  PokemonDetail? build();
+  @$mustCallSuper
   @override
-  String debugGetCreateSourceHash() => _$sharedPreferencesProviderHash();
-
-  @$internal
-  @override
-  $FutureProviderElement<SharedPreferences> $createElement(
-    $ProviderPointer pointer,
-  ) => $FutureProviderElement(pointer);
-
-  @override
-  FutureOr<SharedPreferences> create(Ref ref) {
-    return sharedPreferencesProvider(ref);
+  void runBuild() {
+    final created = build();
+    final ref = this.ref as $Ref<PokemonDetail?, PokemonDetail?>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<PokemonDetail?, PokemonDetail?>,
+              PokemonDetail?,
+              Object?,
+              Object?
+            >;
+    element.handleValue(ref, created);
   }
 }
 
-String _$sharedPreferencesProviderHash() =>
-    r'376c8f5d29f1f9ebe7ae053414a61a402cc7683e';
+@ProviderFor(favorites)
+const favoritesProvider = FavoritesProvider._();
 
-@ProviderFor(favoritesLocalDataSourceProvider)
-const favoritesLocalDataSourceProviderProvider =
-    FavoritesLocalDataSourceProviderProvider._();
-
-final class FavoritesLocalDataSourceProviderProvider
-    extends
-        $FunctionalProvider<
-          AsyncValue<FavoritesLocalDataSource>,
-          FavoritesLocalDataSource,
-          FutureOr<FavoritesLocalDataSource>
-        >
-    with
-        $FutureModifier<FavoritesLocalDataSource>,
-        $FutureProvider<FavoritesLocalDataSource> {
-  const FavoritesLocalDataSourceProviderProvider._()
-    : super(
-        from: null,
-        argument: null,
-        retry: null,
-        name: r'favoritesLocalDataSourceProviderProvider',
-        isAutoDispose: true,
-        dependencies: null,
-        $allTransitiveDependencies: null,
-      );
-
-  @override
-  String debugGetCreateSourceHash() => _$favoritesLocalDataSourceProviderHash();
-
-  @$internal
-  @override
-  $FutureProviderElement<FavoritesLocalDataSource> $createElement(
-    $ProviderPointer pointer,
-  ) => $FutureProviderElement(pointer);
-
-  @override
-  FutureOr<FavoritesLocalDataSource> create(Ref ref) {
-    return favoritesLocalDataSourceProvider(ref);
-  }
-}
-
-String _$favoritesLocalDataSourceProviderHash() =>
-    r'4d8c3b4eb291780ab4ea61c19d7059dc638c3a79';
-
-@ProviderFor(favoritesRepositoryProvider)
-const favoritesRepositoryProviderProvider =
-    FavoritesRepositoryProviderProvider._();
-
-final class FavoritesRepositoryProviderProvider
-    extends
-        $FunctionalProvider<
-          AsyncValue<FavoritesRepository>,
-          FavoritesRepository,
-          FutureOr<FavoritesRepository>
-        >
-    with
-        $FutureModifier<FavoritesRepository>,
-        $FutureProvider<FavoritesRepository> {
-  const FavoritesRepositoryProviderProvider._()
-    : super(
-        from: null,
-        argument: null,
-        retry: null,
-        name: r'favoritesRepositoryProviderProvider',
-        isAutoDispose: true,
-        dependencies: null,
-        $allTransitiveDependencies: null,
-      );
-
-  @override
-  String debugGetCreateSourceHash() => _$favoritesRepositoryProviderHash();
-
-  @$internal
-  @override
-  $FutureProviderElement<FavoritesRepository> $createElement(
-    $ProviderPointer pointer,
-  ) => $FutureProviderElement(pointer);
-
-  @override
-  FutureOr<FavoritesRepository> create(Ref ref) {
-    return favoritesRepositoryProvider(ref);
-  }
-}
-
-String _$favoritesRepositoryProviderHash() =>
-    r'776298e6aa21c36b110deadd3d4464c1e8fdc3e3';
-
-@ProviderFor(addFavoriteUseCaseProvider)
-const addFavoriteUseCaseProviderProvider =
-    AddFavoriteUseCaseProviderProvider._();
-
-final class AddFavoriteUseCaseProviderProvider
-    extends
-        $FunctionalProvider<
-          AsyncValue<AddFavoriteUseCase>,
-          AddFavoriteUseCase,
-          FutureOr<AddFavoriteUseCase>
-        >
-    with
-        $FutureModifier<AddFavoriteUseCase>,
-        $FutureProvider<AddFavoriteUseCase> {
-  const AddFavoriteUseCaseProviderProvider._()
-    : super(
-        from: null,
-        argument: null,
-        retry: null,
-        name: r'addFavoriteUseCaseProviderProvider',
-        isAutoDispose: true,
-        dependencies: null,
-        $allTransitiveDependencies: null,
-      );
-
-  @override
-  String debugGetCreateSourceHash() => _$addFavoriteUseCaseProviderHash();
-
-  @$internal
-  @override
-  $FutureProviderElement<AddFavoriteUseCase> $createElement(
-    $ProviderPointer pointer,
-  ) => $FutureProviderElement(pointer);
-
-  @override
-  FutureOr<AddFavoriteUseCase> create(Ref ref) {
-    return addFavoriteUseCaseProvider(ref);
-  }
-}
-
-String _$addFavoriteUseCaseProviderHash() =>
-    r'4b4bc01712892fd24a8213477776136668fdf6bf';
-
-@ProviderFor(removeFavoriteUseCaseProvider)
-const removeFavoriteUseCaseProviderProvider =
-    RemoveFavoriteUseCaseProviderProvider._();
-
-final class RemoveFavoriteUseCaseProviderProvider
-    extends
-        $FunctionalProvider<
-          AsyncValue<RemoveFavoriteUseCase>,
-          RemoveFavoriteUseCase,
-          FutureOr<RemoveFavoriteUseCase>
-        >
-    with
-        $FutureModifier<RemoveFavoriteUseCase>,
-        $FutureProvider<RemoveFavoriteUseCase> {
-  const RemoveFavoriteUseCaseProviderProvider._()
-    : super(
-        from: null,
-        argument: null,
-        retry: null,
-        name: r'removeFavoriteUseCaseProviderProvider',
-        isAutoDispose: true,
-        dependencies: null,
-        $allTransitiveDependencies: null,
-      );
-
-  @override
-  String debugGetCreateSourceHash() => _$removeFavoriteUseCaseProviderHash();
-
-  @$internal
-  @override
-  $FutureProviderElement<RemoveFavoriteUseCase> $createElement(
-    $ProviderPointer pointer,
-  ) => $FutureProviderElement(pointer);
-
-  @override
-  FutureOr<RemoveFavoriteUseCase> create(Ref ref) {
-    return removeFavoriteUseCaseProvider(ref);
-  }
-}
-
-String _$removeFavoriteUseCaseProviderHash() =>
-    r'5cd0ac1b4bb9c1a3606de3cf8c9c847e8a03da0b';
-
-@ProviderFor(getFavoritesUseCaseProvider)
-const getFavoritesUseCaseProviderProvider =
-    GetFavoritesUseCaseProviderProvider._();
-
-final class GetFavoritesUseCaseProviderProvider
-    extends
-        $FunctionalProvider<
-          AsyncValue<GetFavoritesUseCase>,
-          GetFavoritesUseCase,
-          FutureOr<GetFavoritesUseCase>
-        >
-    with
-        $FutureModifier<GetFavoritesUseCase>,
-        $FutureProvider<GetFavoritesUseCase> {
-  const GetFavoritesUseCaseProviderProvider._()
-    : super(
-        from: null,
-        argument: null,
-        retry: null,
-        name: r'getFavoritesUseCaseProviderProvider',
-        isAutoDispose: true,
-        dependencies: null,
-        $allTransitiveDependencies: null,
-      );
-
-  @override
-  String debugGetCreateSourceHash() => _$getFavoritesUseCaseProviderHash();
-
-  @$internal
-  @override
-  $FutureProviderElement<GetFavoritesUseCase> $createElement(
-    $ProviderPointer pointer,
-  ) => $FutureProviderElement(pointer);
-
-  @override
-  FutureOr<GetFavoritesUseCase> create(Ref ref) {
-    return getFavoritesUseCaseProvider(ref);
-  }
-}
-
-String _$getFavoritesUseCaseProviderHash() =>
-    r'3cd0ce9e3a8c4b65cdf2b54e2c8a5f460268b443';
-
-@ProviderFor(isFavoritePokemonUseCaseProvider)
-const isFavoritePokemonUseCaseProviderProvider =
-    IsFavoritePokemonUseCaseProviderProvider._();
-
-final class IsFavoritePokemonUseCaseProviderProvider
-    extends
-        $FunctionalProvider<
-          AsyncValue<IsFavoritePokemonUseCase>,
-          IsFavoritePokemonUseCase,
-          FutureOr<IsFavoritePokemonUseCase>
-        >
-    with
-        $FutureModifier<IsFavoritePokemonUseCase>,
-        $FutureProvider<IsFavoritePokemonUseCase> {
-  const IsFavoritePokemonUseCaseProviderProvider._()
-    : super(
-        from: null,
-        argument: null,
-        retry: null,
-        name: r'isFavoritePokemonUseCaseProviderProvider',
-        isAutoDispose: true,
-        dependencies: null,
-        $allTransitiveDependencies: null,
-      );
-
-  @override
-  String debugGetCreateSourceHash() => _$isFavoritePokemonUseCaseProviderHash();
-
-  @$internal
-  @override
-  $FutureProviderElement<IsFavoritePokemonUseCase> $createElement(
-    $ProviderPointer pointer,
-  ) => $FutureProviderElement(pointer);
-
-  @override
-  FutureOr<IsFavoritePokemonUseCase> create(Ref ref) {
-    return isFavoritePokemonUseCaseProvider(ref);
-  }
-}
-
-String _$isFavoritePokemonUseCaseProviderHash() =>
-    r'78b0872e5b9b226f42cd80e514fc08f1f4985425';
-
-@ProviderFor(favoritesProvider)
-const favoritesProviderProvider = FavoritesProviderProvider._();
-
-final class FavoritesProviderProvider
+final class FavoritesProvider
     extends
         $FunctionalProvider<
           AsyncValue<List<Favorite>>,
@@ -666,19 +664,19 @@ final class FavoritesProviderProvider
           FutureOr<List<Favorite>>
         >
     with $FutureModifier<List<Favorite>>, $FutureProvider<List<Favorite>> {
-  const FavoritesProviderProvider._()
+  const FavoritesProvider._()
     : super(
         from: null,
         argument: null,
         retry: null,
-        name: r'favoritesProviderProvider',
+        name: r'favoritesProvider',
         isAutoDispose: true,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
 
   @override
-  String debugGetCreateSourceHash() => _$favoritesProviderHash();
+  String debugGetCreateSourceHash() => _$favoritesHash();
 
   @$internal
   @override
@@ -688,11 +686,11 @@ final class FavoritesProviderProvider
 
   @override
   FutureOr<List<Favorite>> create(Ref ref) {
-    return favoritesProvider(ref);
+    return favorites(ref);
   }
 }
 
-String _$favoritesProviderHash() => r'020ff25e419d1d8ee8d9dd58377441a435cd12c2';
+String _$favoritesHash() => r'f7b20dc725f018bf750b34adaf1243e87382f2f4';
 
 @ProviderFor(isFavoritePokemon)
 const isFavoritePokemonProvider = IsFavoritePokemonFamily._();
@@ -743,7 +741,7 @@ final class IsFavoritePokemonProvider
   }
 }
 
-String _$isFavoritePokemonHash() => r'0991b9b09a68f0671464705ff7baec605b222db3';
+String _$isFavoritePokemonHash() => r'7f80b2cf16a2cb7a69ae94ab3a283d6df2a603fe';
 
 final class IsFavoritePokemonFamily extends $Family
     with $FunctionalFamilyOverride<FutureOr<bool>, int> {

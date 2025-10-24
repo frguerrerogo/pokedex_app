@@ -12,14 +12,20 @@ class PokemonTypeChip extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 4),
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-      decoration: BoxDecoration(color: color, borderRadius: BorderRadius.circular(20)),
+      decoration: BoxDecoration(
+        color: color,
+        borderRadius: BorderRadius.circular(20),
+      ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
           Container(
             width: 20,
             height: 20,
-            decoration: const BoxDecoration(color: Colors.white, shape: BoxShape.circle),
+            decoration: const BoxDecoration(
+              color: Colors.white,
+              shape: BoxShape.circle,
+            ),
             alignment: Alignment.center,
             child: Image.asset(
               PokemonTypeConfig.getIcon(type),
@@ -34,7 +40,11 @@ class PokemonTypeChip extends StatelessWidget {
           const SizedBox(width: 4),
           Text(
             PokemonTypeConfig.getLabel(context, type),
-            style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 12),
+            style: const TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.w600,
+              fontSize: 12,
+            ),
           ),
         ],
       ),

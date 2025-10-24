@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 import 'package:pokedex_app/features/pokemon/data/datasources/favorites_local_data_source.dart';
 import 'package:pokedex_app/features/pokemon/data/datasources/pokemon_remote_data_source.dart';
 import 'package:pokedex_app/features/pokemon/data/repositories/favorites_repository_impl.dart';
@@ -16,85 +15,116 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 part 'di_providers.g.dart';
 
+// ============================================================================
+// EXTERNAL DEPENDENCIES
+// ============================================================================
+// Low-level dependencies that other providers depend on
+
 @riverpod
 Dio dio(Ref ref) => Dio();
+
+@riverpod
+Future<SharedPreferences> sharedPreferences(Ref ref) async {
+  return await SharedPreferences.getInstance();
+}
+
+// ============================================================================
+// DATA SOURCES
+// ============================================================================
+// Responsible for fetching data from remote or local sources
 
 @riverpod
 PokemonRemoteDataSource pokemonRemoteDataSource(Ref ref) =>
     PokemonRemoteDataSourceImpl(ref.watch(dioProvider));
 
 @riverpod
+Future<FavoritesLocalDataSource> favoritesLocalDataSource(Ref ref) async {
+  final prefs = await ref.watch(sharedPreferencesProvider.future);
+  return FavoritesLocalDataSourceImpl(prefs);
+}
+
+// ============================================================================
+// REPOSITORIES
+// ============================================================================
+// Business logic layer - coordinates data sources
+
+@riverpod
 PokemonRepository pokemonRepository(Ref ref) =>
     PokemonRepositoryImpl(ref.watch(pokemonRemoteDataSourceProvider));
 
 @riverpod
-GetPokemonList getPokemonList(Ref ref) => GetPokemonList(ref.watch(pokemonRepositoryProvider));
+Future<FavoritesRepository> favoritesRepository(Ref ref) async {
+  final localDataSource = await ref.watch(
+    favoritesLocalDataSourceProvider.future,
+  );
+  return FavoritesRepositoryImpl(localDataSource: localDataSource);
+}
+
+// ============================================================================
+// USE CASES
+// ============================================================================
+// Application business rules - each use case represents one user action
+
+@riverpod
+GetPokemonList getPokemonList(Ref ref) =>
+    GetPokemonList(ref.watch(pokemonRepositoryProvider));
 
 @riverpod
 GetPokemonDetail getPokemonDetail(Ref ref) =>
     GetPokemonDetail(ref.watch(pokemonRepositoryProvider));
 
 @riverpod
+Future<AddFavoriteUseCase> addFavoriteUseCase(Ref ref) async {
+  final repo = await ref.watch(favoritesRepositoryProvider.future);
+  return AddFavoriteUseCase(repo);
+}
+
+@riverpod
+Future<RemoveFavoriteUseCase> removeFavoriteUseCase(Ref ref) async {
+  final repo = await ref.watch(favoritesRepositoryProvider.future);
+  return RemoveFavoriteUseCase(repo);
+}
+
+@riverpod
+Future<GetFavoritesUseCase> getFavoritesUseCase(Ref ref) async {
+  final repo = await ref.watch(favoritesRepositoryProvider.future);
+  return GetFavoritesUseCase(repo);
+}
+
+@riverpod
+Future<IsFavoritePokemonUseCase> isFavoritePokemonUseCase(Ref ref) async {
+  final repo = await ref.watch(favoritesRepositoryProvider.future);
+  return IsFavoritePokemonUseCase(repo);
+}
+
+// ============================================================================
+// PRESENTATION LAYER PROVIDERS
+// ============================================================================
+// High-level features and UI state
+
+@riverpod
 Future<PokemonDetail> pokemonDetail(Ref ref, String name) async {
-  final getPokemonDetail = ref.watch(getPokemonDetailProvider);
-  final result = await getPokemonDetail(name);
-  return result;
+  final useCase = ref.watch(getPokemonDetailProvider);
+  return await useCase(name);
 }
 
 @riverpod
-ValueNotifier<PokemonDetail?> selectedPokemon(Ref ref) {
-  return ValueNotifier<PokemonDetail?>(null);
+class SelectedPokemonNotifier extends _$SelectedPokemonNotifier {
+  @override
+  PokemonDetail? build() => null;
+
+  void select(PokemonDetail pokemon) => state = pokemon;
+  void clear() => state = null;
 }
 
 @riverpod
-Future<SharedPreferences> sharedPreferencesProvider(Ref ref) async {
-  return await SharedPreferences.getInstance();
-}
-
-@riverpod
-Future<FavoritesLocalDataSource> favoritesLocalDataSourceProvider(Ref ref) async {
-  final sharedPreferences = await ref.watch(sharedPreferencesProviderProvider.future);
-  return FavoritesLocalDataSourceImpl(sharedPreferences);
-}
-
-@riverpod
-Future<FavoritesRepository> favoritesRepositoryProvider(Ref ref) async {
-  final localDataSource = await ref.watch(favoritesLocalDataSourceProviderProvider.future);
-  return FavoritesRepositoryImpl(localDataSource: localDataSource);
-}
-
-@riverpod
-Future<AddFavoriteUseCase> addFavoriteUseCaseProvider(Ref ref) async {
-  final repository = await ref.watch(favoritesRepositoryProviderProvider.future);
-  return AddFavoriteUseCase(repository);
-}
-
-@riverpod
-Future<RemoveFavoriteUseCase> removeFavoriteUseCaseProvider(Ref ref) async {
-  final repository = await ref.watch(favoritesRepositoryProviderProvider.future);
-  return RemoveFavoriteUseCase(repository);
-}
-
-@riverpod
-Future<GetFavoritesUseCase> getFavoritesUseCaseProvider(Ref ref) async {
-  final repository = await ref.watch(favoritesRepositoryProviderProvider.future);
-  return GetFavoritesUseCase(repository);
-}
-
-@riverpod
-Future<IsFavoritePokemonUseCase> isFavoritePokemonUseCaseProvider(Ref ref) async {
-  final repository = await ref.watch(favoritesRepositoryProviderProvider.future);
-  return IsFavoritePokemonUseCase(repository);
-}
-
-@riverpod
-Future<List<Favorite>> favoritesProvider(Ref ref) async {
-  final getFavoritesUseCase = await ref.watch(getFavoritesUseCaseProviderProvider.future);
-  return await getFavoritesUseCase();
+Future<List<Favorite>> favorites(Ref ref) async {
+  final useCase = await ref.watch(getFavoritesUseCaseProvider.future);
+  return await useCase();
 }
 
 @riverpod
 Future<bool> isFavoritePokemon(Ref ref, int pokemonId) async {
-  final isFavoritePokemonUseCase = await ref.watch(isFavoritePokemonUseCaseProviderProvider.future);
-  return await isFavoritePokemonUseCase(pokemonId);
+  final useCase = await ref.watch(isFavoritePokemonUseCaseProvider.future);
+  return await useCase(pokemonId);
 }

@@ -12,5 +12,6 @@ abstract class Adapter<Entity, Model> {
 
 mixin LocalAdapter<Entity, LocalModel> {
   LocalModel entityToLocalModel(Entity entity) => throw UnimplementedError();
-  Entity localModelToEntity(LocalModel localModel) => throw UnimplementedError();
+  Entity localModelToEntity(LocalModel localModel) =>
+      throw UnimplementedError();
 }

@@ -24,7 +24,10 @@ class Pokedex extends _$Pokedex {
     try {
       final getList = ref.watch(getPokemonListProvider);
       final offset = (page - 1) * _itemsPerPage;
-      final newPokemon = await getList.call(offset: offset, limit: _itemsPerPage);
+      final newPokemon = await getList.call(
+        offset: offset,
+        limit: _itemsPerPage,
+      );
 
       if (page == 1) {
         _cachedList = newPokemon;
@@ -59,7 +62,8 @@ class Pokedex extends _$Pokedex {
     _displayList = _cachedList
         .where(
           (pokemon) =>
-              pokemon.name.toLowerCase().contains(query) || pokemon.id.toString().contains(query),
+              pokemon.name.toLowerCase().contains(query) ||
+              pokemon.id.toString().contains(query),
         )
         .toList();
     return _displayList;

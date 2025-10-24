@@ -137,12 +137,12 @@ class _PokedexListWidgetState extends ConsumerState<PokedexListWidget> {
                     onFavoriteToggle: () async {
                       if (isFavorite) {
                         final removeFavoriteUseCase = await ref.read(
-                          removeFavoriteUseCaseProviderProvider.future,
+                          removeFavoriteUseCaseProvider.future,
                         );
                         await removeFavoriteUseCase(pokemon.id);
                       } else {
                         final addFavoriteUseCase = await ref.read(
-                          addFavoriteUseCaseProviderProvider.future,
+                          addFavoriteUseCaseProvider.future,
                         );
                         final favorite = Favorite(
                           pokemonId: pokemon.id,
@@ -156,7 +156,7 @@ class _PokedexListWidgetState extends ConsumerState<PokedexListWidget> {
                       // ignore: unused_result
                       ref.refresh(isFavoritePokemonProvider(pokemon.id));
                       // ignore: unused_result
-                      ref.refresh(favoritesProviderProvider);
+                      ref.refresh(favoritesProvider);
                     },
                   ),
                   loading: () => PokemonCard(

@@ -19,20 +19,26 @@ class FavoritesLocalDataSourceImpl implements FavoritesLocalDataSource {
 
   @override
   Future<void> saveFavorites(List<FavoriteModel> favorites) async {
-    final List<String> encodedFavorites = favorites.map((fav) => jsonEncode(fav.toJson())).toList();
+    final List<String> encodedFavorites = favorites
+        .map((fav) => jsonEncode(fav.toJson()))
+        .toList();
 
     await sharedPreferences.setStringList(_favoritesKey, encodedFavorites);
   }
 
   @override
   Future<List<FavoriteModel>> getFavorites() async {
-    final List<String>? encodedFavorites = sharedPreferences.getStringList(_favoritesKey);
+    final List<String>? encodedFavorites = sharedPreferences.getStringList(
+      _favoritesKey,
+    );
 
     if (encodedFavorites == null || encodedFavorites.isEmpty) {
       return [];
     }
 
-    return encodedFavorites.map((fav) => FavoriteModel.fromJson(jsonDecode(fav))).toList();
+    return encodedFavorites
+        .map((fav) => FavoriteModel.fromJson(jsonDecode(fav)))
+        .toList();
   }
 
   @override

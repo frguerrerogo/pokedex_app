@@ -50,14 +50,14 @@ class _PokemonCardFavoriteState extends ConsumerState<PokemonCardFavorite>
     await _animationController.forward();
 
     // Ejecutar la lógica de remover favorito
-    final removeFavoriteUseCase = await ref.read(removeFavoriteUseCaseProviderProvider.future);
+    final removeFavoriteUseCase = await ref.read(removeFavoriteUseCaseProvider.future);
     await removeFavoriteUseCase(widget.favorite.pokemonId);
 
     // Refresh providers
     // ignore: unused_result
     ref.refresh(isFavoritePokemonProvider(widget.favorite.pokemonId));
     // ignore: unused_result
-    ref.refresh(favoritesProviderProvider);
+    ref.refresh(favoritesProvider);
   }
 
   @override

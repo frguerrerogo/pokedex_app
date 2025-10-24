@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pokedex_app/core/core_exports.dart' show PokemonTypeConfig, PokemonTypeChip;
+import 'package:pokedex_app/core/core_exports.dart'
+    show PokemonTypeConfig, PokemonTypeChip;
 import 'package:pokedex_app/features/pokemon/domain/entities/pokemon_detail.dart';
 
 class PokemonCard extends StatelessWidget {
@@ -18,7 +19,9 @@ class PokemonCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final mainType = pokemon.types.isNotEmpty ? pokemon.types.first.name : 'normal';
+    final mainType = pokemon.types.isNotEmpty
+        ? pokemon.types.first.name
+        : 'normal';
     final bgColor = PokemonTypeConfig.getColor(mainType);
 
     return GestureDetector(
@@ -49,7 +52,8 @@ class PokemonCard extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          pokemon.name[0].toUpperCase() + pokemon.name.substring(1),
+                          pokemon.name[0].toUpperCase() +
+                              pokemon.name.substring(1),
                           style: const TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
@@ -77,7 +81,9 @@ class PokemonCard extends StatelessWidget {
                         width: 135,
                         height: 110,
                         decoration: BoxDecoration(
-                          borderRadius: const BorderRadius.all(Radius.circular(15.0)),
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(15.0),
+                          ),
                           color: PokemonTypeConfig.getColor(mainType),
                         ),
                         alignment: Alignment.center,
@@ -89,7 +95,11 @@ class PokemonCard extends StatelessWidget {
                           color: Colors.white.withValues(alpha: 0.5),
                           colorBlendMode: BlendMode.srcIn,
                           errorBuilder: (context, error, stackTrace) {
-                            return const Icon(Icons.circle, size: 10, color: Colors.red);
+                            return const Icon(
+                              Icons.circle,
+                              size: 10,
+                              color: Colors.red,
+                            );
                           },
                         ),
                       ),

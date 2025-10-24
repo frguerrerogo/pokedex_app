@@ -30,7 +30,11 @@ class PokemonSearchBar extends StatelessWidget {
           decoration: InputDecoration(
             hintText: 'Buscar Pokémon...',
             hintStyle: TextStyle(color: Colors.grey.shade600, fontSize: 16),
-            prefixIcon: Icon(Icons.search, color: Colors.grey.shade600, size: 22),
+            prefixIcon: Icon(
+              Icons.search,
+              color: Colors.grey.shade600,
+              size: 22,
+            ),
             border: InputBorder.none,
             contentPadding: const EdgeInsets.symmetric(vertical: 12),
           ),

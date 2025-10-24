@@ -5,7 +5,9 @@ part 'pokemon_model.g.dart';
 
 @freezed
 abstract class PokemonModel with _$PokemonModel {
-  const factory PokemonModel({required String name, required String url}) = _PokemonModel;
+  const factory PokemonModel({required String name, required String url}) =
+      _PokemonModel;
 
-  factory PokemonModel.fromJson(Map<String, dynamic> json) => _$PokemonModelFromJson(json);
+  factory PokemonModel.fromJson(Map<String, dynamic> json) =>
+      _$PokemonModelFromJson(json);
 }

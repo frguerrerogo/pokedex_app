@@ -10,7 +10,7 @@ class FavoritesPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final favoritesAsync = ref.watch(favoritesProviderProvider);
+    final favoritesAsync = ref.watch(favoritesProvider);
 
     return Scaffold(
       backgroundColor: Colors.white,

@@ -107,7 +107,10 @@ class PokemonDetailBody extends StatelessWidget {
       children: [
         Text(label, style: const TextStyle(fontSize: 12, color: Colors.grey)),
         const SizedBox(height: 4),
-        Text(value, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+        Text(
+          value,
+          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+        ),
       ],
     );
   }
@@ -121,10 +124,16 @@ class PokemonDetailBody extends StatelessWidget {
         children: [
           SizedBox(
             width: 80,
-            child: Text(label, style: const TextStyle(fontWeight: FontWeight.w500)),
+            child: Text(
+              label,
+              style: const TextStyle(fontWeight: FontWeight.w500),
+            ),
           ),
           const SizedBox(width: 8),
-          Text(value.toString().padLeft(3), style: const TextStyle(fontWeight: FontWeight.bold)),
+          Text(
+            value.toString().padLeft(3),
+            style: const TextStyle(fontWeight: FontWeight.bold),
+          ),
           const SizedBox(width: 8),
           Expanded(
             child: ClipRRect(

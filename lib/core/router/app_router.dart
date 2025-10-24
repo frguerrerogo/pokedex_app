@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:pokedex_app/core/core_exports.dart' show hasSeenOnboardingProvider;
+import 'package:pokedex_app/core/core_exports.dart'
+    show hasSeenOnboardingProvider;
 import 'package:pokedex_app/core/feature/presentation/app_pages_exports.dart';
 import 'package:pokedex_app/features/pokemon/presentation/pages/pokemon_detail_page.dart';
 
@@ -18,7 +19,9 @@ const pokemonDetail = '/pokemon/:id';
 final routerProvider = Provider<GoRouter>((ref) {
   final hasSeenOnboardingAsync = ref.watch(hasSeenOnboardingProvider);
   final hasSeenOnboarding = hasSeenOnboardingAsync.value ?? false;
-  final initialRoute = hasSeenOnboarding ? HomeRoute().location : OnboardingRoute().location;
+  final initialRoute = hasSeenOnboarding
+      ? HomeRoute().location
+      : OnboardingRoute().location;
 
   return GoRouter(initialLocation: initialRoute, routes: $appRoutes);
 });

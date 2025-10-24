@@ -9,8 +9,14 @@ class PokemonRepositoryImpl implements PokemonRepository {
   PokemonRepositoryImpl(this.remoteDataSource);
 
   @override
-  Future<List<PokemonDetail>> getPokemonList({int limit = 20, int offset = 0}) async {
-    final models = await remoteDataSource.getPokemonList(limit: limit, offset: offset);
+  Future<List<PokemonDetail>> getPokemonList({
+    int limit = 20,
+    int offset = 0,
+  }) async {
+    final models = await remoteDataSource.getPokemonList(
+      limit: limit,
+      offset: offset,
+    );
     return models.map(_mapModelToEntity).toList();
   }
 
@@ -28,7 +34,13 @@ class PokemonRepositoryImpl implements PokemonRepository {
 
   PokemonDetail _mapModelToEntity(PokemonDetailModel m) {
     final abilities = m.abilities
-        .map((a) => PokemonAbility(name: a.ability.name, isHidden: a.isHidden, slot: a.slot))
+        .map(
+          (a) => PokemonAbility(
+            name: a.ability.name,
+            isHidden: a.isHidden,
+            slot: a.slot,
+          ),
+        )
         .toList();
 
     final types = m.types

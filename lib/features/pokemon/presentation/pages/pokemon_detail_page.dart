@@ -174,13 +174,11 @@ class _PokemonDetailHeader extends ConsumerWidget {
                   onPressed: () async {
                     if (isFavorite) {
                       final removeFavoriteUseCase = await ref.read(
-                        removeFavoriteUseCaseProviderProvider.future,
+                        removeFavoriteUseCaseProvider.future,
                       );
                       await removeFavoriteUseCase(pokemon.id);
                     } else {
-                      final addFavoriteUseCase = await ref.read(
-                        addFavoriteUseCaseProviderProvider.future,
-                      );
+                      final addFavoriteUseCase = await ref.read(addFavoriteUseCaseProvider.future);
                       final favorite = Favorite(
                         pokemonId: pokemon.id,
                         name: pokemon.name,
@@ -194,7 +192,7 @@ class _PokemonDetailHeader extends ConsumerWidget {
                     // ignore: unused_result
                     ref.refresh(isFavoritePokemonProvider(pokemon.id));
                     // ignore: unused_result
-                    ref.refresh(favoritesProviderProvider);
+                    ref.refresh(favoritesProvider);
                   },
                 ),
                 loading: () => const Icon(Icons.favorite_border_rounded, color: Colors.white),

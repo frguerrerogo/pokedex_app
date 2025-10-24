@@ -40,11 +40,19 @@ class PokemonTypeChip extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Image.asset('assets/images/types/${type.toLowerCase()}.png', width: 16, height: 16),
+          Image.asset(
+            'assets/images/types/${type.toLowerCase()}.png',
+            width: 16,
+            height: 16,
+          ),
           const SizedBox(width: 4),
           Text(
             type.toUpperCase(),
-            style: const TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.bold),
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 12,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ],
       ),

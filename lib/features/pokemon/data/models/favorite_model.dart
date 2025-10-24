@@ -13,5 +13,6 @@ abstract class FavoriteModel with _$FavoriteModel {
     required DateTime addedAt,
   }) = _FavoriteModel;
 
-  factory FavoriteModel.fromJson(Map<String, dynamic> json) => _$FavoriteModelFromJson(json);
+  factory FavoriteModel.fromJson(Map<String, dynamic> json) =>
+      _$FavoriteModelFromJson(json);
 }

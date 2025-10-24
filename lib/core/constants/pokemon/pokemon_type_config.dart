@@ -146,7 +146,9 @@ class PokemonTypeConfig {
       case 'flying':
         return l10n.typeFlying;
       default:
-        return type.isEmpty ? type : '${type[0].toUpperCase()}${type.substring(1)}';
+        return type.isEmpty
+            ? type
+            : '${type[0].toUpperCase()}${type.substring(1)}';
     }
   }
 

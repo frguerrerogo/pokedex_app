@@ -10,13 +10,18 @@ class AppColors {
 
   static const Color textPrimary = Color(0xFF121212); // text/primary
 
-  static const Color buttonPrimaryDefaultBg = Color(0xFF1E88E5); // button/primary/default/bg
+  static const Color buttonPrimaryDefaultBg = Color(
+    0xFF1E88E5,
+  ); // button/primary/default/bg
 
   static const Color primaryBlue = Color(0xFF173EA5); // Azul/Normal
   static const Color secondaryBlue = Color(0xFF4565B7); // Azul/Semi-light
   static const Color secondaryBlue25 = Color(0x404565B7);
-  static const Color tabBarActiveColor = Color(0xFF1565C0); // tapBar/icon/active
+  static const Color tabBarActiveColor = Color(
+    0xFF1565C0,
+  ); // tapBar/icon/active
 
-  static const Color primaryGray = Color(0xFF424242); // text/secondary & tapBar/icon/default
-
+  static const Color primaryGray = Color(
+    0xFF424242,
+  ); // text/secondary & tapBar/icon/default
 }

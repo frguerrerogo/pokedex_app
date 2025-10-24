@@ -9,7 +9,11 @@ class PokemonDetailHeaderDelegate extends SliverPersistentHeaderDelegate {
   final double minHeight;
   final double maxHeight;
 
-  PokemonDetailHeaderDelegate({required this.pokemon, this.minHeight = 120, this.maxHeight = 300});
+  PokemonDetailHeaderDelegate({
+    required this.pokemon,
+    this.minHeight = 120,
+    this.maxHeight = 300,
+  });
 
   @override
   double get minExtent => minHeight;
@@ -42,13 +46,19 @@ class PokemonDetailHeaderDelegate extends SliverPersistentHeaderDelegate {
   }
 
   @override
-  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
+  Widget build(
+    BuildContext context,
+    double shrinkOffset,
+    bool overlapsContent,
+  ) {
     final theme = Theme.of(context);
     final progress = shrinkOffset / (maxExtent - minExtent);
     final topPadding = MediaQuery.of(context).padding.top;
 
     final mainType = pokemon.types.isNotEmpty ? pokemon.types.first : null;
-    final color = mainType != null ? _getColorByType(mainType.name) : theme.primaryColor;
+    final color = mainType != null
+        ? _getColorByType(mainType.name)
+        : theme.primaryColor;
     final darkerColor = HSLColor.fromColor(color).withLightness(0.2).toColor();
 
     return Material(
@@ -117,7 +127,9 @@ class PokemonDetailHeaderDelegate extends SliverPersistentHeaderDelegate {
                   const SizedBox(width: 8),
                   Text(
                     '#${pokemon.id.toString().padLeft(3, '0')}',
-                    style: theme.textTheme.titleMedium?.copyWith(color: Colors.white70),
+                    style: theme.textTheme.titleMedium?.copyWith(
+                      color: Colors.white70,
+                    ),
                   ),
                   const SizedBox(width: 8),
                   Text(
