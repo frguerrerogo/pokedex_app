@@ -37,7 +37,6 @@ Puedes ver una demostración completa de la aplicación haciendo clic en el sigu
 - **Intl**: Internacionalización y formatos.
 - **Flutter SVG**: Renderización de imágenes SVG.
 - **Shared Preferences**: Almacenamiento local de datos.
-- **Flutter Test**: Pruebas unitarias y de integración.
 - **Arquitectura modular**: Separación del proyecto en paquetes independientes (features, core).
 - **Arquitectura limpia (Clean Architecture)**: Separación de capas: presentación, dominio y datos.
 
