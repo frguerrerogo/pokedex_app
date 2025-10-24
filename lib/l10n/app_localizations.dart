@@ -359,7 +359,7 @@ abstract class AppLocalizations {
   /// No description provided for @specialAttack.
   ///
   /// In es, this message translates to:
-  /// **'Ataque Esp.'**
+  /// **'Atq. Esp.'**
   String get specialAttack;
 
   /// No description provided for @weaknesses.
@@ -367,6 +367,30 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Debilidades'**
   String get weaknesses;
+
+  /// No description provided for @noFavorites.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin favoritos'**
+  String get noFavorites;
+
+  /// No description provided for @addFavoritesInstruction.
+  ///
+  /// In es, this message translates to:
+  /// **'Agrega Pokémon a tu lista de favoritos'**
+  String get addFavoritesInstruction;
+
+  /// No description provided for @noPokemonAvailable.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin Pokémon disponibles'**
+  String get noPokemonAvailable;
+
+  /// No description provided for @errorMessage.
+  ///
+  /// In es, this message translates to:
+  /// **'Error: {error}'**
+  String errorMessage(Object error);
 }
 
 class _AppLocalizationsDelegate

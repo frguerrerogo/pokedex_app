@@ -148,4 +148,18 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get weaknesses => 'Weaknesses';
+
+  @override
+  String get noFavorites => 'No favorites';
+
+  @override
+  String get addFavoritesInstruction => 'Add Pokémon to your favorite list';
+
+  @override
+  String get noPokemonAvailable => 'No Pokémon available';
+
+  @override
+  String errorMessage(Object error) {
+    return 'Error: $error';
+  }
 }

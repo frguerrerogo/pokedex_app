@@ -43,6 +43,10 @@
   "hp": "PS",
   "attack": "Ataque",
   "defense": "Defensa",
-  "specialAttack": "Ataque Esp.",
-  "weaknesses": "Debilidades"
+  "specialAttack": "Atq. Esp.",
+  "weaknesses": "Debilidades",
+  "noFavorites": "Sin favoritos",
+  "addFavoritesInstruction": "Agrega Pokémon a tu lista de favoritos",
+  "noPokemonAvailable": "Sin Pokémon disponibles",
+  "errorMessage": "Error: {error}"
 }

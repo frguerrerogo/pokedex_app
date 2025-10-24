@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pokedex_app/core/core_exports.dart'
     show PokeballLoading, PokemonTypeChip, PokemonTypeConfig;
+import 'package:pokedex_app/core/di/di_providers.dart';
+import 'package:pokedex_app/features/pokemon/domain/entities/favorite.dart';
 import 'package:pokedex_app/features/pokemon/domain/entities/pokemon_detail.dart';
 import 'package:pokedex_app/features/pokemon/presentation/providers/pokemon_detail_provider.dart';
 import 'package:pokedex_app/l10n/app_localizations.dart';
@@ -20,7 +22,11 @@ class PokemonDetailPage extends ConsumerWidget {
       backgroundColor: Colors.white,
       body: pokemonAsync.when(
         loading: () => const Center(child: PokeballLoading(size: 100)),
-        error: (error, stack) => Center(child: Text('Error: $error')),
+        error: (error, stack) => Center(
+          child: Builder(
+            builder: (context) => Text(AppLocalizations.of(context).errorMessage(error.toString())),
+          ),
+        ),
         data: (pokemon) => CustomScrollView(
           slivers: [
             _PokemonDetailHeader(pokemon: pokemon),
@@ -134,15 +140,16 @@ class PokemonDetailPage extends ConsumerWidget {
   }
 }
 
-class _PokemonDetailHeader extends StatelessWidget {
+class _PokemonDetailHeader extends ConsumerWidget {
   final PokemonDetail pokemon;
 
   const _PokemonDetailHeader({required this.pokemon});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final type = pokemon.types.first;
     final backgroundColor = PokemonTypeConfig.getColor(type.name);
+    final isFavoritAsync = ref.watch(isFavoritePokemonProvider(pokemon.id));
 
     return SliverAppBar(
       expandedHeight: 350,
@@ -158,11 +165,41 @@ class _PokemonDetailHeader extends StatelessWidget {
           padding: const EdgeInsets.only(right: 12.0),
           child: Row(
             children: [
-              IconButton(
-                icon: const Icon(Icons.favorite_border_rounded, color: Colors.white),
-                onPressed: () {
-                  // TODO: Agregar a favoritos
-                },
+              isFavoritAsync.when(
+                data: (isFavorite) => IconButton(
+                  icon: Icon(
+                    isFavorite ? Icons.favorite_rounded : Icons.favorite_border_rounded,
+                    color: Colors.white,
+                  ),
+                  onPressed: () async {
+                    if (isFavorite) {
+                      final removeFavoriteUseCase = await ref.read(
+                        removeFavoriteUseCaseProviderProvider.future,
+                      );
+                      await removeFavoriteUseCase(pokemon.id);
+                    } else {
+                      final addFavoriteUseCase = await ref.read(
+                        addFavoriteUseCaseProviderProvider.future,
+                      );
+                      final favorite = Favorite(
+                        pokemonId: pokemon.id,
+                        name: pokemon.name,
+                        imageUrl: pokemon.imageUrl,
+                        types: pokemon.types.map((t) => t.name).toList(),
+                        addedAt: DateTime.now(),
+                      );
+                      await addFavoriteUseCase(favorite);
+                    }
+                    // Refresh providers
+                    // ignore: unused_result
+                    ref.refresh(isFavoritePokemonProvider(pokemon.id));
+                    // ignore: unused_result
+                    ref.refresh(favoritesProviderProvider);
+                  },
+                ),
+                loading: () => const Icon(Icons.favorite_border_rounded, color: Colors.white),
+                error: (err, stack) =>
+                    const Icon(Icons.favorite_border_rounded, color: Colors.white),
               ),
             ],
           ),

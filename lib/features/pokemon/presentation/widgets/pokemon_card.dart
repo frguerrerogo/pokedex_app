@@ -70,12 +70,12 @@ class PokemonCard extends StatelessWidget {
 
                 SizedBox(
                   width: 135,
-                  height: 105,
+                  height: 110,
                   child: Stack(
                     children: [
                       Container(
                         width: 135,
-                        height: 105,
+                        height: 110,
                         decoration: BoxDecoration(
                           borderRadius: const BorderRadius.all(Radius.circular(15.0)),
                           color: PokemonTypeConfig.getColor(mainType),

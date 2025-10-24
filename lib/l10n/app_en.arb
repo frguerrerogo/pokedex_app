@@ -44,5 +44,9 @@
   "attack": "Attack",
   "defense": "Defense",
   "specialAttack": "Sp. Atk",
-  "weaknesses": "Weaknesses"
+  "weaknesses": "Weaknesses",
+  "noFavorites": "No favorites",
+  "addFavoritesInstruction": "Add Pokémon to your favorite list",
+  "noPokemonAvailable": "No Pokémon available",
+  "errorMessage": "Error: {error}"
 }

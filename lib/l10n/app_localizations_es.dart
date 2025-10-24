@@ -144,8 +144,23 @@ class AppLocalizationsEs extends AppLocalizations {
   String get defense => 'Defensa';
 
   @override
-  String get specialAttack => 'Ataque Esp.';
+  String get specialAttack => 'Atq. Esp.';
 
   @override
   String get weaknesses => 'Debilidades';
+
+  @override
+  String get noFavorites => 'Sin favoritos';
+
+  @override
+  String get addFavoritesInstruction =>
+      'Agrega Pokémon a tu lista de favoritos';
+
+  @override
+  String get noPokemonAvailable => 'Sin Pokémon disponibles';
+
+  @override
+  String errorMessage(Object error) {
+    return 'Error: $error';
+  }
 }

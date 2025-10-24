@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pokedex_app/core/core_exports.dart'
     show AppBottomNavigationBar, InfoCardContent, AppImages;
+import 'package:pokedex_app/core/di/di_providers.dart';
 import 'package:pokedex_app/core/router/app_router.dart';
 import 'package:pokedex_app/core/widgets/pokeball_loading.dart';
+import 'package:pokedex_app/features/pokemon/domain/entities/favorite.dart';
 import 'package:pokedex_app/features/pokemon/domain/entities/pokemon_detail.dart';
 import 'package:pokedex_app/features/pokemon/presentation/providers/pokedex_provider.dart';
 import 'package:pokedex_app/features/pokemon/presentation/widgets/pokemon_card.dart';
@@ -106,7 +108,9 @@ class _PokedexListWidgetState extends ConsumerState<PokedexListWidget> {
   @override
   Widget build(BuildContext context) {
     if (widget.pokemonList.isEmpty) {
-      return const Center(child: Text("No hay Pokémon disponibles"));
+      return Center(
+        child: Builder(builder: (context) => Text(AppLocalizations.of(context).noPokemonAvailable)),
+      );
     }
 
     return Padding(
@@ -121,15 +125,54 @@ class _PokedexListWidgetState extends ConsumerState<PokedexListWidget> {
               separatorBuilder: (_, _) => const SizedBox(height: 8),
               itemBuilder: (context, index) {
                 final pokemon = widget.pokemonList[index];
-                return PokemonCard(
-                  pokemon: pokemon,
-                  isFavorite: false,
-                  onTap: () {
-                    PokemonDetailRoute(id: pokemon.id.toString()).push(context);
-                  },
-                  onFavoriteToggle: () {
-                    // toggle favorite
-                  },
+                final isFavoritAsync = ref.watch(isFavoritePokemonProvider(pokemon.id));
+
+                return isFavoritAsync.when(
+                  data: (isFavorite) => PokemonCard(
+                    pokemon: pokemon,
+                    isFavorite: isFavorite,
+                    onTap: () {
+                      PokemonDetailRoute(id: pokemon.id.toString()).push(context);
+                    },
+                    onFavoriteToggle: () async {
+                      if (isFavorite) {
+                        final removeFavoriteUseCase = await ref.read(
+                          removeFavoriteUseCaseProviderProvider.future,
+                        );
+                        await removeFavoriteUseCase(pokemon.id);
+                      } else {
+                        final addFavoriteUseCase = await ref.read(
+                          addFavoriteUseCaseProviderProvider.future,
+                        );
+                        final favorite = Favorite(
+                          pokemonId: pokemon.id,
+                          name: pokemon.name,
+                          imageUrl: pokemon.imageUrl,
+                          types: pokemon.types.map((t) => t.name).toList(),
+                          addedAt: DateTime.now(),
+                        );
+                        await addFavoriteUseCase(favorite);
+                      }
+                      // ignore: unused_result
+                      ref.refresh(isFavoritePokemonProvider(pokemon.id));
+                      // ignore: unused_result
+                      ref.refresh(favoritesProviderProvider);
+                    },
+                  ),
+                  loading: () => PokemonCard(
+                    pokemon: pokemon,
+                    isFavorite: false,
+                    onTap: () {
+                      PokemonDetailRoute(id: pokemon.id.toString()).push(context);
+                    },
+                  ),
+                  error: (err, stack) => PokemonCard(
+                    pokemon: pokemon,
+                    isFavorite: false,
+                    onTap: () {
+                      PokemonDetailRoute(id: pokemon.id.toString()).push(context);
+                    },
+                  ),
                 );
               },
             ),
